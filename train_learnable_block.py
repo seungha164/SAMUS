@@ -34,7 +34,7 @@ def main():
     #  ============================================================================= parameters setting ====================================================================================
 
     parser = argparse.ArgumentParser(description='Networks')
-    parser.add_argument('--modelname', default='SAMUS', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
+    parser.add_argument('--modelname', default='LearableBlock', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS')
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS')
     parser.add_argument('--task', default='BreastCancer_US', help='task or dataset name')
@@ -45,9 +45,10 @@ def main():
     parser.add_argument('--base_lr', type=float, default=0.0005, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') 
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
-    parser.add_argument('-keep_log', type=bool, default=True, help='keep the loss&lr&dice during training or not')
+    parser.add_argument('-keep_log', type=bool, default=False, help='keep the loss&lr&dice during training or not')
 
     args = parser.parse_args()
+    args.sam_ckpt = 'checkpoints/SAMUS_06270611_54_0.8674892189951133.pth'
     opt = get_config(args.task) 
 
     device = torch.device(opt.device)
@@ -121,11 +122,13 @@ def main():
         train_losses = 0
         for batch_idx, (datapack) in enumerate(trainloader):
             imgs = datapack['image'].to(dtype = torch.float32, device=opt.device)
-            masks = datapack['low_mask'].to(dtype = torch.float32, device=opt.device)
-            bbox = torch.as_tensor(datapack['bbox'], dtype=torch.float32, device=opt.device)
-            pt = get_click_prompt(datapack, opt)
+            pt = (datapack['pts'].to(dtype = torch.float32, device=opt.device), datapack['p_labels'].to(dtype = torch.float32, device=opt.device))
+            
+            # masks = datapack['low_mask'].to(dtype = torch.float32, device=opt.device)
+            # bbox = torch.as_tensor(datapack['bbox'], dtype=torch.float32, device=opt.device)
+            # pt = get_click_prompt(datapack, opt)
             # -------------------------------------------------------- forward --------------------------------------------------------
-            pred = model(imgs, pt, bbox)
+            pred = model(imgs, pt)
             train_loss = criterion(pred, masks) 
             # -------------------------------------------------------- backward -------------------------------------------------------
             optimizer.zero_grad()

@@ -404,11 +404,11 @@ class ImageToImage2DLB(ImageToImage2D):
     
     def generate_clicks(self, filename, class_id):
         points = self.prompt_point_dics[filename]
-        pts, point_labels = [], []
-        for point in points:
-            point_labels.append(np.array([[1]]))
-            pts.append(np.array([[[int(point[0]), int(point[1])]]]))
-        return pts, point_labels
+        pts, point_labels = np.zeros([1, 1, 2]), np.zeros([1,1])
+        for x, y in points:
+            point_labels = np.concatenate([point_labels, np.array([[class_id]])])
+            pts = np.concatenate([pts, np.array([[[x, y]]])])
+        return pts[1:], point_labels[1:]
     
     def __getitem__(self, idx):
         id_ = self.ids[idx]
