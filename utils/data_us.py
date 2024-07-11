@@ -19,7 +19,7 @@ from collections import OrderedDict
 from torchvision.transforms import InterpolationMode
 from einops import rearrange
 import random
-
+# import box_ops
 
 def to_long_tensor(pic):
     # handle numpy array
@@ -285,12 +285,17 @@ class ImageToImage2D(Dataset):
         self.dataset_path = dataset_path
         self.one_hot_mask = one_hot_mask
         self.split = split
-        id_list_file = os.path.join(dataset_path, 'MainPatient/{0}.txt'.format(split))
+        # img, label path 
+        self.sub_path = split.split('-')[-1]
+        self.img_path = f"{self.dataset_path}/{self.sub_path}/img"
+        self.label_path = f"{self.dataset_path}/{self.sub_path}/label"
+        
+        id_list_file = f"{self.dataset_path}/{self.sub_path}/{split}.txt" #os.path.join(dataset_path, 'MainPatient/{0}.txt'.format(split))
         self.ids = [id_.strip() for id_ in open(id_list_file)]
         self.prompt = prompt
         self.img_size = img_size
         self.class_id = class_id
-        self.class_dict_file = os.path.join(dataset_path, 'MainPatient/class.json')
+        self.class_dict_file = f"{dataset_path}/{split.split('-')[-1]}/class.json" #os.path.join(dataset_path, 'MainPatient/class.json')
         with open(self.class_dict_file, 'r') as load_f:
             self.class_dict = json.load(load_f)
         if joint_transform:
@@ -304,29 +309,29 @@ class ImageToImage2D(Dataset):
 
     def __getitem__(self, i):
         id_ = self.ids[i]
+        #* img/mask loading
         if "test" in self.split:
-            sub_path, filename = id_.split('/')[0], id_.split('/')[1]
-            # class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2]
-            # self.class_id = int(class_id0)
+            class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2].replace('.png', '')
+            self.class_id = int(class_id0)
         else:
-            class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2]
-        img_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'img')
-        label_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'label')
-        image = cv2.imread(os.path.join(img_path, filename + '.png'), 0)
-        mask = cv2.imread(os.path.join(label_path, filename + '.png'), 0)
+            class_id0, sub_path, filename = id_.split('/')[0], id_.split('/')[1], id_.split('/')[2].replace('.png', '')
+        # img_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'img')
+        # label_path = os.path.join(os.path.join(self.dataset_path, sub_path), 'label')
+        image = cv2.imread(os.path.join(self.img_path, filename + '.png'), 0)
+        mask = cv2.imread(os.path.join(self.label_path, filename + '.png'), 0)
         classes = self.class_dict[sub_path]
         if classes == 2:
             mask[mask > 1] = 1
 
-        # correct dimensions if needed
-        image, mask = correct_dims(image, mask)  
+        #* correct dimensions if needed
+        image, mask = correct_dims(image, mask)
         if self.joint_transform:
             image, mask, low_mask = self.joint_transform(image, mask)
         if self.one_hot_mask:
             assert self.one_hot_mask > 0, 'one_hot_mask must be nonnegative'
             mask = torch.zeros((self.one_hot_mask, mask.shape[1], mask.shape[2])).scatter_(0, mask.long(), 1)
 
-         # --------- make the point prompt -----------------
+        #* --------- make the point prompt -----------------
         if self.prompt == 'click':
             point_label = 1
             if 'train' in self.split:
@@ -364,6 +369,113 @@ class ImageToImage2D(Dataset):
             'class_id': class_id,
             }
 
+#### ----------------------------------------------------------------------------------
+def get_bounding_box(mask, width, height):
+    mask = np.array(mask)
+    # 0이 아닌 값(즉, 1)의 인덱스를 찾습니다.
+    indices = np.argwhere(mask)
+
+    # 각 축에 대한 최소 및 최대 인덱스를 찾습니다.
+    min_y, min_x = indices.min(axis=0)
+    max_y, max_x = indices.max(axis=0)
+
+    # 결과를 (minx, miny, maxx, maxy) 형식으로 반환합니다.
+    return (min_x / width, min_y / height, max_x / width, max_y / height)
+
+class ImageToImage2DLB(ImageToImage2D):
+    def __init__(
+        self, 
+        dataset_path: str, 
+        split='train', 
+        joint_transform: Callable = None, 
+        img_size=256, 
+        prompt = "click", 
+        class_id=1,
+        one_hot_mask: int = False,
+        cluster_num: int = 2,
+    ) -> None:
+        super().__init__(dataset_path, split, joint_transform, img_size, prompt, class_id, one_hot_mask)
+        cluster_config_path = f'./configs/sec-32_cluster_centroid_{cluster_num}.json'
+        with open(cluster_config_path, 'r') as f:
+            self.prompt_point_dics = json.load(f)
+    
+    def __len__(self):
+        return len(self.ids)
+    
+    def generate_clicks(self, filename, class_id):
+        points = self.prompt_point_dics[filename]
+        pts, point_labels = [], []
+        for point in points:
+            point_labels.append(np.array([[1]]))
+            pts.append(np.array([[[int(point[0]), int(point[1])]]]))
+        return pts, point_labels
+    
+    def __getitem__(self, idx):
+        id_ = self.ids[idx]
+        #* img/mask loading
+        if "test" in self.split:
+            class_id0, sub_path, filename = id_.split('/')
+            filename = filename.replace('.png', '')
+            self.class_id = int(class_id0)
+        else:
+            class_id0, sub_path, filename = id_.split('/')
+            filename = filename.replace('.png', '')
+        
+        image = cv2.imread(os.path.join(self.img_path, filename + '.png'), 0)
+        mask = cv2.imread(os.path.join(self.label_path, filename + '.png'), 0)
+        
+        classes = self.class_dict[sub_path]
+        if classes == 2:
+            mask[mask > 1] = 1
+        #* correct dimensions if needed
+        image, mask = correct_dims(image, mask)
+        if self.joint_transform:
+            image, mask, low_mask = self.joint_transform(image, mask)
+        if self.one_hot_mask:
+            assert self.one_hot_mask > 0, 'one_hot_mask must be nonnegative'
+            mask = torch.zeros((self.one_hot_mask, mask.shape[1], mask.shape[2])).scatter_(0, mask.long(), 1)
+        
+        #* --------- make the point prompt -----------------
+        
+        
+        if self.prompt == 'click':
+            point_label = 1
+            class_id = int(class_id0) if ('train' in self.split or 'val' in self.split) else self.class_id
+            # 필요한 prompt - point(by. json file)
+            pts, point_labels = self.generate_clicks(filename, class_id)
+            # if 'train' in self.split:
+            #     pt, point_label = random_click(np.array(mask), class_id)
+            #     bbox = random_bbox(np.array(mask), class_id, self.img_size)
+            # else:
+            #     pt, point_label = fixed_click(np.array(mask), class_id)
+            #     bbox = fixed_bbox(np.array(mask), class_id, self.img_size)
+            mask[mask != class_id] = 0
+            mask[mask == class_id] = 1
+            #! minx, miny, maxx, maxy - [0~1]
+            bbox = get_bounding_box(mask, self.img_size, self.img_size)
+        
+            low_mask[low_mask!=class_id] = 0
+            low_mask[low_mask==class_id] = 1
+            # point_labels = np.array(point_label)
+        
+        if self.one_hot_mask:
+            assert self.one_hot_mask > 0, 'one_hot_mask must be nonnegative'
+            mask = torch.zeros((self.one_hot_mask, mask.shape[1], mask.shape[2])).scatter_(0, mask.long(), 1)
+
+        low_mask = low_mask.unsqueeze(0)
+        mask = mask.unsqueeze(0)
+        
+        return {
+            'image'         : image,
+            'label'         : mask,
+            'label_bbox'    : bbox,
+            'p_labels'      : point_labels,
+            'pts'           : pts,
+            'low_mask'      : low_mask,
+            'image_name'    : filename + '.png',
+            'class_id'      : class_id,
+        }
+#### ----------------------------------------------------------------------------------
 
 class Logger:
     def __init__(self, verbose=False):

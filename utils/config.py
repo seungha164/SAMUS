@@ -130,6 +130,40 @@ class Config_CAMUS:
     visual = False
     modelname = "SAM"
 
+#! New
+class Config_BreastCancer_US:
+    # This dataset is for breast cancer segmentation
+    data_path = "./dataset"
+    data_subpath = "./dataset/BreastCancer_US/"   
+    save_path = "./checkpoints/BreastCancer_US/"
+    result_path = "./result/BreastCancer_US/"
+    tensorboard_path = "./tensorboard/BreastCancer_US/"
+    load_path = save_path + "/xxx.pth"
+    save_path_code = "_"
+
+    workers = 1                         # number of data loading workers (default: 8)
+    epochs = 400                        # number of total epochs to run (default: 400)
+    batch_size = 8                     # batch size (default: 4)
+    learning_rate = 1e-4                # iniial learning rate (default: 0.001)
+    momentum = 0.9                      # momntum
+    classes = 2                         # thenumber of classes (background + foreground)
+    img_size = 256                      # theinput size of model
+    train_split = "train-BreastCancer_US"   # the file name of training set
+    val_split = "val-BreastCancer_US"       # the file name of testing set
+    test_split = "test-BreastCancer_US"     # the file name of testing set
+    crop = None                         # the cropped image size
+    eval_freq = 1                       # the frequency of evaluate the model
+    save_freq = 2000                    # the frequency of saving the model
+    device = "cuda"                     # training device, cpu or cuda
+    cuda = "on"                         # switch on/off cuda option (default: off)
+    gray = "yes"                        # the type of input image
+    img_channel = 1                     # the channel of input image
+    eval_mode = "mask_slice"                 # the mode when evaluate the model, slice level or patient level
+    pre_trained = False
+    mode = "train"
+    visual = False
+    modelname = "SAM"
+    
 # ==================================================================================================
 def get_config(task="US30K"):
     if task == "US30K":
@@ -140,5 +174,7 @@ def get_config(task="US30K"):
         return Config_BUSI()
     elif task == "CAMUS":
         return Config_CAMUS()
+    elif task == "BreastCancer_US":
+        return Config_BreastCancer_US()
     else:
         assert("We do not have the related dataset, please choose another task.")

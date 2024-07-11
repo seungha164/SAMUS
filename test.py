@@ -38,10 +38,10 @@ def main():
     parser.add_argument('--modelname', default='SAMUS', type=str, help='type of model, e.g., SAM, SAMFull, SAMHead, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS') 
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS') 
-    parser.add_argument('--task', default='BUSI', help='task or dataset name')
+    parser.add_argument('--task', default='BreastCancer_US', help='task or dataset name')
     parser.add_argument('--vit_name', type=str, default='vit_b', help='select the vit model for the image encoder of sam')
     parser.add_argument('--sam_ckpt', type=str, default='checkpoints/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
-    parser.add_argument('--batch_size', type=int, default=8, help='batch_size per gpu') # 8 # SAMed is 12 bs with 2n_gpu and lr is 0.005
+    parser.add_argument('--batch_size', type=int, default=1, help='batch_size per gpu') # 8 # SAMed is 12 bs with 2n_gpu and lr is 0.005
     parser.add_argument('--n_gpu', type=int, default=1, help='total gpu')
     parser.add_argument('--base_lr', type=float, default=0.0001, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') # True
@@ -51,7 +51,12 @@ def main():
     args = parser.parse_args()
     opt = get_config(args.task)  # please configure your hyper-parameter
     print("task", args.task, "checkpoints:", opt.load_path)
-    opt.mode = "val"
+        #!!!!!!!!!!!!!!!!!
+    opt.mode = "test"
+    prompt_type = 'click' #'multi_bbox' #'click'#
+    #args.modelname = 'Samus_multi_prompts'
+    #opt.eval_mode = "eval_mask_SamUSMultiPrompts"
+    #!!!!!!!!!!!!!!!!!
     #opt.classes=2
     opt.visual = True
     #opt.eval_mode = "patient"
@@ -75,7 +80,7 @@ def main():
     opt.batch_size = args.batch_size * args.n_gpu
 
     tf_val = JointTransform2D(img_size=args.encoder_input_size, low_img_size=args.low_image_size, ori_size=opt.img_size, crop=opt.crop, p_flip=0, color_jitter_params=None, long_mask=True)
-    val_dataset = ImageToImage2D(opt.data_path, opt.test_split, tf_val, img_size=args.encoder_input_size, class_id=1)  # return image, mask, and filename
+    val_dataset = ImageToImage2D(opt.data_path, opt.test_split, tf_val, img_size=args.encoder_input_size, class_id=1, prompt=prompt_type)  # return image, mask, and filename
     valloader = DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False, num_workers=8, pin_memory=True)
 
     if args.modelname=="SAMed":
@@ -83,7 +88,7 @@ def main():
     model = get_model(args.modelname, args=args, opt=opt)
     model.to(device)
     model.train()
-
+    opt.load_path = '/home/nute11a/workspace/SAMUS/checkpoints/BreastCancer_US/SAMUS_06270611_54_0.8674892189951133.pth'
     checkpoint = torch.load(opt.load_path)
     #------when the load model is saved under multiple GPU
     new_state_dict = {}
@@ -103,10 +108,10 @@ def main():
 
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print("Total_params: {}".format(pytorch_total_params))
-    input = torch.randn(1, 1, args.encoder_input_size, args.encoder_input_size).cuda()
-    points = (torch.tensor([[[1, 2]]]).float().cuda(), torch.tensor([[1]]).float().cuda())
-    flops, params = profile(model, inputs=(input, points), )
-    print('Gflops:', flops/1000000000, 'params:', params)
+    # input = torch.randn(1, 1, args.encoder_input_size, args.encoder_input_size).cuda()
+    # points = (torch.tensor([[[1, 2]]]).float().cuda(), torch.tensor([[1]]).float().cuda())
+    # flops, params = profile(model, inputs=(input, points), )
+    # print('Gflops:', flops/1000000000, 'params:', params)
 
     model.eval()
 
