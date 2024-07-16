@@ -68,20 +68,22 @@ def _build_learnable_block(
 
 def load_from2(learnableblock, sam_dict, image_size, patch_size): # load the positional embedding
     samus_dict = learnableblock.state_dict()
-    dict_trained = {k: v for k, v in sam_dict.items() if k in samus_dict}
-    token_size = int(image_size//patch_size)
-    # pos_embed = dict_trained['image_encoder.pos_embed']
-    # pos_embed = pos_embed.permute(0, 3, 1, 2)  # [b, c, h, w]
-    # pos_embed = F.interpolate(pos_embed, (token_size, token_size), mode='bilinear', align_corners=False)
-    # pos_embed = pos_embed.permute(0, 2, 3, 1)  # [b, h, w, c]
-    # dict_trained['image_encoder.pos_embed'] = pos_embed
-    rel_pos_keys = [k for k in dict_trained.keys() if 'rel_pos' in k]
-    global_rel_pos_keys = [k for k in rel_pos_keys if '2' in k or '5' in  k or '8' in k or '11' in k]
-    for k in global_rel_pos_keys:
-        rel_pos_params = dict_trained[k]
-        h, w = rel_pos_params.shape
-        rel_pos_params = rel_pos_params.unsqueeze(0).unsqueeze(0)
-        rel_pos_params = F.interpolate(rel_pos_params, (token_size * 2 - 1, w), mode='bilinear', align_corners=False)
-        dict_trained[k] = rel_pos_params[0, 0, ...]
+    dict_trained = {k: v for k, v in sam_dict.items() if k in samus_dict}   # 교집합
+    # token_size = int(image_size//patch_size)
+    # # pos_embed = dict_trained['image_encoder.pos_embed']
+    # # pos_embed = pos_embed.permute(0, 3, 1, 2)  # [b, c, h, w]
+    # # pos_embed = F.interpolate(pos_embed, (token_size, token_size), mode='bilinear', align_corners=False)
+    # # pos_embed = pos_embed.permute(0, 2, 3, 1)  # [b, h, w, c]
+    # # dict_trained['image_encoder.pos_embed'] = pos_embed
+    # rel_pos_keys = [k for k in dict_trained.keys() if 'rel_pos' in k]
+    # global_rel_pos_keys = [k for k in rel_pos_keys if '2' in k or '5' in  k or '8' in k or '11' in k]
+    # for key in dict_trained:
+    #     pretrained_weight = dict_trained[key]
+    # for k in global_rel_pos_keys:
+    #     rel_pos_params = dict_trained[k]
+    #     h, w = rel_pos_params.shape
+    #     rel_pos_params = rel_pos_params.unsqueeze(0).unsqueeze(0)
+    #     rel_pos_params = F.interpolate(rel_pos_params, (token_size * 2 - 1, w), mode='bilinear', align_corners=False)
+    #     dict_trained[k] = rel_pos_params[0, 0, ...]
     samus_dict.update(dict_trained)
     return samus_dict

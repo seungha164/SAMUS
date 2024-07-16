@@ -193,6 +193,8 @@ class LearableBlock(nn.Module):
                                             return_intermediate=return_intermediate_dec)
         #! MLP
         self.bbox_embed = MLP(256, 256, 4, 3)     # hidden_dim, hidden_dim
+        self.class_embed = nn.Linear(256, 1 + 1)
+
         self.register_buffer("pixel_mean", torch.Tensor(pixel_mean).view(-1, 1, 1), False)
         self.register_buffer("pixel_std", torch.Tensor(pixel_std).view(-1, 1, 1), False)
         
@@ -225,7 +227,7 @@ class LearableBlock(nn.Module):
                 masks = None
             )       # [b, 2, 256], [b, 256, 32, 32]
             # se.append(sei)
-            se = torch.cat([se, sei], dim=1)
+            se = torch.cat([se, sei[:, :1, :]], dim=1)
 
         #** 3. pass Transformer block
         query_embed = self.query_embed.weight.unsqueeze(1).repeat(1, bs, 1)     # [32*32(N), 256(c)] => [32*32(N), 8(bs), 256(c)]
@@ -233,8 +235,9 @@ class LearableBlock(nn.Module):
                           pos=None, query_pos=query_embed)
         
         #** 4. final FFN -> [N, 4]
+        outputs_class = self.class_embed(hs)
         outputs_coord = self.bbox_embed(hs).sigmoid()
-        out = {'pred_boxes': outputs_coord}
+        out = {'pred_logits': outputs_class, 'pred_boxes': outputs_coord}
         return out
     
 def _get_clones(module, N):

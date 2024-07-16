@@ -7,12 +7,13 @@ from statistics import mode
 from tkinter import image_names
 import torch
 import torchvision
-from torch import nn
+from torch import nn, Tensor
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 import torch.optim as optim
 import numpy as np
 import torch
+from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
 import time
 import random
@@ -27,7 +28,40 @@ from models.model_dict import get_model
 from utils.data_us import JointTransform2D, ImageToImage2D, ImageToImage2DLB
 from utils.loss_functions.sam_loss import get_criterion
 from utils.generate_prompts import get_click_prompt
+from utils.matcher import HungarianMatcher
+from utils.loss_functions.setcriterion import SetCriterion
+from typing import Optional, List, Dict
 
+def tensor_from_tensor_dict(tensor_dicts: List[Dict]):
+    dict = {}
+    for key in tensor_dicts[0]:
+        batch_shape = [len(tensor_dicts)] + list(tensor_dicts[0][key].shape)
+        dtype = tensor_dicts[0][key].dtype
+        device = tensor_dicts[0][key].device
+        tensor = torch.zeros(batch_shape, dtype=dtype, device=device)
+        for tensor_dict, o in zip(tensor_dicts, tensor):
+            tensor_dict[key] = o
+        #     pad_img[: img.shape[0], : img.shape[1], : img.shape[2]].copy_(img)
+        dict[key] = tensor
+    return dict
+
+def tensor_from_tensor_list(tensor_list: List[Tensor]):
+    if tensor_list[0].ndim == 3:
+        batch_shape = [len(tensor_list)] + [1, 256, 256]
+        b, c, h, w = batch_shape
+        dtype = tensor_list[0].dtype
+        device = tensor_list[0].device
+        tensor = torch.zeros(batch_shape, dtype=dtype, device=device)
+        for idx in range(len(tensor_list)):
+            tensor[idx] = tensor_list[idx]
+    return tensor
+            
+def collate_fn(batch):
+    batch = list(zip(*batch))
+    # image는 tensor로 묶어주기
+    batch[0] = tensor_from_tensor_list(batch[0])
+    batch[1] = tensor_from_tensor_dict(batch[1])
+    return tuple(batch)
 
 def main():
 
@@ -37,7 +71,7 @@ def main():
     parser.add_argument('--modelname', default='LearableBlock', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS')
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS')
-    parser.add_argument('--task', default='BreastCancer_US', help='task or dataset name')
+    parser.add_argument('--task', default='BreastCancer_US_Learnable', help='task or dataset name')
     parser.add_argument('--vit_name', type=str, default='vit_b', help='select the vit model for the image encoder of sam')
     parser.add_argument('--sam_ckpt', type=str, default='checkpoints/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
     parser.add_argument('--batch_size', type=int, default=8, help='batch_size per gpu') # SAMed is 12 bs with 2n_gpu and lr is 0.005
@@ -45,7 +79,7 @@ def main():
     parser.add_argument('--base_lr', type=float, default=0.0005, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') 
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
-    parser.add_argument('-keep_log', type=bool, default=False, help='keep the loss&lr&dice during training or not')
+    parser.add_argument('-keep_log', type=bool, default=True, help='keep the loss&lr&dice during training or not')
 
     args = parser.parse_args()
     args.sam_ckpt = 'checkpoints/SAMUS_06270611_54_0.8674892189951133.pth'
@@ -83,8 +117,8 @@ def main():
     train_dataset = ImageToImage2DLB(opt.data_path, opt.train_split, tf_train, img_size=args.encoder_input_size)
     val_dataset = ImageToImage2DLB(opt.data_path, opt.val_split, tf_val, img_size=args.encoder_input_size)  # return image, mask, and filename
     
-    trainloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=8, pin_memory=True)
-    valloader = DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False, num_workers=8, pin_memory=True)
+    trainloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=8, pin_memory=True, collate_fn=collate_fn)
+    valloader = DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False, num_workers=8, pin_memory=True, collate_fn=collate_fn)
 
     model.to(device)
     if opt.pre_trained:
@@ -106,8 +140,29 @@ def main():
     else:
         b_lr = args.base_lr
         optimizer = optim.Adam(model.parameters(), lr=args.base_lr, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False)
-   
-    criterion = get_criterion(modelname=args.modelname, opt=opt)
+    #! ----------------------------------------------------------------------------------------------------------------
+    dec_layers = 6
+    # Loss parameters:
+    giou_weight = 2.0
+    l1_weight = 5.0
+    deep_supervision = False #cfg.MODEL.DETR.DEEP_SUPERVISION
+    no_object_weight = 0.1
+    # building criterion
+    matcher = HungarianMatcher(cost_class=1, cost_bbox=l1_weight, cost_giou=giou_weight)
+    weight_dict = {"loss_ce": 1, "loss_bbox": l1_weight, "loss_giou": giou_weight}
+    if deep_supervision:
+        aux_weight_dict = {}
+        for i in range(dec_layers - 1):
+            aux_weight_dict.update({k + f"_{i}": v for k, v in weight_dict.items()})
+        weight_dict.update(aux_weight_dict)
+    losses = ["labels", "boxes", "cardinality"]
+    criterion = SetCriterion(
+        1, matcher=matcher, weight_dict=weight_dict, eos_coef=no_object_weight, losses=losses,
+    )
+    criterion.empty_weight = criterion.empty_weight.to(device)
+    
+    
+    # criterion = get_criterion(modelname=args.modelname, opt=opt)
 
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print("Total_params: {}".format(pytorch_total_params))
@@ -115,27 +170,28 @@ def main():
     #  ========================================================================= begin to train the model ============================================================================
     iter_num = 0
     max_iterations = opt.epochs * len(trainloader)
-    best_dice, loss_log, dice_log = 0.0, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
+    best_mAP, loss_log, dice_log = -10, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
+    print("Start training")
     for epoch in range(opt.epochs):
         #  --------------------------------------------------------- training ---------------------------------------------------------
         model.train()
         train_losses = 0
-        for batch_idx, (datapack) in enumerate(trainloader):
-            imgs = datapack['image'].to(dtype = torch.float32, device=opt.device)
-            pt = (datapack['pts'].to(dtype = torch.float32, device=opt.device), datapack['p_labels'].to(dtype = torch.float32, device=opt.device))
+        for batch_idx, (imgs, prompts, targets) in enumerate(tqdm(trainloader)):
+            imgs = imgs.to(device)
+            targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+            prompts = {key:prompts[key].to(device) for key in prompts}
+            pt = (prompts['pts'], prompts['p_labels'])
             
-            # masks = datapack['low_mask'].to(dtype = torch.float32, device=opt.device)
-            # bbox = torch.as_tensor(datapack['bbox'], dtype=torch.float32, device=opt.device)
-            # pt = get_click_prompt(datapack, opt)
             # -------------------------------------------------------- forward --------------------------------------------------------
-            pred = model(imgs, pt)
-            train_loss = criterion(pred, masks) 
+            pred = model(imgs, pt)      # {'pred_logits' : [bs, N, 2], 'pred_boxes' : [bs, N, 4]}
+            loss_dict, _ = criterion(pred, targets)
+            weight_dict = criterion.weight_dict
+            losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
             # -------------------------------------------------------- backward -------------------------------------------------------
             optimizer.zero_grad()
-            train_loss.backward()
+            losses.backward()
             optimizer.step()
-            train_losses += train_loss.item()
-            print(train_loss)
+            train_losses += losses.item()
             # ------------------------------------------- adjust the learning rate when needed-----------------------------------------
             if args.warmup and iter_num < args.warmup_period:
                 lr_ = args.base_lr * ((iter_num + 1) / args.warmup_period)
@@ -149,7 +205,7 @@ def main():
                     for param_group in optimizer.param_groups:
                         param_group['lr'] = lr_
             iter_num = iter_num + 1
-
+            # break
         #  -------------------------------------------------- log the train progress --------------------------------------------------
         print('epoch [{}/{}], train loss:{:.4f}'.format(epoch, opt.epochs, train_losses / (batch_idx + 1)))
         if args.keep_log:
@@ -160,20 +216,33 @@ def main():
         #  --------------------------------------------------------- evaluation ----------------------------------------------------------
         if epoch % opt.eval_freq == 0:
             model.eval()
-            dices, mean_dice, _, val_losses = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
+            # dices, mean_dice, _, val_losses = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
+            mean_loss_ce, mean_loss_bbox, mean_loss_giou, val_losses, val_mAP = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
             print('epoch [{}/{}], val loss:{:.4f}'.format(epoch, opt.epochs, val_losses))
-            print('epoch [{}/{}], val dice:{:.4f}'.format(epoch, opt.epochs, mean_dice))
+            print('epoch [{}/{}], mAP:{:.4f} |  val loss-ce:{:.4f}, loss-bbox:{:.4f}, loss-giou:{:.4f}'.format(
+                epoch, opt.epochs, val_mAP, mean_loss_ce, mean_loss_bbox, mean_loss_giou))
             if args.keep_log:
+                TensorWriter.add_scalar('val_mAP', val_mAP, epoch)
                 TensorWriter.add_scalar('val_loss', val_losses, epoch)
-                TensorWriter.add_scalar('dices', mean_dice, epoch)
-                dice_log[epoch] = mean_dice
-            if mean_dice > best_dice:
-                best_dice = mean_dice
+                TensorWriter.add_scalar('mean_loss_ce', mean_loss_ce, epoch)
+                TensorWriter.add_scalar('mean_loss_bbox', mean_loss_bbox, epoch)
+                TensorWriter.add_scalar('mean_loss_giou', mean_loss_giou, epoch)
+                dice_log[epoch] = val_mAP
+            # if val_losses > best_losses:
+            #     best_losses = val_losses
+            #     timestr = time.strftime('%m%d%H%M')
+            #     if not os.path.isdir(opt.save_path):
+            #         os.makedirs(opt.save_path)
+            #     save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(round(val_losses.item(), 7))
+            #     torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
+            if (val_mAP - val_losses) > best_mAP:
+                best_mAP = (val_mAP - val_losses)
                 timestr = time.strftime('%m%d%H%M')
                 if not os.path.isdir(opt.save_path):
                     os.makedirs(opt.save_path)
-                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(best_dice)
+                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch)# + '_' + str(round(val_losses.item(), 7))
                 torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
+                
         if epoch % opt.save_freq == 0 or epoch == (opt.epochs-1):
             if not os.path.isdir(opt.save_path):
                 os.makedirs(opt.save_path)
@@ -183,7 +252,7 @@ def main():
                 with open(opt.tensorboard_path + args.modelname + opt.save_path_code + logtimestr + '/trainloss.txt', 'w') as f:
                     for i in range(len(loss_log)):
                         f.write(str(loss_log[i])+'\n')
-                with open(opt.tensorboard_path + args.modelname + opt.save_path_code + logtimestr + '/dice.txt', 'w') as f:
+                with open(opt.tensorboard_path + args.modelname + opt.save_path_code + logtimestr + '/mAP.txt', 'w') as f:
                     for i in range(len(dice_log)):
                         f.write(str(dice_log[i])+'\n')
 

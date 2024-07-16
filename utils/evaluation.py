@@ -13,6 +13,8 @@ from einops import rearrange
 from utils.generate_prompts import get_click_prompt
 import time
 import pandas as pd
+import utils.box_ops as box_ops
+from mean_average_precision import MetricBuilder
 
 def fix_bn(m):
     classname = m.__class__.__name__
@@ -453,8 +455,50 @@ def eval_slice(valloader, model, criterion, opt, args):
         sp_mean = np.mean(sps*100, axis=0)
         sp_std = np.std(sps*100, axis=0)
         return dice_mean, hd_mean, iou_mean, acc_mean, se_mean, sp_mean, dices_std, hd_std, iou_std, acc_std, se_std, sp_std
-
-
+from einops import rearrange
+from tqdm import tqdm
+def eval_learnable_block(valloader, model, criterion, opt, args, tartet_size = 256):
+    model.eval()
+    criterion.eval()
+    max_slice_number = len(valloader) #opt.batch_size * (len(valloader) + 1)
+    losses_ce = 0. #np.zeros((len(valloader)))
+    losses_bbox = 0. #np.zeros((len(valloader)))
+    losses_giou = 0. #np.zeros((len(valloader)))
+    val_losses = 0.
+    gt_boxes, pred_boxes = torch.empty([0, 7]).to(opt.device), torch.empty([0, 6]).to(opt.device)
+    for batch_idx, (imgs, prompts, targets) in enumerate(tqdm(valloader)):
+        imgs = imgs.to(opt.device)
+        targets = [{k: v.to(opt.device) for k, v in t.items()} for t in targets]
+        prompts = {key:prompts[key].to(opt.device) for key in prompts}
+        pt = (prompts['pts'], prompts['p_labels'])
+        # -------------------------------------------------------- forward --------------------------------------------------------
+        with torch.no_grad():
+            pred = model(imgs, pt)      # {'pred_logits' : [bs, N, 2], 'pred_boxes' : [bs, N, 4]}
+        loss_dict, boxes_for_metrics = criterion(pred, targets)
+        weight_dict = criterion.weight_dict
+        losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+        losses_ce += loss_dict['loss_ce'].item()
+        losses_bbox += loss_dict['loss_bbox'].item()
+        losses_giou += loss_dict['loss_giou'].item()
+        val_losses += losses.item()
+        # result화
+        pred_boxes = torch.concat([pred_boxes, boxes_for_metrics['pred_boxes']], dim=0)
+        gt_boxes = torch.concat([gt_boxes, boxes_for_metrics['target_boxes']], dim=0)
+        # out_logits, out_bbox = pred['pred_logits'], pred['pred_boxes']
+        # prob = F.softmax(out_logits, -1)
+        # scores, labels = prob[..., :-1].max(-1)
+        # boxes = box_ops.box_cxcywh_to_xyxy(out_bbox)
+        # boxes = boxes * tartet_size
+        
+        # pred = torch.concat([boxes.flatten(0,1), labels.flatten(0,1)[:,None], scores.flatten(0,1)[:,None]], dim=1)
+        
+        
+        # gt = torch.concat([torch.concat([target['boxes'], target['labels'][:, None]], dim=1) for target in targets], dim = 0)
+    metric_fn = MetricBuilder.build_evaluation_metric("map_2d", async_mode=True, num_classes=1)
+    metric_fn.add(np.array(pred_boxes.cpu().detach()), np.array(gt_boxes.cpu().detach()))
+    coco_matric = metric_fn.value(iou_thresholds=np.arange(0.5, 1.0, 0.05), recall_thresholds=np.arange(0., 1.01, 0.01), mpolicy='soft')['mAP']
+    return (losses_ce / max_slice_number), (losses_bbox / max_slice_number), (losses_bbox / max_slice_number), (val_losses / max_slice_number), coco_matric
+    
 def eval_camus_samed(valloader, model, criterion, opt, args):
     model.eval()
     val_losses, mean_dice = 0, 0
@@ -560,6 +604,11 @@ def get_eval(valloader, model, criterion, opt, args):
             opt.eval_mode = "camus_samed"
         else:
             opt.eval_mode = "slice"
+    elif args.modelname == 'LearableBlock':
+        opt.eval_mode = 'learnable'
+    
+    if opt.eval_mode == 'learnable':
+        return eval_learnable_block(valloader, model, criterion, opt, args)    
     if opt.eval_mode == "mask_slice":
         return eval_mask_slice2(valloader, model, criterion, opt, args)
     elif opt.eval_mode == "slice":

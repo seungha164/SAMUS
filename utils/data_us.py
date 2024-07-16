@@ -370,7 +370,8 @@ class ImageToImage2D(Dataset):
             }
 
 #### ----------------------------------------------------------------------------------
-def get_bounding_box(mask, width, height):
+def get_bounding_box(filename, width, height):
+    
     mask = np.array(mask)
     # 0이 아닌 값(즉, 1)의 인덱스를 찾습니다.
     indices = np.argwhere(mask)
@@ -382,6 +383,12 @@ def get_bounding_box(mask, width, height):
     # 결과를 (minx, miny, maxx, maxy) 형식으로 반환합니다.
     return (min_x / width, min_y / height, max_x / width, max_y / height)
 
+def box_xyxy_to_cxcywh(x):
+    x0, y0, x1, y1 = x
+    b = [(x0 + x1) / 2, (y0 + y1) / 2,
+         (x1 - x0), (y1 - y0)]
+    return np.array(b)
+
 class ImageToImage2DLB(ImageToImage2D):
     def __init__(
         self, 
@@ -392,12 +399,17 @@ class ImageToImage2DLB(ImageToImage2D):
         prompt = "click", 
         class_id=1,
         one_hot_mask: int = False,
-        cluster_num: int = 2,
+        cluster_num: int = 5,
+        config_path = './configs'
     ) -> None:
+        self.cluster_num = cluster_num
         super().__init__(dataset_path, split, joint_transform, img_size, prompt, class_id, one_hot_mask)
-        cluster_config_path = f'./configs/sec-32_cluster_centroid_{cluster_num}.json'
+        cluster_config_path = f'{config_path}/sec-32_cluster_centroid_{cluster_num}.json'
         with open(cluster_config_path, 'r') as f:
             self.prompt_point_dics = json.load(f)
+        
+        with open(f'{config_path}/bbox-BreastCancer.json', 'r') as f:
+            self.gt_bboxes_dics = json.load(f)
     
     def __len__(self):
         return len(self.ids)
@@ -422,6 +434,8 @@ class ImageToImage2DLB(ImageToImage2D):
             filename = filename.replace('.png', '')
         
         image = cv2.imread(os.path.join(self.img_path, filename + '.png'), 0)
+        h, w = image.shape
+        image_size_xyxy = np.array([w, h, w, h])    # [4]
         mask = cv2.imread(os.path.join(self.label_path, filename + '.png'), 0)
         
         classes = self.class_dict[sub_path]
@@ -442,7 +456,8 @@ class ImageToImage2DLB(ImageToImage2D):
             point_label = 1
             class_id = int(class_id0) if ('train' in self.split or 'val' in self.split) else self.class_id
             # 필요한 prompt - point(by. json file)
-            pts, point_labels = self.generate_clicks(filename, class_id)
+            pts, point_labels = self.generate_clicks(filename, point_label)
+            pts, point_labels = torch.tensor(pts), torch.tensor(point_labels)
             # if 'train' in self.split:
             #     pt, point_label = random_click(np.array(mask), class_id)
             #     bbox = random_bbox(np.array(mask), class_id, self.img_size)
@@ -451,8 +466,17 @@ class ImageToImage2DLB(ImageToImage2D):
             #     bbox = fixed_bbox(np.array(mask), class_id, self.img_size)
             mask[mask != class_id] = 0
             mask[mask == class_id] = 1
-            #! minx, miny, maxx, maxy - [0~1]
-            bbox = get_bounding_box(mask, self.img_size, self.img_size)
+            #! cx, cy, w, h - [0~1]
+            gt_boxes, gt_classes = torch.empty([0, 4]).to(torch.float32), torch.empty([0]).to(dtype=torch.int64)
+            # gt_boxes, gt_classes = np.zeros((2, 4)), np.zeros((2)) - 1
+            for idx, box in enumerate(self.gt_bboxes_dics[filename]):
+                gt_bbox = np.array(box)
+                gt_bbox = torch.tensor(box_xyxy_to_cxcywh(gt_bbox)[None] / image_size_xyxy).to(dtype=torch.float32)
+                # gt_boxes[idx] = gt_bbox[0]
+                # gt_classes[idx] = 1.0
+                gt_boxes = torch.concat([gt_boxes, gt_bbox], dim=0)
+                gt_classes = torch.concat([gt_classes, torch.tensor([1.0]).to(dtype=torch.int64)], dim=0)
+            #bbox = get_bounding_box(filename, self.img_size, self.img_size)
         
             low_mask[low_mask!=class_id] = 0
             low_mask[low_mask==class_id] = 1
@@ -465,16 +489,30 @@ class ImageToImage2DLB(ImageToImage2D):
         low_mask = low_mask.unsqueeze(0)
         mask = mask.unsqueeze(0)
         
-        return {
-            'image'         : image,
-            'label'         : mask,
-            'label_bbox'    : bbox,
-            'p_labels'      : point_labels,
-            'pts'           : pts,
-            'low_mask'      : low_mask,
-            'image_name'    : filename + '.png',
-            'class_id'      : class_id,
-        }
+        return (
+            image,
+            {
+                'p_labels'  : point_labels,
+                'pts'       : pts
+            },
+            {
+                'boxes'      : gt_boxes,
+                'labels'     : gt_classes
+            }
+        )
+        # return ()image, {
+            
+        #     }, {
+        #     # 'image'         : image,
+        #     # 'label'         : mask, # [1, 256, 256]
+        #     'gt_boxes'      : gt_boxes,
+        #     'gt_labels'     : gt_classes,
+        #     'p_labels'      : point_labels,
+        #     'pts'           : pts,
+        #     # 'low_mask'      : low_mask,
+        #     # 'image_name'    : filename + '.png',
+        #     # 'class_id'      : class_id,
+        # }
 #### ----------------------------------------------------------------------------------
 
 class Logger:
