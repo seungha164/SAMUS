@@ -126,6 +126,7 @@ class SetCriterion(nn.Module):
         assert 'pred_boxes' in outputs
         idx = self._get_src_permutation_idx(indices)
         src_boxes = outputs['pred_boxes'][idx]
+        
         target_boxes = torch.cat([t['boxes'][i] for t, (_, i) in zip(targets, indices)], dim=0)
         return src_boxes, target_boxes
         
@@ -243,8 +244,15 @@ class SetCriterion(nn.Module):
 
         #! (new) compute metric
         # bboxes(4),
+        idx = self._get_src_permutation_idx(indices)
         pred_boxes, target_boxes    = self.get_boxes(outputs, targets, indices, num_boxes)
         pred_cls, target_cls        = self.get_cls(outputs, targets, indices, num_boxes)
-        pred    = torch.concat([pred_boxes * 256, pred_cls[1][:,None], pred_cls[0][:,None]], dim=1)
-        target  = torch.concat([target_boxes * 256, target_cls[:, None], torch.zeros([int(num_boxes), 2]).to(target_boxes.device)], dim=1)
-        return losses, {'pred_boxes': pred, 'target_boxes': target}
+        # pred    = torch.concat([pred_boxes, pred_cls[1][:,None], pred_cls[0][:,None]], dim=1)
+        # target  = torch.concat([target_boxes, target_cls[:, None], torch.zeros([int(num_boxes), 2]).to(target_boxes.device)], dim=1)
+        return losses, {
+            'pred_boxes'    : pred_boxes,
+            'pred_cls'      : pred_cls,
+            'target_boxes'  : target_boxes,
+            'target_cls'    : target_cls,
+            'idx'           : idx
+            }

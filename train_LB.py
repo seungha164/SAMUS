@@ -1,6 +1,6 @@
 from ast import arg
 import os
-# os.environ["CUDA_VISIBLE_DEVICES"] = '3'
+os.environ["CUDA_VISIBLE_DEVICES"] = '1'
 import argparse
 from pickle import FALSE, TRUE
 from statistics import mode
@@ -20,7 +20,7 @@ import random
 from utils.config import get_config
 from utils.evaluation import get_eval
 from importlib import import_module
-
+from mean_average_precision import MetricBuilder
 from torch.nn.modules.loss import CrossEntropyLoss
 from monai.losses import DiceCELoss
 from einops import rearrange
@@ -31,6 +31,9 @@ from utils.generate_prompts import get_click_prompt
 from utils.matcher import HungarianMatcher
 from utils.loss_functions.setcriterion import SetCriterion
 from typing import Optional, List, Dict
+import utils.box_ops as box_ops
+from torchmetrics.detection import MeanAveragePrecision
+from pprint import pprint
 
 def tensor_from_tensor_dict(tensor_dicts: List[Dict]):
     dict = {}
@@ -39,9 +42,8 @@ def tensor_from_tensor_dict(tensor_dicts: List[Dict]):
         dtype = tensor_dicts[0][key].dtype
         device = tensor_dicts[0][key].device
         tensor = torch.zeros(batch_shape, dtype=dtype, device=device)
-        for tensor_dict, o in zip(tensor_dicts, tensor):
-            tensor_dict[key] = o
-        #     pad_img[: img.shape[0], : img.shape[1], : img.shape[2]].copy_(img)
+        for idx in range(len(tensor_dicts)):
+            tensor[idx] = tensor_dicts[idx][key]
         dict[key] = tensor
     return dict
 
@@ -55,6 +57,7 @@ def tensor_from_tensor_list(tensor_list: List[Tensor]):
         for idx in range(len(tensor_list)):
             tensor[idx] = tensor_list[idx]
     return tensor
+
             
 def collate_fn(batch):
     batch = list(zip(*batch))
@@ -62,6 +65,109 @@ def collate_fn(batch):
     batch[0] = tensor_from_tensor_list(batch[0])
     batch[1] = tensor_from_tensor_dict(batch[1])
     return tuple(batch)
+
+def post_process(match_outputs, orig_sizes):
+    # pred
+    pboxes, pcls = match_outputs['pred_boxes'], match_outputs['pred_cls']
+    img_h, img_w = orig_sizes.unbind(1)
+    scale_fct = torch.stack([img_w, img_h, img_w, img_h], dim=1)
+    pboxes = box_ops.box_cxcywh_to_xyxy(pboxes * scale_fct)
+    pscores, plabels = pcls
+    # target
+    tboxes, tcls = match_outputs['target_boxes'], match_outputs['target_cls']
+    tboxes = box_ops.box_cxcywh_to_xyxy(tboxes * scale_fct)
+    # preds    = torch.concat([box_ops.box_cxcywh_to_xyxy(pboxes), plabels[:,None], pscores[:,None]], dim=1)       # [N_boxes, 6]
+    # targets  = torch.concat([box_ops.box_cxcywh_to_xyxy(tboxes), tcls[:, None], torch.zeros([int(tboxes.shape[0]), 2]).to(tboxes.device)], dim=1)
+    return  {'pboxes' : pboxes, 'pscores' : pscores, 'plabels': plabels, 'tboxes': tboxes, 'tcls': tcls} #preds, targets
+
+@torch.no_grad()
+def evaluate(test_loader, model, criterion, opt, args):
+    model.eval()
+    criterion.eval()
+    device = opt.device
+    N = len(test_loader)
+    losses_result_dict = {'ce' : 0., 'bbox': 0., 'giou': 0., 'total': 0.}
+    gt_boxes, pred_boxes = [{'boxes': torch.empty([0, 4]).to(device), 'scores': torch.empty([0]).to(device), 'labels': torch.empty([0]).to(device)}],  [{'boxes': torch.empty([0, 4]).to(device), 'scores': torch.empty([0]).to(device), 'labels': torch.empty([0]).to(device)}] #torch.empty([0, 7]).to(device), torch.empty([0, 6]).to(device)
+    mAP_dicts = {'map' : [], 'map_50': [], 'map_75': [], 'map_small': [], 'map_large': [], 'map_medium': []}
+    metric = MeanAveragePrecision(iou_type="bbox")
+    # start
+    for idx, (imgs, prompts, targets) in enumerate(tqdm(test_loader)):
+        imgs = imgs.to(device)
+        targets = [{k: (v.to(device) if k!='image_id' else v) for k, v in t.items()} for t in targets]
+        prompts = {key:prompts[key].to(device) for key in prompts}
+        pt = (prompts['pts'], prompts['p_labels'])
+        # -------------------------------------------------------- forward --------------------------------------------------------
+        preds = model(imgs, pt)      # {'pred_logits' : [bs, N, 2], 'pred_boxes' : [bs, N, 4]}
+        loss_dict, boxes_for_metrics = criterion(preds, targets)
+        weight_dict = criterion.weight_dict
+        losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
+        
+        losses_result_dict['ce'] += loss_dict['loss_ce'].item()
+        losses_result_dict['bbox'] += loss_dict['loss_bbox'].item()
+        losses_result_dict['giou'] += loss_dict['loss_giou'].item()
+        losses_result_dict['total'] += losses.item()
+        # reduce losses over all GPUs for logging purposes
+        # loss_dict_reduced = reduce_dict(loss_dict)
+        # loss_dict_reduced_scaled = {k: v * weight_dict[k]
+        #                             for k, v in loss_dict_reduced.items() if k in weight_dict}
+        # loss_dict_reduced_unscaled = {f'{k}_unscaled': v
+        #                               for k, v in loss_dict_reduced.items()}
+        # ------------------------------------------------------- result 추출 -----------------------------------------------------
+        o1, o2, _, o4 = prompts['pts'].shape
+        orig_target_sizes = torch.zeros([o1, o2, o4]).to(targets[0]['orig_size'].device)
+        for _o1 in range(o1):
+            for _o2 in range(o2):
+                orig_target_sizes[_o1, _o2] = targets[_o1]['orig_size']
+        orig_target_sizes = orig_target_sizes[boxes_for_metrics['idx']]
+
+        # rpreds, rtargets = post_process(boxes_for_metrics, orig_target_sizes)
+        result = post_process(boxes_for_metrics, orig_target_sizes)
+        pred_boxes  = [{'boxes': result['pboxes'], 'labels': result['plabels'], 'scores': result['pscores']}]
+        gt_boxes    = [{'boxes': result['tboxes'], 'labels': result['tcls']}]
+        
+        metric.update(pred_boxes, gt_boxes)
+        # if mAP['map'].item() != -1:
+        #     mAP_dicts['map'].append(mAP['map'].item())
+        # if mAP['map_50'].item() != -1:
+        #     mAP_dicts['map_50'].append(mAP['map_50'].item())
+        # if mAP['map_75'].item() != -1:
+        #     mAP_dicts['map_75'].append(mAP['map_75'].item())
+        # if mAP['map_small'].item() != -1:
+        #     mAP_dicts['map_small'].append(mAP['map_small'].item())
+        # if mAP['map_medium'].item() != -1:
+        #     mAP_dicts['map_medium'].append(mAP['map_medium'].item())
+        # if mAP['map_large'].item() != -1:
+        #     mAP_dicts['map_large'].append(mAP['map_large'].item())
+        # pred_boxes[0]['boxes'] = torch.concat([pred_boxes[0]['boxes'], result['pboxes']], dim=0)
+        # pred_boxes[0]['scores'] = torch.concat([pred_boxes[0]['scores'], result['plabels']], dim=0)
+        # pred_boxes[0]['labels'] = torch.concat([pred_boxes[0]['labels'], result['pscores']], dim=0)
+        # gt_boxes[0]['boxes'] = torch.concat([gt_boxes[0]['boxes'], result['tboxes']], dim=0)
+        # gt_boxes[0]['labels'] = torch.concat([gt_boxes[0]['labels'], result['tcls']], dim=0)
+        # vis(imgs, rpreds, rtargets, orig_target_sizes, f'{idx}.png')
+        # gt_boxes = torch.concat([gt_boxes, rtargets], dim=0)
+        # pred_boxes = torch.concat([pred_boxes, rpreds], dim=0)
+    mAP = metric.compute()
+    print(' ---- inference finish ---- ')
+    return {
+        'loss_ce'       : (losses_result_dict['ce'] / N), 
+        'loss_bbox'     : (losses_result_dict['bbox'] / N),
+        'loss_giou'     : (losses_result_dict['giou'] / N),
+        'loss_total'    : (losses_result_dict['total'] / N),
+        'map'           : mAP['map'],
+        'map_50'        : mAP['map_50'],
+        'map_75'        : mAP['map_75'],
+        'map_small'     : mAP['map_small'],
+        'map_medium'    : mAP['map_medium'],
+        'map_large'     : mAP['map_large'],
+    }
+    # mAP_dicts['map']        = sum(mAP_dicts['map']) / len(mAP_dicts['map'])
+    # mAP_dicts['map_50']     = sum(mAP_dicts['map_50']) / len(mAP_dicts['map_50'])
+    # mAP_dicts['map_75']     = sum(mAP_dicts['map_75']) / len(mAP_dicts['map_75'])
+    # mAP_dicts['map_small']  = sum(mAP_dicts['map_small']) / len(mAP_dicts['map_small'])
+    # mAP_dicts['map_medium'] = sum(mAP_dicts['map_medium']) / len(mAP_dicts['map_medium'])
+    # mAP_dicts['map_large']  = sum(mAP_dicts['map_large']) / len(mAP_dicts['map_large'])
+    # pprint(mAP_dicts)
+    # return mAP_dicts
 
 def main():
 
@@ -118,7 +224,7 @@ def main():
     val_dataset = ImageToImage2DLB(opt.data_path, opt.val_split, tf_val, img_size=args.encoder_input_size)  # return image, mask, and filename
     
     trainloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=8, pin_memory=True, collate_fn=collate_fn)
-    valloader = DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False, num_workers=8, pin_memory=True, collate_fn=collate_fn)
+    valloader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=8, pin_memory=True, collate_fn=collate_fn)
 
     model.to(device)
     if opt.pre_trained:
@@ -170,7 +276,7 @@ def main():
     #  ========================================================================= begin to train the model ============================================================================
     iter_num = 0
     max_iterations = opt.epochs * len(trainloader)
-    best_mAP, loss_log, dice_log = -10, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
+    best_mAP, loss_log, dice_log = 0.0, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
     print("Start training")
     for epoch in range(opt.epochs):
         #  --------------------------------------------------------- training ---------------------------------------------------------
@@ -178,7 +284,7 @@ def main():
         train_losses = 0
         for batch_idx, (imgs, prompts, targets) in enumerate(tqdm(trainloader)):
             imgs = imgs.to(device)
-            targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+            targets = [{k: (v.to(device) if k!='image_id' else v) for k, v in t.items()} for t in targets]
             prompts = {key:prompts[key].to(device) for key in prompts}
             pt = (prompts['pts'], prompts['p_labels'])
             
@@ -216,18 +322,25 @@ def main():
         #  --------------------------------------------------------- evaluation ----------------------------------------------------------
         if epoch % opt.eval_freq == 0:
             model.eval()
+            val_results = evaluate(valloader, model, criterion, opt, args)
+            # mean_loss_ce, mean_loss_bbox, mean_loss_giou, val_losses, val_mAPs = 
             # dices, mean_dice, _, val_losses = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
-            mean_loss_ce, mean_loss_bbox, mean_loss_giou, val_losses, val_mAP = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
-            print('epoch [{}/{}], val loss:{:.4f}'.format(epoch, opt.epochs, val_losses))
-            print('epoch [{}/{}], mAP:{:.4f} |  val loss-ce:{:.4f}, loss-bbox:{:.4f}, loss-giou:{:.4f}'.format(
-                epoch, opt.epochs, val_mAP, mean_loss_ce, mean_loss_bbox, mean_loss_giou))
+            # mean_loss_ce, mean_loss_bbox, mean_loss_giou, val_losses, val_mAP = get_eval(valloader, model, criterion=criterion, opt=opt, args=args)
+            print('epoch [{}/{}], val loss:{:.4f}'.format(epoch, opt.epochs, val_results['loss_total']))
+            print('epoch [{}/{}], val loss-ce:{:.4f}, loss-bbox:{:.4f}, loss-giou:{:.4f}'.format(
+                epoch, opt.epochs, val_results['loss_ce'], val_results['loss_bbox'], val_results['loss_giou']))
             if args.keep_log:
-                TensorWriter.add_scalar('val_mAP', val_mAP, epoch)
-                TensorWriter.add_scalar('val_loss', val_losses, epoch)
-                TensorWriter.add_scalar('mean_loss_ce', mean_loss_ce, epoch)
-                TensorWriter.add_scalar('mean_loss_bbox', mean_loss_bbox, epoch)
-                TensorWriter.add_scalar('mean_loss_giou', mean_loss_giou, epoch)
-                dice_log[epoch] = val_mAP
+                TensorWriter.add_scalar('val_mAP', val_results['map'], epoch)
+                TensorWriter.add_scalar('val_mAP50', val_results['map_50'], epoch)
+                TensorWriter.add_scalar('val_mAP75', val_results['map_75'], epoch)
+                TensorWriter.add_scalar('val_mAP_small', val_results['map_small'], epoch)
+                TensorWriter.add_scalar('val_mAP_large', val_results['map_large'], epoch)
+                TensorWriter.add_scalar('val_mAP_medium', val_results['map_medium'], epoch)
+                TensorWriter.add_scalar('val_loss', val_results['loss_total'], epoch)
+                TensorWriter.add_scalar('mean_loss_ce', val_results['loss_ce'], epoch)
+                TensorWriter.add_scalar('mean_loss_bbox', val_results['loss_bbox'], epoch)
+                TensorWriter.add_scalar('mean_loss_giou', val_results['loss_giou'], epoch)
+                # dice_log[epoch] = val_mAP
             # if val_losses > best_losses:
             #     best_losses = val_losses
             #     timestr = time.strftime('%m%d%H%M')
@@ -235,12 +348,12 @@ def main():
             #         os.makedirs(opt.save_path)
             #     save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(round(val_losses.item(), 7))
             #     torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
-            if (val_mAP - val_losses) > best_mAP:
-                best_mAP = (val_mAP - val_losses)
+            if val_results['map'] > best_mAP:
+                best_mAP = val_results['map']
                 timestr = time.strftime('%m%d%H%M')
                 if not os.path.isdir(opt.save_path):
                     os.makedirs(opt.save_path)
-                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch)# + '_' + str(round(val_losses.item(), 7))
+                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(best_mAP)  # + '_' + str(round(val_losses.item(), 7))
                 torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
                 
         if epoch % opt.save_freq == 0 or epoch == (opt.epochs-1):

@@ -410,6 +410,10 @@ class ImageToImage2DLB(ImageToImage2D):
         
         with open(f'{config_path}/bbox-BreastCancer.json', 'r') as f:
             self.gt_bboxes_dics = json.load(f)
+        
+        with open('./dataset/BreastCancer_US_COCO/annotations/US_Bbox_test2023.json', 'r') as f:
+            self.coco_id_dics = json.load(f)    
+        
     
     def __len__(self):
         return len(self.ids)
@@ -466,7 +470,7 @@ class ImageToImage2DLB(ImageToImage2D):
             #     bbox = fixed_bbox(np.array(mask), class_id, self.img_size)
             mask[mask != class_id] = 0
             mask[mask == class_id] = 1
-            #! cx, cy, w, h - [0~1]
+            #! cx, cy, w, h - [0 ~ 1]
             gt_boxes, gt_classes = torch.empty([0, 4]).to(torch.float32), torch.empty([0]).to(dtype=torch.int64)
             # gt_boxes, gt_classes = np.zeros((2, 4)), np.zeros((2)) - 1
             for idx, box in enumerate(self.gt_bboxes_dics[filename]):
@@ -488,7 +492,10 @@ class ImageToImage2DLB(ImageToImage2D):
 
         low_mask = low_mask.unsqueeze(0)
         mask = mask.unsqueeze(0)
-        
+        # coco img_id 
+        for img in self.coco_id_dics['images']:
+            if img['file_name'] == id_.split('/')[-1]:
+                image_id = img['id']
         return (
             image,
             {
@@ -496,8 +503,11 @@ class ImageToImage2DLB(ImageToImage2D):
                 'pts'       : pts
             },
             {
-                'boxes'      : gt_boxes,
-                'labels'     : gt_classes
+                'boxes'         : gt_boxes,
+                'labels'        : gt_classes,
+                'orig_size'     : torch.tensor([h, w]),
+                'size'          : torch.tensor([h, w]),
+                "image_id"      : filename
             }
         )
         # return ()image, {

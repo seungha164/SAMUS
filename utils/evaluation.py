@@ -457,6 +457,12 @@ def eval_slice(valloader, model, criterion, opt, args):
         return dice_mean, hd_mean, iou_mean, acc_mean, se_mean, sp_mean, dices_std, hd_std, iou_std, acc_std, se_std, sp_std
 from einops import rearrange
 from tqdm import tqdm
+
+def post_process(match_output):
+    preds, targets = match_output['pred_boxes'], match_output['target_boxes']
+    # prob = F.softmax(out_logits, -1)
+    
+    
 def eval_learnable_block(valloader, model, criterion, opt, args, tartet_size = 256):
     model.eval()
     criterion.eval()
@@ -481,17 +487,24 @@ def eval_learnable_block(valloader, model, criterion, opt, args, tartet_size = 2
         losses_bbox += loss_dict['loss_bbox'].item()
         losses_giou += loss_dict['loss_giou'].item()
         val_losses += losses.item()
-        # result화
-        pred_boxes = torch.concat([pred_boxes, boxes_for_metrics['pred_boxes']], dim=0)
-        gt_boxes = torch.concat([gt_boxes, boxes_for_metrics['target_boxes']], dim=0)
+        #** result화
+        
         # out_logits, out_bbox = pred['pred_logits'], pred['pred_boxes']
-        # prob = F.softmax(out_logits, -1)
+        post_process(boxes_for_metrics)
+        
+        # orig_target_sizes = torch.stack([t["orig_size"] for t in targets], dim=0)
+        # img_h, img_w = orig_target_sizes.unbind(1)
+        # scale_fct = torch.stack([img_w, img_h, img_w, img_h], dim=1)
+        # # boxes = box_ops.box_cxcywh_to_xyxy(out_bbox)
+        # boxes = out_bbox * scale_fct[:, None, :]
         # scores, labels = prob[..., :-1].max(-1)
-        # boxes = box_ops.box_cxcywh_to_xyxy(out_bbox)
-        # boxes = boxes * tartet_size
+        
+        # # boxes = boxes * tartet_size
         
         # pred = torch.concat([boxes.flatten(0,1), labels.flatten(0,1)[:,None], scores.flatten(0,1)[:,None]], dim=1)
         
+        # pred_boxes = torch.concat([pred_boxes, pred], dim=0)
+        # gt_boxes = torch.concat([gt_boxes, boxes_for_metrics['target_boxes']], dim=0)
         
         # gt = torch.concat([torch.concat([target['boxes'], target['labels'][:, None]], dim=1) for target in targets], dim = 0)
     metric_fn = MetricBuilder.build_evaluation_metric("map_2d", async_mode=True, num_classes=1)
