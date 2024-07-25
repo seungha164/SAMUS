@@ -99,7 +99,7 @@ def vis(imgs, prompts, selected_prompts, before_matching_boxes, preds, boxess, o
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         # 2 prompts(candiates)
         for _i, p_coord in enumerate(p_coords):
-            cv2.circle(image, np.array(p_coord[0].cpu()).astype(np.uint16).tolist(), 7, UNMATCHING_COLORS[_i], -1, cv2.LINE_AA)
+            cv2.circle(image, np.array(p_coord[0].cpu()).astype(np.uint16).tolist(), 3, UNMATCHING_COLORS[_i], -1, cv2.LINE_AA)
         # all boxes
         for bN in range(all_boxes.shape[0]):
             minx, miny, maxx, maxy = np.array(box_ops.box_cxcywh_to_xyxy(all_boxes[bN]).cpu() * orig_size[0].item()).astype(np.uint16)
@@ -178,7 +178,7 @@ def main():
     parser.add_argument('--base_lr', type=float, default=0.0001, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') # True
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
-    parser.add_argument('--cluster_num', type=int, default=2)
+    parser.add_argument('--cluster_num', type=int, default=4)
     parser.add_argument('--num_transformerlayer', type=int, default=6)
     
     args = parser.parse_args()
@@ -207,7 +207,7 @@ def main():
     
     # (0) model
     # register the sam model
-    args.sam_ckpt = './checkpoints/BreastCancer_US_256_Learnable_C2/07240743/LearableBlock_07241537_342_0.6457503.pth'
+    args.sam_ckpt = './checkpoints/BreastCancer_US_256_Learnable_C4/07250334/LearableBlock_07250544_187_0.6166495.pth'
     VIS_SAVE_ROOT = f'./results/{args.sam_ckpt.split("/")[-1].replace(".pth", "")}/'
     model = get_model(args.modelname, args=args, opt=opt)
     model.to(device)

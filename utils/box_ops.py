@@ -36,6 +36,38 @@ def box_iou(boxes1, boxes2):
     iou = inter / union
     return iou, union
 
+def complet_box_iou(boxes1, boxes2):
+    """
+    Complete IoU as described in https://arxiv.org/abs/1911.08287
+    The boxes should be in [x0, y0, x1, y1] format.
+    """
+    # Ensure the boxes are valid
+    assert (boxes1[:, 2:] >= boxes1[:, :2]).all()
+    assert (boxes2[:, 2:] >= boxes2[:, :2]).all()
+    iou, union = box_iou(boxes1, boxes2)
+
+    # Compute the center of each box
+    center1 = (boxes1[:, 2:] + boxes1[:, :2]) / 2
+    center2 = (boxes2[:, 2:] + boxes2[:, :2]) / 2
+
+    center_dist = ((center1[:, None, :] - center2) ** 2).sum(dim=-1)
+
+    # Compute the diagonal length of the smallest enclosing box
+    lt = torch.min(boxes1[:, None, :2], boxes2[:, :2])
+    rb = torch.max(boxes1[:, None, 2:], boxes2[:, 2:])
+    enclosing_wh = (rb - lt).clamp(min=0)
+    enclosing_diag = (enclosing_wh[:, :, 0] ** 2 + enclosing_wh[:, :, 1] ** 2)
+
+    # Compute the aspect ratio term
+    w1, h1 = boxes1[:, 2] - boxes1[:, 0], boxes1[:, 3] - boxes1[:, 1]
+    w2, h2 = boxes2[:, 2] - boxes2[:, 0], boxes2[:, 3] - boxes2[:, 1]
+    v = (4 / (torch.pi ** 2)) * torch.pow(torch.atan(w1 / h1)[:, None] - torch.atan(w2 / h2), 2)
+    with torch.no_grad():
+        alpha = v / (1 - iou + v)
+
+    # Compute the CIoU
+    ciou = iou - (center_dist / enclosing_diag) - (alpha * v)
+    return ciou
 
 def generalized_box_iou(boxes1, boxes2):
     """
