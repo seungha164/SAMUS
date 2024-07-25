@@ -136,8 +136,10 @@ class SetCriterion(nn.Module):
            The target boxes are expected in format (center_x, center_y, w, h), normalized by the image size.
         """
         assert 'pred_boxes' in outputs
-        idx = self._get_src_permutation_idx(indices)
+        idx = self._get_src_permutation_idx(indices)        # [[몇행, 몇열], ]
         src_boxes = outputs['pred_boxes'][idx]
+        for t, (_, target_idx) in zip(targets, indices):
+            print(t['boxes'][target_idx])
         target_boxes = torch.cat([t['boxes'][i] for t, (_, i) in zip(targets, indices)], dim=0)
 
         loss_bbox = F.l1_loss(src_boxes, target_boxes, reduction='none')
@@ -205,13 +207,13 @@ class SetCriterion(nn.Module):
     def forward(self, outputs, targets):
         """ This performs the loss computation.
         Parameters:
-             outputs: dict of tensors, see the output specification of the model for the format
-             targets: list of dicts, such that len(targets) == batch_size.
+             outputs: dict of tensors, see the output specification of the model for the format             #! l:[b N_prompt 2] b:[b N_prompt 4]
+             targets: list of dicts, such that len(targets) == batch_size.          
                       The expected keys in each dict depends on the losses applied, see each loss' doc
         """
         outputs_without_aux = {k: v for k, v in outputs.items() if k != 'aux_outputs'}
 
-        # Retrieve the matching between the outputs of the last layer and the targets
+        # Retrieve the matching between the outputs of the last layer and the targets                       #! [(bs-1 matchings), (bs-2 matchings), .. ]
         indices = self.matcher(outputs_without_aux, targets)
 
         # Compute the average number of target boxes accross all nodes, for normalization purposes

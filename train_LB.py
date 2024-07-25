@@ -172,7 +172,6 @@ def evaluate(test_loader, model, criterion, opt, args):
 def main():
 
     #  ============================================================================= parameters setting ====================================================================================
-
     parser = argparse.ArgumentParser(description='Networks')
     parser.add_argument('--modelname', default='LearableBlock', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS')
@@ -276,7 +275,7 @@ def main():
     #  ========================================================================= begin to train the model ============================================================================
     iter_num = 0
     max_iterations = opt.epochs * len(trainloader)
-    best_mAP, loss_log, dice_log = 0.0, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
+    best_mAP50, loss_log, dice_log = 0.0, np.zeros(opt.epochs+1), np.zeros(opt.epochs+1)
     print("Start training")
     for epoch in range(opt.epochs):
         #  --------------------------------------------------------- training ---------------------------------------------------------
@@ -348,12 +347,12 @@ def main():
             #         os.makedirs(opt.save_path)
             #     save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(round(val_losses.item(), 7))
             #     torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
-            if val_results['map'] > best_mAP:
-                best_mAP = val_results['map']
+            if val_results['map_50'] > best_mAP50:
+                best_mAP50 = val_results['map']
                 timestr = time.strftime('%m%d%H%M')
                 if not os.path.isdir(opt.save_path):
                     os.makedirs(opt.save_path)
-                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(best_mAP)  # + '_' + str(round(val_losses.item(), 7))
+                save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(round(best_mAP50.item(), 7))  # + '_' + str(round(val_losses.item(), 7))
                 torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
                 
         if epoch % opt.save_freq == 0 or epoch == (opt.epochs-1):

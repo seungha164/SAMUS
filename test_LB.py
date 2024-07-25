@@ -85,18 +85,25 @@ def post_process(match_outputs, orig_sizes):
 
 from torchmetrics.detection import MeanAveragePrecision
 import cv2
-
-def vis(imgs, preds, boxess, orig_sizes, names, VIS_SAVE_ROOT):
+GT_COLOR = (255, 255, 255)
+MATCHING_COLOR_LIST = [(255,0,0), (0,0,255)]   # blue, red
+def vis(imgs, prompts, selected_prompts, preds, boxess, orig_sizes, names, VIS_SAVE_ROOT):
     os.makedirs(VIS_SAVE_ROOT, exist_ok=True)
     for i in range(imgs.shape[0]):
-        img, pred, gt, orig_size, name = imgs[i][0], preds[i]['boxes'], boxess[i]['boxes'], orig_sizes[i], names[i]
+        img, pred, gt, orig_size, name, p_coords = imgs[i][0], preds[i]['boxes'], boxess[i]['boxes'], orig_sizes[i], names[i], prompts['pts'][i]
+        # 1 img 
         image = cv2.resize(np.array(img.cpu())*255, np.array(orig_size.cpu()).astype(np.uint16).tolist())
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        # 2 prompts(candiates)
+        for p_coord in p_coords:
+            cv2.circle(image, np.array(p_coord[0].cpu() / 256 * orig_size[0].item()).astype(np.uint16).tolist(), 7,(0,255,0), -1, cv2.LINE_AA)
+        # 3 bbox
         for bN in range(gt.shape[0]):
-            cv2.rectangle(image, [int(gt[bN][0].item()), int(gt[bN][1].item())],  [int(gt[bN][2].item()), int(gt[bN][3].item())], (255,255,255), 2)
-            cv2.rectangle(image, [int(pred[bN][0].item()), int(pred[bN][1].item())],  [int(pred[bN][2].item()), int(pred[bN][3].item())], (255, 0, 0), 2)
+            cv2.circle(image, np.array(selected_prompts[bN][0].cpu() / 256 * orig_size[0].item()).astype(np.uint16).tolist(), 7, MATCHING_COLOR_LIST[bN], -1, cv2.LINE_AA)
+            cv2.rectangle(image, [int(gt[bN][0].item()), int(gt[bN][1].item())],  [int(gt[bN][2].item()), int(gt[bN][3].item())], GT_COLOR, 2)
+            cv2.rectangle(image, [int(pred[bN][0].item()), int(pred[bN][1].item())],  [int(pred[bN][2].item()), int(pred[bN][3].item())], MATCHING_COLOR_LIST[bN], 2)
         cv2.imwrite(f'{VIS_SAVE_ROOT}/{name}.png', image)
-        print(i)
+        # print(i)
 
 @torch.no_grad()
 def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
@@ -110,7 +117,10 @@ def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
     metric = MeanAveragePrecision(iou_type="bbox")
     # start
     for idx, (imgs, prompts, targets) in enumerate(tqdm(test_loader)):
-        imgs = imgs.to(device)
+        # imgs      : [bs, 1, 256, 256]
+        # targets   : {boxes : [[정규화된 cx, cy, w, h], .. ], labels: [1], orig_size: [562,562], .. , image_id} 
+        # prompts   : {p_labels : [bs, N_prompt, 1], pts: [bs, N_propmt, 1, 2]}
+        imgs = imgs.to(device)                  # [1, 1, 256, 256]
         targets = [{k: (v.to(device) if k!='image_id' else v) for k, v in t.items()} for t in targets]
         prompts = {key:prompts[key].to(device) for key in prompts}
         pt = (prompts['pts'], prompts['p_labels'])
@@ -152,7 +162,8 @@ def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
         # if mAP['map_large'].item() != -1:
         #     mAP_dicts['map_large'].append(mAP['map_large'].item())
         target_images_id = [t['image_id'] for t in targets]
-        vis(imgs, pred_boxes, gt_boxes, orig_target_sizes, target_images_id, VIS_SAVE_ROOT)
+        selected_prompts = prompts['pts'][boxes_for_metrics['idx']]
+        vis(imgs, prompts, selected_prompts, pred_boxes, gt_boxes, orig_target_sizes, target_images_id, VIS_SAVE_ROOT)
     mAP = metric.compute()
     print(' ---- inference finish ---- ')
     pprint(f"[result]\n{mAP}")
@@ -200,11 +211,11 @@ def main():
     
     # (0) model
     # register the sam model
-    args.sam_ckpt = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07162038_690.02102272758599032.pth'
+    args.sam_ckpt = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07171906_240_tensor(0.1458).pth'
     VIS_SAVE_ROOT = f'./results/{args.sam_ckpt.split("/")[-1].replace(".pth", "")}/'
     model = get_model(args.modelname, args=args, opt=opt)
     model.to(device)
-    opt.load_path = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07162038_690.02102272758599032.pth'
+    opt.load_path = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07171906_240_tensor(0.1458).pth'
     checkpoint = torch.load(opt.load_path)
     #------when the load model is saved under multiple GPU
     new_state_dict = {}
