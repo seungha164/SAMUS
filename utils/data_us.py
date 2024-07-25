@@ -432,7 +432,7 @@ class ImageToImage2DLB(ImageToImage2D):
         if "test" in self.split:
             class_id0, sub_path, filename = id_.split('/')
             filename = filename.replace('.png', '')
-            self.class_id = int(class_id0)
+            self.class_id = int(class_id0)  # 1
         else:
             class_id0, sub_path, filename = id_.split('/')
             filename = filename.replace('.png', '')
@@ -462,29 +462,22 @@ class ImageToImage2DLB(ImageToImage2D):
             # 필요한 prompt - point(by. json file)
             pts, point_labels = self.generate_clicks(filename, point_label)
             pts, point_labels = torch.tensor(pts), torch.tensor(point_labels)
-            # if 'train' in self.split:
-            #     pt, point_label = random_click(np.array(mask), class_id)
-            #     bbox = random_bbox(np.array(mask), class_id, self.img_size)
-            # else:
-            #     pt, point_label = fixed_click(np.array(mask), class_id)
-            #     bbox = fixed_bbox(np.array(mask), class_id, self.img_size)
+    
             mask[mask != class_id] = 0
             mask[mask == class_id] = 1
             #! cx, cy, w, h - [0 ~ 1]
             gt_boxes, gt_classes = torch.empty([0, 4]).to(torch.float32), torch.empty([0]).to(dtype=torch.int64)
-            # gt_boxes, gt_classes = np.zeros((2, 4)), np.zeros((2)) - 1
-            for idx, box in enumerate(self.gt_bboxes_dics[filename]):
-                gt_bbox = np.array(box)
-                gt_bbox = torch.tensor(box_xyxy_to_cxcywh(gt_bbox)[None] / image_size_xyxy).to(dtype=torch.float32)
-                # gt_boxes[idx] = gt_bbox[0]
-                # gt_classes[idx] = 1.0
-                gt_boxes = torch.concat([gt_boxes, gt_bbox], dim=0)
-                gt_classes = torch.concat([gt_classes, torch.tensor([1.0]).to(dtype=torch.int64)], dim=0)
-            #bbox = get_bounding_box(filename, self.img_size, self.img_size)
-        
+            ctrs, _ = cv2.findContours(np.array(mask).astype(np.uint8), cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+            for ctr in ctrs:
+                if len(ctr) < 40: continue
+                minx, miny, maxx, maxy = min(ctr[:,0,0]), min(ctr[:,0,1]), max(ctr[:,0,0]), max(ctr[:,0,1])
+                box = (minx, miny, maxx, maxy)
+                gt_bbox     = torch.tensor(box_xyxy_to_cxcywh(box)[None] / image_size_xyxy).to(dtype=torch.float32)
+                gt_boxes    = torch.concat([gt_boxes, gt_bbox], dim=0)
+                gt_classes  = torch.concat([gt_classes, torch.tensor([0.0]).to(dtype=torch.int64)], dim=0)       
+            
             low_mask[low_mask!=class_id] = 0
             low_mask[low_mask==class_id] = 1
-            # point_labels = np.array(point_label)
         
         if self.one_hot_mask:
             assert self.one_hot_mask > 0, 'one_hot_mask must be nonnegative'
@@ -492,10 +485,7 @@ class ImageToImage2DLB(ImageToImage2D):
 
         low_mask = low_mask.unsqueeze(0)
         mask = mask.unsqueeze(0)
-        # coco img_id 
-        for img in self.coco_id_dics['images']:
-            if img['file_name'] == id_.split('/')[-1]:
-                image_id = img['id']
+
         return (
             image,
             {
@@ -510,19 +500,6 @@ class ImageToImage2DLB(ImageToImage2D):
                 "image_id"      : filename
             }
         )
-        # return ()image, {
-            
-        #     }, {
-        #     # 'image'         : image,
-        #     # 'label'         : mask, # [1, 256, 256]
-        #     'gt_boxes'      : gt_boxes,
-        #     'gt_labels'     : gt_classes,
-        #     'p_labels'      : point_labels,
-        #     'pts'           : pts,
-        #     # 'low_mask'      : low_mask,
-        #     # 'image_name'    : filename + '.png',
-        #     # 'class_id'      : class_id,
-        # }
 #### ----------------------------------------------------------------------------------
 
 class Logger:

@@ -1,0 +1,8738 @@
+{
+  "BUSI_imagesTr_benign_359": [
+    [
+      97,
+      76,
+      143,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_benign_36": [
+    [
+      85,
+      96,
+      181,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_malignant_36": [
+    [
+      71,
+      55,
+      190,
+      123
+    ]
+  ],
+  "QAMEBI_imagesTr_48_Malignant": [
+    [
+      41,
+      39,
+      214,
+      254
+    ]
+  ],
+  "BUSI_imagesTr_malignant_78": [
+    [
+      82,
+      52,
+      185,
+      117
+    ]
+  ],
+  "UDIAT_imagesTr_000011": [
+    [
+      45,
+      54,
+      132,
+      87
+    ]
+  ],
+  "QAMEBI_imagesTr_105_Benign": [
+    [
+      92,
+      101,
+      162,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_benign_82": [
+    [
+      133,
+      108,
+      191,
+      152
+    ]
+  ],
+  "STU_imagesTr_14": [
+    [
+      94,
+      6,
+      169,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_malignant_93": [
+    [
+      70,
+      50,
+      204,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_benign_46": [
+    [
+      104,
+      76,
+      130,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_415": [
+    [
+      26,
+      51,
+      250,
+      185
+    ]
+  ],
+  "BUSI_imagesTr_benign_311": [
+    [
+      8,
+      19,
+      201,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_malignant_143": [
+    [
+      54,
+      78,
+      146,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_435": [
+    [
+      86,
+      55,
+      122,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_benign_2": [
+    [
+      47,
+      123,
+      121,
+      157
+    ]
+  ],
+  "STU_imagesTr_28": [
+    [
+      10,
+      46,
+      199,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_benign_357": [
+    [
+      76,
+      91,
+      147,
+      122
+    ]
+  ],
+  "QAMEBI_imagesTr_8_Malignant": [
+    [
+      47,
+      30,
+      190,
+      182
+    ]
+  ],
+  "BUSI_imagesTr_malignant_137": [
+    [
+      47,
+      10,
+      207,
+      187
+    ]
+  ],
+  "BUSI_imagesTr_malignant_27": [
+    [
+      163,
+      63,
+      225,
+      102
+    ]
+  ],
+  "UDIAT_imagesTr_000137": [
+    [
+      149,
+      90,
+      208,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_malignant_66": [
+    [
+      43,
+      86,
+      122,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_103": [
+    [
+      47,
+      48,
+      165,
+      180
+    ]
+  ],
+  "QAMEBI_imagesTr_81_Benign": [
+    [
+      49,
+      46,
+      213,
+      163
+    ]
+  ],
+  "STU_imagesTr_27": [
+    [
+      96,
+      14,
+      247,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_malignant_1": [
+    [
+      35,
+      57,
+      219,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_benign_98": [
+    [
+      0,
+      88,
+      176,
+      172
+    ],
+    [
+      158,
+      66,
+      223,
+      112
+    ]
+  ],
+  "QAMEBI_imagesTr_25_Malignant": [
+    [
+      86,
+      61,
+      201,
+      175
+    ]
+  ],
+  "QAMEBI_imagesTr_62_Benign": [
+    [
+      1,
+      35,
+      255,
+      212
+    ]
+  ],
+  "BUSI_imagesTr_benign_436": [
+    [
+      56,
+      30,
+      163,
+      102
+    ]
+  ],
+  "QAMEBI_imagesTr_56_Malignant": [
+    [
+      43,
+      33,
+      188,
+      162
+    ]
+  ],
+  "UDIAT_imagesTr_000015": [
+    [
+      169,
+      84,
+      198,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_benign_66": [
+    [
+      169,
+      80,
+      219,
+      117
+    ]
+  ],
+  "QAMEBI_imagesTr_45_Malignant": [
+    [
+      52,
+      68,
+      206,
+      150
+    ]
+  ],
+  "QAMEBI_imagesTr_101_Benign": [
+    [
+      80,
+      61,
+      166,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_malignant_141": [
+    [
+      99,
+      70,
+      211,
+      107
+    ]
+  ],
+  "UDIAT_imagesTr_000125": [
+    [
+      62,
+      53,
+      139,
+      107
+    ]
+  ],
+  "BUSI_imagesTr_benign_250": [
+    [
+      99,
+      130,
+      175,
+      156
+    ]
+  ],
+  "QAMEBI_imagesTr_8_Benign": [
+    [
+      47,
+      72,
+      203,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_benign_137": [
+    [
+      42,
+      96,
+      75,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_129": [
+    [
+      62,
+      84,
+      106,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_malignant_140": [
+    [
+      113,
+      28,
+      249,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_benign_270": [
+    [
+      163,
+      57,
+      199,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_4": [
+    [
+      38,
+      73,
+      65,
+      91
+    ]
+  ],
+  "UDIAT_imagesTr_000099": [
+    [
+      126,
+      74,
+      202,
+      97
+    ]
+  ],
+  "UDIAT_imagesTr_000132": [
+    [
+      102,
+      65,
+      184,
+      135
+    ]
+  ],
+  "BUSI_imagesTr_benign_383": [
+    [
+      99,
+      122,
+      183,
+      174
+    ]
+  ],
+  "UDIAT_imagesTr_000059": [
+    [
+      79,
+      49,
+      147,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_malignant_70": [
+    [
+      91,
+      71,
+      165,
+      125
+    ]
+  ],
+  "BUSI_imagesTr_benign_374": [
+    [
+      72,
+      62,
+      103,
+      74
+    ]
+  ],
+  "BUSI_imagesTr_benign_308": [
+    [
+      107,
+      55,
+      153,
+      80
+    ]
+  ],
+  "BUSI_imagesTr_benign_72": [
+    [
+      12,
+      65,
+      100,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_benign_198": [
+    [
+      102,
+      76,
+      230,
+      124
+    ]
+  ],
+  "QAMEBI_imagesTr_85_Malignant": [
+    [
+      80,
+      72,
+      139,
+      140
+    ]
+  ],
+  "BUSI_imagesTr_benign_113": [
+    [
+      120,
+      68,
+      196,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_43_Benign": [
+    [
+      87,
+      143,
+      181,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_benign_266": [
+    [
+      62,
+      30,
+      152,
+      64
+    ]
+  ],
+  "QAMEBI_imagesTr_3_Benign": [
+    [
+      49,
+      38,
+      203,
+      162
+    ]
+  ],
+  "BUSI_imagesTr_malignant_195": [
+    [
+      54,
+      65,
+      197,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_benign_106": [
+    [
+      72,
+      70,
+      112,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_malignant_42": [
+    [
+      98,
+      57,
+      199,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_benign_336": [
+    [
+      114,
+      58,
+      198,
+      90
+    ]
+  ],
+  "STU_imagesTr_23": [
+    [
+      84,
+      64,
+      137,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_benign_247": [
+    [
+      50,
+      74,
+      98,
+      97
+    ]
+  ],
+  "QAMEBI_imagesTr_2_Benign": [
+    [
+      3,
+      45,
+      252,
+      196
+    ]
+  ],
+  "QAMEBI_imagesTr_22_Malignant": [
+    [
+      84,
+      54,
+      179,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_benign_50": [
+    [
+      51,
+      91,
+      99,
+      120
+    ]
+  ],
+  "STU_imagesTr_26": [
+    [
+      76,
+      10,
+      221,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_malignant_10": [
+    [
+      114,
+      39,
+      169,
+      81
+    ]
+  ],
+  "UDIAT_imagesTr_000146": [
+    [
+      77,
+      89,
+      143,
+      114
+    ]
+  ],
+  "QAMEBI_imagesTr_32_Malignant": [
+    [
+      65,
+      59,
+      172,
+      168
+    ]
+  ],
+  "UDIAT_imagesTr_000072": [
+    [
+      71,
+      18,
+      134,
+      43
+    ]
+  ],
+  "BUSI_imagesTr_benign_318": [
+    [
+      131,
+      83,
+      152,
+      93
+    ]
+  ],
+  "UDIAT_imagesTr_000012": [
+    [
+      109,
+      82,
+      135,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_malignant_102": [
+    [
+      52,
+      87,
+      162,
+      165
+    ]
+  ],
+  "BUSI_imagesTr_benign_316": [
+    [
+      3,
+      30,
+      253,
+      140
+    ]
+  ],
+  "STU_imagesTr_15": [
+    [
+      136,
+      34,
+      169,
+      55
+    ]
+  ],
+  "BUSI_imagesTr_malignant_163": [
+    [
+      30,
+      33,
+      241,
+      203
+    ]
+  ],
+  "QAMEBI_imagesTr_33_Malignant": [
+    [
+      82,
+      88,
+      168,
+      152
+    ]
+  ],
+  "BUSI_imagesTr_benign_350": [
+    [
+      81,
+      66,
+      191,
+      138
+    ]
+  ],
+  "BUSI_imagesTr_benign_170": [
+    [
+      126,
+      90,
+      206,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_benign_218": [
+    [
+      65,
+      56,
+      209,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_malignant_156": [
+    [
+      12,
+      47,
+      252,
+      180
+    ]
+  ],
+  "STU_imagesTr_18": [
+    [
+      54,
+      30,
+      185,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_benign_423": [
+    [
+      69,
+      34,
+      215,
+      68
+    ]
+  ],
+  "QAMEBI_imagesTr_103_Malignant": [
+    [
+      68,
+      50,
+      213,
+      151
+    ]
+  ],
+  "STU_imagesTr_3": [
+    [
+      48,
+      38,
+      123,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_benign_37": [
+    [
+      85,
+      52,
+      119,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_malignant_118": [
+    [
+      100,
+      70,
+      203,
+      153
+    ]
+  ],
+  "UDIAT_imagesTr_000034": [
+    [
+      109,
+      49,
+      124,
+      65
+    ]
+  ],
+  "UDIAT_imagesTr_000044": [
+    [
+      130,
+      40,
+      177,
+      65
+    ]
+  ],
+  "QAMEBI_imagesTr_46_Benign": [
+    [
+      94,
+      141,
+      152,
+      174
+    ]
+  ],
+  "QAMEBI_imagesTr_30_Benign": [
+    [
+      76,
+      132,
+      170,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_benign_204": [
+    [
+      78,
+      30,
+      154,
+      81
+    ]
+  ],
+  "QAMEBI_imagesTr_50_Malignant": [
+    [
+      92,
+      71,
+      160,
+      153
+    ]
+  ],
+  "QAMEBI_imagesTr_40_Malignant": [
+    [
+      34,
+      77,
+      202,
+      197
+    ]
+  ],
+  "BUSI_imagesTr_benign_385": [
+    [
+      95,
+      57,
+      174,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_benign_417": [
+    [
+      73,
+      79,
+      150,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_malignant_161": [
+    [
+      63,
+      25,
+      231,
+      136
+    ]
+  ],
+  "QAMEBI_imagesTr_120_Malignant": [
+    [
+      65,
+      45,
+      198,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_benign_257": [
+    [
+      47,
+      48,
+      112,
+      72
+    ]
+  ],
+  "QAMEBI_imagesTr_47_Malignant": [
+    [
+      58,
+      76,
+      177,
+      190
+    ]
+  ],
+  "STU_imagesTr_9": [
+    [
+      72,
+      32,
+      163,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_malignant_48": [
+    [
+      115,
+      42,
+      193,
+      93
+    ]
+  ],
+  "BUSI_imagesTr_benign_255": [
+    [
+      56,
+      67,
+      135,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_malignant_200": [
+    [
+      56,
+      84,
+      215,
+      137
+    ]
+  ],
+  "QAMEBI_imagesTr_7_Malignant": [
+    [
+      35,
+      77,
+      217,
+      181
+    ]
+  ],
+  "BUSI_imagesTr_malignant_167": [
+    [
+      8,
+      66,
+      144,
+      185
+    ]
+  ],
+  "UDIAT_imagesTr_000147": [
+    [
+      76,
+      99,
+      155,
+      166
+    ]
+  ],
+  "BUSI_imagesTr_benign_381": [
+    [
+      62,
+      57,
+      149,
+      108
+    ]
+  ],
+  "UDIAT_imagesTr_000304": [
+    [
+      62,
+      71,
+      170,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_malignant_112": [
+    [
+      114,
+      35,
+      165,
+      63
+    ]
+  ],
+  "BUSI_imagesTr_malignant_142": [
+    [
+      56,
+      70,
+      220,
+      221
+    ]
+  ],
+  "BUSI_imagesTr_malignant_210": [
+    [
+      46,
+      106,
+      213,
+      210
+    ]
+  ],
+  "QAMEBI_imagesTr_20_Malignant": [
+    [
+      89,
+      55,
+      163,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_benign_306": [
+    [
+      86,
+      90,
+      209,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_malignant_148": [
+    [
+      22,
+      73,
+      51,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_52_Benign": [
+    [
+      106,
+      102,
+      138,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_91": [
+    [
+      129,
+      61,
+      158,
+      74
+    ]
+  ],
+  "UDIAT_imagesTr_000055": [
+    [
+      83,
+      66,
+      146,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_malignant_189": [
+    [
+      153,
+      118,
+      204,
+      143
+    ]
+  ],
+  "BUSI_imagesTr_benign_76": [
+    [
+      61,
+      76,
+      97,
+      106
+    ]
+  ],
+  "QAMEBI_imagesTr_100_Malignant": [
+    [
+      63,
+      39,
+      187,
+      165
+    ]
+  ],
+  "BUSI_imagesTr_malignant_2": [
+    [
+      65,
+      31,
+      255,
+      192
+    ]
+  ],
+  "BUSI_imagesTr_malignant_115": [
+    [
+      59,
+      58,
+      187,
+      125
+    ]
+  ],
+  "UDIAT_imagesTr_000119": [
+    [
+      117,
+      68,
+      194,
+      103
+    ]
+  ],
+  "UDIAT_imagesTr_000145": [
+    [
+      42,
+      55,
+      128,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_benign_89": [
+    [
+      27,
+      71,
+      59,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_benign_236": [
+    [
+      39,
+      90,
+      221,
+      200
+    ]
+  ],
+  "BUSI_imagesTr_benign_132": [
+    [
+      136,
+      47,
+      183,
+      83
+    ]
+  ],
+  "BUSI_imagesTr_benign_40": [
+    [
+      91,
+      88,
+      141,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_33": [
+    [
+      17,
+      48,
+      103,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_benign_23": [
+    [
+      112,
+      113,
+      175,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_malignant_144": [
+    [
+      57,
+      55,
+      203,
+      195
+    ]
+  ],
+  "QAMEBI_imagesTr_30_Malignant": [
+    [
+      76,
+      78,
+      158,
+      131
+    ]
+  ],
+  "QAMEBI_imagesTr_31_Benign": [
+    [
+      42,
+      51,
+      216,
+      204
+    ]
+  ],
+  "UDIAT_imagesTr_000003": [
+    [
+      101,
+      45,
+      123,
+      62
+    ]
+  ],
+  "BUSI_imagesTr_benign_43": [
+    [
+      133,
+      46,
+      157,
+      69
+    ]
+  ],
+  "BUSI_imagesTr_benign_343": [
+    [
+      42,
+      94,
+      167,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_benign_153": [
+    [
+      133,
+      68,
+      152,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_benign_200": [
+    [
+      39,
+      39,
+      182,
+      109
+    ]
+  ],
+  "BUSI_imagesTr_malignant_181": [
+    [
+      5,
+      48,
+      80,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_benign_407": [
+    [
+      24,
+      95,
+      227,
+      217
+    ]
+  ],
+  "BUSI_imagesTr_benign_300": [
+    [
+      47,
+      65,
+      144,
+      134
+    ]
+  ],
+  "QAMEBI_imagesTr_84_Benign": [
+    [
+      65,
+      52,
+      179,
+      199
+    ]
+  ],
+  "BUSI_imagesTr_benign_294": [
+    [
+      123,
+      112,
+      239,
+      161
+    ]
+  ],
+  "QAMEBI_imagesTr_94_Malignant": [
+    [
+      22,
+      41,
+      202,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_malignant_51": [
+    [
+      16,
+      47,
+      129,
+      117
+    ]
+  ],
+  "UDIAT_imagesTr_000035": [
+    [
+      104,
+      84,
+      131,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_benign_12": [
+    [
+      130,
+      87,
+      158,
+      103
+    ]
+  ],
+  "BUSI_imagesTr_malignant_95": [
+    [
+      90,
+      65,
+      238,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_benign_353": [
+    [
+      73,
+      66,
+      122,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_benign_234": [
+    [
+      9,
+      33,
+      134,
+      102
+    ]
+  ],
+  "BUSI_imagesTr_benign_8": [
+    [
+      120,
+      83,
+      154,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_220": [
+    [
+      185,
+      98,
+      241,
+      137
+    ]
+  ],
+  "QAMEBI_imagesTr_64_Benign": [
+    [
+      76,
+      101,
+      193,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_benign_135": [
+    [
+      67,
+      52,
+      110,
+      85
+    ]
+  ],
+  "QAMEBI_imagesTr_60_Malignant": [
+    [
+      70,
+      79,
+      201,
+      116
+    ]
+  ],
+  "QAMEBI_imagesTr_9_Benign": [
+    [
+      82,
+      87,
+      194,
+      165
+    ]
+  ],
+  "BUSI_imagesTr_benign_297": [
+    [
+      110,
+      47,
+      171,
+      82
+    ]
+  ],
+  "QAMEBI_imagesTr_36_Malignant": [
+    [
+      37,
+      71,
+      187,
+      181
+    ]
+  ],
+  "UDIAT_imagesTr_000091": [
+    [
+      84,
+      70,
+      143,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_39_Malignant": [
+    [
+      85,
+      57,
+      219,
+      181
+    ]
+  ],
+  "BUSI_imagesTr_benign_422": [
+    [
+      42,
+      114,
+      215,
+      170
+    ]
+  ],
+  "STU_imagesTr_31": [
+    [
+      18,
+      34,
+      201,
+      183
+    ]
+  ],
+  "UDIAT_imagesTr_000306": [
+    [
+      55,
+      48,
+      206,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_malignant_171": [
+    [
+      74,
+      39,
+      203,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_benign_394": [
+    [
+      73,
+      88,
+      158,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_malignant_177": [
+    [
+      13,
+      28,
+      73,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_benign_284": [
+    [
+      135,
+      47,
+      222,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_benign_355": [
+    [
+      39,
+      38,
+      180,
+      101
+    ]
+  ],
+  "BUSI_imagesTr_malignant_80": [
+    [
+      11,
+      55,
+      74,
+      170
+    ]
+  ],
+  "BUSI_imagesTr_malignant_106": [
+    [
+      29,
+      101,
+      116,
+      163
+    ]
+  ],
+  "BUSI_imagesTr_benign_195": [
+    [
+      3,
+      94,
+      113,
+      199
+    ],
+    [
+      76,
+      78,
+      237,
+      176
+    ]
+  ],
+  "BUSI_imagesTr_benign_215": [
+    [
+      162,
+      55,
+      198,
+      88
+    ]
+  ],
+  "UDIAT_imagesTr_000128": [
+    [
+      68,
+      52,
+      171,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_benign_248": [
+    [
+      114,
+      133,
+      157,
+      151
+    ]
+  ],
+  "QAMEBI_imagesTr_43_Malignant": [
+    [
+      81,
+      97,
+      192,
+      191
+    ]
+  ],
+  "BUSI_imagesTr_benign_390": [
+    [
+      140,
+      82,
+      191,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_187": [
+    [
+      71,
+      76,
+      120,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_malignant_192": [
+    [
+      131,
+      50,
+      203,
+      75
+    ]
+  ],
+  "QAMEBI_imagesTr_98_Benign": [
+    [
+      70,
+      67,
+      185,
+      121
+    ]
+  ],
+  "QAMEBI_imagesTr_25_Benign": [
+    [
+      79,
+      116,
+      136,
+      137
+    ]
+  ],
+  "QAMEBI_imagesTr_95_Malignant": [
+    [
+      60,
+      32,
+      200,
+      192
+    ]
+  ],
+  "BUSI_imagesTr_malignant_30": [
+    [
+      36,
+      33,
+      184,
+      193
+    ]
+  ],
+  "BUSI_imagesTr_benign_144": [],
+  "BUSI_imagesTr_benign_143": [
+    [
+      121,
+      78,
+      146,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_benign_167": [
+    [
+      118,
+      86,
+      146,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_140": [
+    [
+      71,
+      75,
+      200,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_malignant_160": [
+    [
+      79,
+      70,
+      250,
+      185
+    ]
+  ],
+  "BUSI_imagesTr_benign_354": [
+    [
+      63,
+      50,
+      184,
+      111
+    ]
+  ],
+  "QAMEBI_imagesTr_79_Benign": [
+    [
+      92,
+      77,
+      198,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_malignant_209": [
+    [
+      63,
+      57,
+      119,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_benign_116": [
+    [
+      31,
+      47,
+      66,
+      69
+    ]
+  ],
+  "BUSI_imagesTr_benign_192": [
+    [
+      137,
+      74,
+      193,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_benign_281": [
+    [
+      162,
+      61,
+      239,
+      98
+    ]
+  ],
+  "UDIAT_imagesTr_000122": [
+    [
+      110,
+      82,
+      179,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_benign_214": [
+    [
+      159,
+      60,
+      243,
+      96
+    ]
+  ],
+  "QAMEBI_imagesTr_21_Benign": [
+    [
+      117,
+      102,
+      173,
+      135
+    ]
+  ],
+  "BUSI_imagesTr_benign_62": [
+    [
+      84,
+      71,
+      208,
+      161
+    ]
+  ],
+  "UDIAT_imagesTr_000295": [
+    [
+      39,
+      29,
+      209,
+      181
+    ]
+  ],
+  "QAMEBI_imagesTr_76_Benign": [
+    [
+      96,
+      48,
+      166,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_benign_346": [
+    [
+      169,
+      92,
+      205,
+      117
+    ],
+    [
+      0,
+      61,
+      109,
+      130
+    ]
+  ],
+  "QAMEBI_imagesTr_59_Benign": [
+    [
+      99,
+      93,
+      169,
+      124
+    ]
+  ],
+  "QAMEBI_imagesTr_32_Benign": [
+    [
+      36,
+      56,
+      209,
+      181
+    ]
+  ],
+  "UDIAT_imagesTr_000048": [],
+  "BUSI_imagesTr_benign_11": [
+    [
+      136,
+      68,
+      162,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_malignant_50": [
+    [
+      90,
+      36,
+      188,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_benign_111": [
+    [
+      133,
+      78,
+      166,
+      101
+    ]
+  ],
+  "BUSI_imagesTr_malignant_119": [
+    [
+      103,
+      62,
+      213,
+      152
+    ]
+  ],
+  "QAMEBI_imagesTr_80_Benign": [
+    [
+      44,
+      59,
+      220,
+      190
+    ]
+  ],
+  "BUSI_imagesTr_benign_229": [
+    [
+      97,
+      90,
+      177,
+      137
+    ]
+  ],
+  "BUSI_imagesTr_malignant_113": [
+    [
+      117,
+      101,
+      187,
+      157
+    ]
+  ],
+  "BUSI_imagesTr_malignant_53": [
+    [
+      58,
+      60,
+      200,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_334": [
+    [
+      104,
+      91,
+      142,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_benign_25": [
+    [
+      158,
+      72,
+      182,
+      89
+    ],
+    [
+      134,
+      65,
+      152,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_malignant_179": [
+    [
+      63,
+      46,
+      216,
+      140
+    ]
+  ],
+  "BUSI_imagesTr_benign_49": [
+    [
+      41,
+      56,
+      226,
+      157
+    ]
+  ],
+  "BUSI_imagesTr_benign_103": [
+    [
+      9,
+      83,
+      122,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_138": [
+    [
+      138,
+      54,
+      161,
+      65
+    ]
+  ],
+  "UDIAT_imagesTr_000087": [
+    [
+      17,
+      34,
+      244,
+      77
+    ]
+  ],
+  "UDIAT_imagesTr_000109": [
+    [
+      121,
+      95,
+      150,
+      113
+    ]
+  ],
+  "QAMEBI_imagesTr_92_Malignant": [
+    [
+      86,
+      71,
+      147,
+      107
+    ]
+  ],
+  "BUSI_imagesTr_benign_136": [
+    [
+      49,
+      89,
+      101,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_259": [
+    [
+      96,
+      91,
+      174,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_malignant_23": [
+    [
+      9,
+      77,
+      226,
+      203
+    ]
+  ],
+  "BUSI_imagesTr_malignant_84": [
+    [
+      99,
+      83,
+      216,
+      175
+    ]
+  ],
+  "QAMEBI_imagesTr_44_Malignant": [
+    [
+      66,
+      75,
+      218,
+      206
+    ]
+  ],
+  "BUSI_imagesTr_benign_100": [
+    [
+      148,
+      68,
+      201,
+      119
+    ],
+    [
+      56,
+      58,
+      93,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_benign_405": [
+    [
+      22,
+      39,
+      247,
+      129
+    ]
+  ],
+  "QAMEBI_imagesTr_23_Malignant": [
+    [
+      60,
+      50,
+      194,
+      188
+    ]
+  ],
+  "UDIAT_imagesTr_000301": [
+    [
+      103,
+      73,
+      151,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_malignant_151": [
+    [
+      104,
+      50,
+      243,
+      179
+    ]
+  ],
+  "BUSI_imagesTr_benign_182": [
+    [
+      154,
+      49,
+      181,
+      77
+    ]
+  ],
+  "QAMEBI_imagesTr_22_Benign": [
+    [
+      105,
+      100,
+      151,
+      128
+    ]
+  ],
+  "QAMEBI_imagesTr_90_Malignant": [
+    [
+      30,
+      46,
+      215,
+      206
+    ]
+  ],
+  "BUSI_imagesTr_benign_224": [
+    [
+      44,
+      59,
+      181,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_293": [
+    [
+      17,
+      84,
+      99,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_21": [
+    [
+      126,
+      81,
+      155,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_benign_351": [
+    [
+      122,
+      128,
+      167,
+      164
+    ]
+  ],
+  "BUSI_imagesTr_malignant_4": [
+    [
+      31,
+      90,
+      133,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_benign_213": [
+    [
+      115,
+      59,
+      180,
+      99
+    ]
+  ],
+  "QAMEBI_imagesTr_44_Benign": [
+    [
+      80,
+      42,
+      162,
+      114
+    ]
+  ],
+  "BUSI_imagesTr_benign_246": [
+    [
+      213,
+      115,
+      239,
+      130
+    ]
+  ],
+  "UDIAT_imagesTr_000037": [
+    [
+      101,
+      79,
+      125,
+      99
+    ]
+  ],
+  "QAMEBI_imagesTr_77_Malignant": [
+    [
+      51,
+      33,
+      227,
+      147
+    ]
+  ],
+  "QAMEBI_imagesTr_57_Malignant": [
+    [
+      60,
+      43,
+      192,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_206": [
+    [
+      78,
+      30,
+      155,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_134": [
+    [
+      150,
+      51,
+      188,
+      67
+    ]
+  ],
+  "BUSI_imagesTr_malignant_182": [
+    [
+      19,
+      68,
+      183,
+      178
+    ]
+  ],
+  "BUSI_imagesTr_benign_41": [
+    [
+      60,
+      117,
+      169,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_benign_121": [
+    [
+      101,
+      25,
+      171,
+      73
+    ]
+  ],
+  "QAMEBI_imagesTr_113_Malignant": [
+    [
+      47,
+      67,
+      226,
+      173
+    ]
+  ],
+  "QAMEBI_imagesTr_11_Benign": [
+    [
+      87,
+      83,
+      164,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_malignant_24": [
+    [
+      51,
+      64,
+      206,
+      191
+    ]
+  ],
+  "BUSI_imagesTr_benign_276": [
+    [
+      75,
+      27,
+      178,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_malignant_47": [
+    [
+      31,
+      35,
+      209,
+      136
+    ]
+  ],
+  "QAMEBI_imagesTr_74_Benign": [
+    [
+      35,
+      46,
+      238,
+      186
+    ]
+  ],
+  "BUSI_imagesTr_malignant_152": [
+    [
+      61,
+      58,
+      233,
+      178
+    ]
+  ],
+  "BUSI_imagesTr_benign_339": [
+    [
+      86,
+      68,
+      185,
+      137
+    ]
+  ],
+  "QAMEBI_imagesTr_108_Malignant": [
+    [
+      95,
+      36,
+      153,
+      88
+    ]
+  ],
+  "BUSI_imagesTr_benign_328": [
+    [
+      135,
+      69,
+      165,
+      82
+    ]
+  ],
+  "QAMEBI_imagesTr_33_Benign": [
+    [
+      19,
+      81,
+      210,
+      188
+    ]
+  ],
+  "UDIAT_imagesTr_000110": [
+    [
+      177,
+      84,
+      196,
+      101
+    ]
+  ],
+  "BUSI_imagesTr_benign_285": [
+    [
+      139,
+      52,
+      221,
+      96
+    ]
+  ],
+  "QAMEBI_imagesTr_99_Benign": [
+    [
+      54,
+      29,
+      203,
+      145
+    ]
+  ],
+  "QAMEBI_imagesTr_89_Malignant": [
+    [
+      80,
+      98,
+      165,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_benign_173": [
+    [
+      17,
+      48,
+      60,
+      78
+    ],
+    [
+      112,
+      32,
+      218,
+      83
+    ]
+  ],
+  "UDIAT_imagesTr_000023": [
+    [
+      125,
+      67,
+      160,
+      90
+    ]
+  ],
+  "BUSI_imagesTr_benign_28": [
+    [
+      142,
+      119,
+      196,
+      156
+    ]
+  ],
+  "QAMEBI_imagesTr_4_Malignant": [
+    [
+      73,
+      43,
+      182,
+      159
+    ]
+  ],
+  "UDIAT_imagesTr_000307": [
+    [
+      120,
+      44,
+      173,
+      63
+    ]
+  ],
+  "QAMEBI_imagesTr_91_Benign": [
+    [
+      38,
+      69,
+      207,
+      174
+    ]
+  ],
+  "BUSI_imagesTr_malignant_186": [
+    [
+      71,
+      23,
+      230,
+      201
+    ]
+  ],
+  "QAMEBI_imagesTr_66_Malignant": [
+    [
+      97,
+      95,
+      157,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_malignant_109": [
+    [
+      28,
+      62,
+      168,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_119": [
+    [
+      56,
+      105,
+      91,
+      124
+    ]
+  ],
+  "UDIAT_imagesTr_000061": [
+    [
+      88,
+      49,
+      159,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_9": [
+    [
+      41,
+      55,
+      137,
+      131
+    ]
+  ],
+  "BUSI_imagesTr_benign_42": [
+    [
+      32,
+      55,
+      128,
+      100
+    ]
+  ],
+  "UDIAT_imagesTr_000310": [
+    [
+      78,
+      42,
+      127,
+      87
+    ]
+  ],
+  "QAMEBI_imagesTr_75_Malignant": [
+    [
+      35,
+      69,
+      207,
+      175
+    ]
+  ],
+  "QAMEBI_imagesTr_34_Benign": [
+    [
+      59,
+      124,
+      203,
+      187
+    ]
+  ],
+  "BUSI_imagesTr_benign_263": [
+    [
+      69,
+      108,
+      142,
+      148
+    ]
+  ],
+  "QAMEBI_imagesTr_85_Benign": [
+    [
+      93,
+      97,
+      158,
+      129
+    ]
+  ],
+  "QAMEBI_imagesTr_28_Benign": [
+    [
+      99,
+      92,
+      169,
+      158
+    ]
+  ],
+  "BUSI_imagesTr_malignant_201": [
+    [
+      69,
+      71,
+      207,
+      181
+    ]
+  ],
+  "BUSI_imagesTr_benign_99": [
+    [
+      139,
+      45,
+      206,
+      88
+    ]
+  ],
+  "BUSI_imagesTr_benign_325": [
+    [
+      119,
+      84,
+      154,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_87_Malignant": [
+    [
+      13,
+      55,
+      222,
+      199
+    ]
+  ],
+  "QAMEBI_imagesTr_87_Benign": [
+    [
+      60,
+      24,
+      197,
+      187
+    ]
+  ],
+  "BUSI_imagesTr_benign_426": [
+    [
+      14,
+      28,
+      253,
+      137
+    ]
+  ],
+  "BUSI_imagesTr_malignant_123": [
+    [
+      50,
+      30,
+      192,
+      135
+    ]
+  ],
+  "BUSI_imagesTr_benign_419": [
+    [
+      29,
+      65,
+      100,
+      89
+    ]
+  ],
+  "QAMEBI_imagesTr_4_Benign": [
+    [
+      59,
+      72,
+      188,
+      155
+    ]
+  ],
+  "BUSI_imagesTr_benign_131": [
+    [
+      6,
+      55,
+      145,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_benign_31": [
+    [
+      73,
+      44,
+      96,
+      61
+    ]
+  ],
+  "QAMEBI_imagesTr_61_Malignant": [
+    [
+      84,
+      36,
+      175,
+      112
+    ]
+  ],
+  "BUSI_imagesTr_benign_3": [
+    [
+      147,
+      86,
+      207,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_114": [
+    [
+      67,
+      62,
+      141,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_64": [
+    [
+      22,
+      44,
+      238,
+      185
+    ]
+  ],
+  "BUSI_imagesTr_benign_141": [
+    [
+      20,
+      37,
+      255,
+      193
+    ]
+  ],
+  "QAMEBI_imagesTr_110_Malignant": [
+    [
+      10,
+      14,
+      232,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_malignant_32": [
+    [
+      74,
+      54,
+      175,
+      214
+    ]
+  ],
+  "BUSI_imagesTr_benign_242": [
+    [
+      23,
+      134,
+      117,
+      193
+    ]
+  ],
+  "UDIAT_imagesTr_000010": [
+    [
+      73,
+      48,
+      103,
+      62
+    ]
+  ],
+  "UDIAT_imagesTr_000130": [
+    [
+      113,
+      42,
+      136,
+      53
+    ]
+  ],
+  "BUSI_imagesTr_benign_6": [
+    [
+      147,
+      61,
+      200,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_434": [
+    [
+      84,
+      39,
+      214,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_307": [
+    [
+      27,
+      64,
+      98,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_benign_155": [
+    [
+      21,
+      91,
+      127,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_malignant_37": [
+    [
+      35,
+      28,
+      173,
+      147
+    ]
+  ],
+  "BUSI_imagesTr_benign_189": [
+    [
+      90,
+      61,
+      127,
+      78
+    ]
+  ],
+  "BUSI_imagesTr_benign_268": [
+    [
+      89,
+      53,
+      219,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_benign_152": [
+    [
+      70,
+      32,
+      225,
+      151
+    ]
+  ],
+  "UDIAT_imagesTr_000025": [
+    [
+      98,
+      43,
+      145,
+      125
+    ]
+  ],
+  "BUSI_imagesTr_malignant_79": [
+    [
+      26,
+      44,
+      180,
+      133
+    ]
+  ],
+  "UDIAT_imagesTr_000108": [
+    [
+      101,
+      87,
+      157,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_malignant_94": [
+    [
+      33,
+      50,
+      211,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_malignant_149": [
+    [
+      6,
+      103,
+      77,
+      173
+    ]
+  ],
+  "BUSI_imagesTr_malignant_184": [
+    [
+      39,
+      26,
+      182,
+      131
+    ]
+  ],
+  "BUSI_imagesTr_malignant_173": [
+    [
+      10,
+      136,
+      113,
+      179
+    ]
+  ],
+  "BUSI_imagesTr_benign_157": [
+    [
+      136,
+      44,
+      201,
+      87
+    ]
+  ],
+  "UDIAT_imagesTr_000112": [
+    [
+      136,
+      56,
+      157,
+      74
+    ]
+  ],
+  "BUSI_imagesTr_malignant_125": [
+    [
+      119,
+      65,
+      182,
+      123
+    ]
+  ],
+  "QAMEBI_imagesTr_92_Benign": [
+    [
+      26,
+      19,
+      214,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_264": [
+    [
+      95,
+      40,
+      193,
+      106
+    ]
+  ],
+  "UDIAT_imagesTr_000050": [
+    [
+      51,
+      51,
+      214,
+      136
+    ]
+  ],
+  "QAMEBI_imagesTr_17_Benign": [
+    [
+      46,
+      94,
+      189,
+      161
+    ]
+  ],
+  "BUSI_imagesTr_malignant_198": [
+    [
+      50,
+      17,
+      165,
+      85
+    ]
+  ],
+  "QAMEBI_imagesTr_54_Benign": [
+    [
+      77,
+      92,
+      168,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_malignant_104": [
+    [
+      53,
+      57,
+      194,
+      174
+    ]
+  ],
+  "UDIAT_imagesTr_000103": [
+    [
+      105,
+      95,
+      135,
+      123
+    ]
+  ],
+  "UDIAT_imagesTr_000002": [
+    [
+      84,
+      81,
+      137,
+      124
+    ]
+  ],
+  "QAMEBI_imagesTr_66_Benign": [
+    [
+      1,
+      86,
+      255,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_benign_75": [
+    [
+      84,
+      101,
+      145,
+      140
+    ]
+  ],
+  "QAMEBI_imagesTr_26_Malignant": [
+    [
+      67,
+      103,
+      174,
+      155
+    ]
+  ],
+  "BUSI_imagesTr_benign_404": [
+    [
+      30,
+      50,
+      252,
+      179
+    ]
+  ],
+  "UDIAT_imagesTr_000107": [
+    [
+      38,
+      115,
+      107,
+      145
+    ]
+  ],
+  "UDIAT_imagesTr_000078": [
+    [
+      129,
+      50,
+      191,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_344": [
+    [
+      51,
+      43,
+      141,
+      76
+    ]
+  ],
+  "UDIAT_imagesTr_000057": [
+    [
+      95,
+      43,
+      171,
+      103
+    ]
+  ],
+  "QAMEBI_imagesTr_99_Malignant": [
+    [
+      60,
+      47,
+      190,
+      175
+    ]
+  ],
+  "UDIAT_imagesTr_000032": [
+    [
+      50,
+      58,
+      95,
+      95
+    ]
+  ],
+  "UDIAT_imagesTr_000089": [
+    [
+      87,
+      47,
+      215,
+      132
+    ]
+  ],
+  "UDIAT_imagesTr_000142": [
+    [
+      100,
+      65,
+      154,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_benign_216": [
+    [
+      168,
+      69,
+      253,
+      102
+    ]
+  ],
+  "QAMEBI_imagesTr_82_Benign": [
+    [
+      82,
+      47,
+      195,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_271": [
+    [
+      186,
+      99,
+      240,
+      139
+    ]
+  ],
+  "QAMEBI_imagesTr_69_Benign": [
+    [
+      64,
+      88,
+      178,
+      128
+    ]
+  ],
+  "BUSI_imagesTr_malignant_132": [
+    [
+      43,
+      53,
+      210,
+      186
+    ]
+  ],
+  "QAMEBI_imagesTr_23_Benign": [
+    [
+      117,
+      87,
+      148,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_benign_83": [
+    [
+      78,
+      70,
+      105,
+      86
+    ],
+    [
+      169,
+      67,
+      197,
+      85
+    ]
+  ],
+  "QAMEBI_imagesTr_18_Malignant": [
+    [
+      18,
+      61,
+      200,
+      214
+    ]
+  ],
+  "BUSI_imagesTr_benign_227": [
+    [
+      98,
+      131,
+      175,
+      156
+    ]
+  ],
+  "QAMEBI_imagesTr_15_Malignant": [
+    [
+      38,
+      68,
+      191,
+      185
+    ]
+  ],
+  "BUSI_imagesTr_malignant_49": [
+    [
+      100,
+      45,
+      176,
+      111
+    ]
+  ],
+  "UDIAT_imagesTr_000088": [
+    [
+      44,
+      48,
+      131,
+      102
+    ]
+  ],
+  "STU_imagesTr_41": [
+    [
+      88,
+      44,
+      139,
+      93
+    ]
+  ],
+  "UDIAT_imagesTr_000104": [
+    [
+      97,
+      69,
+      183,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_71": [
+    [
+      102,
+      58,
+      128,
+      82
+    ]
+  ],
+  "QAMEBI_imagesTr_14_Malignant": [
+    [
+      13,
+      43,
+      193,
+      186
+    ]
+  ],
+  "QAMEBI_imagesTr_26_Benign": [
+    [
+      20,
+      26,
+      226,
+      181
+    ]
+  ],
+  "BUSI_imagesTr_benign_413": [
+    [
+      46,
+      52,
+      106,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_malignant_13": [
+    [
+      24,
+      64,
+      179,
+      121
+    ]
+  ],
+  "QAMEBI_imagesTr_119_Malignant": [
+    [
+      67,
+      64,
+      184,
+      171
+    ]
+  ],
+  "BUSI_imagesTr_benign_437": [
+    [
+      86,
+      77,
+      112,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_benign_190": [
+    [
+      51,
+      98,
+      122,
+      167
+    ]
+  ],
+  "QAMEBI_imagesTr_73_Benign": [
+    [
+      63,
+      43,
+      238,
+      217
+    ]
+  ],
+  "BUSI_imagesTr_benign_275": [
+    [
+      109,
+      45,
+      171,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_benign_18": [
+    [
+      79,
+      33,
+      212,
+      146
+    ]
+  ],
+  "UDIAT_imagesTr_000101": [
+    [
+      67,
+      129,
+      86,
+      144
+    ]
+  ],
+  "UDIAT_imagesTr_000118": [
+    [
+      108,
+      61,
+      142,
+      86
+    ]
+  ],
+  "QAMEBI_imagesTr_96_Benign": [
+    [
+      22,
+      70,
+      215,
+      169
+    ]
+  ],
+  "QAMEBI_imagesTr_70_Benign": [
+    [
+      61,
+      76,
+      177,
+      151
+    ]
+  ],
+  "BUSI_imagesTr_malignant_176": [
+    [
+      21,
+      25,
+      133,
+      125
+    ]
+  ],
+  "QAMEBI_imagesTr_24_Malignant": [
+    [
+      86,
+      86,
+      157,
+      135
+    ]
+  ],
+  "STU_imagesTr_19": [
+    [
+      72,
+      22,
+      177,
+      115
+    ]
+  ],
+  "QAMEBI_imagesTr_29_Benign": [
+    [
+      68,
+      92,
+      177,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_433": [
+    [
+      91,
+      55,
+      121,
+      82
+    ]
+  ],
+  "UDIAT_imagesTr_000073": [
+    [
+      81,
+      56,
+      168,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_malignant_16": [
+    [
+      3,
+      49,
+      211,
+      145
+    ]
+  ],
+  "BUSI_imagesTr_benign_5": [
+    [
+      104,
+      101,
+      137,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_malignant_124": [
+    [
+      76,
+      45,
+      201,
+      159
+    ]
+  ],
+  "BUSI_imagesTr_benign_330": [
+    [
+      66,
+      59,
+      198,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_benign_96": [
+    [
+      21,
+      89,
+      131,
+      172
+    ]
+  ],
+  "QAMEBI_imagesTr_46_Malignant": [
+    [
+      55,
+      55,
+      179,
+      200
+    ]
+  ],
+  "BUSI_imagesTr_benign_323": [
+    [
+      146,
+      65,
+      200,
+      99
+    ]
+  ],
+  "UDIAT_imagesTr_000090": [
+    [
+      77,
+      72,
+      135,
+      99
+    ]
+  ],
+  "UDIAT_imagesTr_000138": [
+    [
+      95,
+      102,
+      162,
+      129
+    ]
+  ],
+  "UDIAT_imagesTr_000045": [
+    [
+      86,
+      63,
+      186,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_20": [
+    [
+      108,
+      54,
+      168,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_benign_115": [
+    [
+      128,
+      98,
+      173,
+      122
+    ]
+  ],
+  "QAMEBI_imagesTr_16_Malignant": [
+    [
+      58,
+      59,
+      160,
+      201
+    ]
+  ],
+  "BUSI_imagesTr_benign_166": [
+    [
+      154,
+      69,
+      184,
+      93
+    ]
+  ],
+  "BUSI_imagesTr_benign_86": [
+    [
+      64,
+      86,
+      95,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_malignant_159": [
+    [
+      33,
+      95,
+      178,
+      206
+    ]
+  ],
+  "BUSI_imagesTr_benign_396": [
+    [
+      39,
+      53,
+      119,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_benign_179": [
+    [
+      83,
+      21,
+      102,
+      37
+    ]
+  ],
+  "UDIAT_imagesTr_000095": [
+    [
+      118,
+      73,
+      237,
+      133
+    ]
+  ],
+  "UDIAT_imagesTr_000009": [
+    [
+      49,
+      88,
+      86,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_171": [
+    [
+      171,
+      79,
+      196,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_benign_175": [
+    [
+      68,
+      83,
+      133,
+      132
+    ]
+  ],
+  "BUSI_imagesTr_malignant_86": [
+    [
+      29,
+      85,
+      209,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_benign_427": [
+    [
+      107,
+      101,
+      145,
+      130
+    ]
+  ],
+  "QAMEBI_imagesTr_29_Malignant": [
+    [
+      80,
+      63,
+      182,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_benign_286": [
+    [
+      18,
+      45,
+      170,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_324": [
+    [
+      175,
+      56,
+      203,
+      73
+    ]
+  ],
+  "UDIAT_imagesTr_000016": [
+    [
+      94,
+      76,
+      136,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_malignant_99": [
+    [
+      30,
+      57,
+      131,
+      120
+    ]
+  ],
+  "BUSI_imagesTr_benign_210": [
+    [
+      16,
+      93,
+      93,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_benign_232": [
+    [
+      76,
+      31,
+      176,
+      107
+    ]
+  ],
+  "BUSI_imagesTr_benign_105": [
+    [
+      122,
+      89,
+      158,
+      114
+    ]
+  ],
+  "BUSI_imagesTr_benign_432": [
+    [
+      74,
+      59,
+      187,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_176": [
+    [
+      87,
+      80,
+      125,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_194": [
+    [
+      167,
+      72,
+      218,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_malignant_204": [
+    [
+      113,
+      61,
+      187,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_malignant_31": [
+    [
+      2,
+      46,
+      197,
+      202
+    ]
+  ],
+  "BUSI_imagesTr_malignant_61": [
+    [
+      59,
+      67,
+      125,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_malignant_133": [
+    [
+      2,
+      29,
+      207,
+      190
+    ]
+  ],
+  "BUSI_imagesTr_malignant_5": [
+    [
+      40,
+      84,
+      124,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_benign_398": [
+    [
+      67,
+      43,
+      251,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_32": [
+    [
+      1,
+      58,
+      183,
+      108
+    ]
+  ],
+  "QAMEBI_imagesTr_56_Benign": [
+    [
+      77,
+      61,
+      145,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_malignant_139": [
+    [
+      48,
+      30,
+      167,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_malignant_158": [
+    [
+      52,
+      65,
+      207,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_benign_283": [
+    [
+      63,
+      103,
+      95,
+      128
+    ]
+  ],
+  "UDIAT_imagesTr_000302": [
+    [
+      55,
+      31,
+      227,
+      157
+    ]
+  ],
+  "QAMEBI_imagesTr_35_Benign": [
+    [
+      51,
+      30,
+      179,
+      130
+    ]
+  ],
+  "UDIAT_imagesTr_000106": [
+    [
+      139,
+      68,
+      167,
+      88
+    ]
+  ],
+  "BUSI_imagesTr_benign_207": [
+    [
+      86,
+      91,
+      250,
+      147
+    ]
+  ],
+  "STU_imagesTr_2": [
+    [
+      66,
+      22,
+      171,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_197": [
+    [
+      111,
+      72,
+      151,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_benign_287": [
+    [
+      76,
+      29,
+      176,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_malignant_155": [
+    [
+      74,
+      37,
+      193,
+      134
+    ]
+  ],
+  "UDIAT_imagesTr_000080": [
+    [
+      79,
+      60,
+      137,
+      104
+    ]
+  ],
+  "UDIAT_imagesTr_000081": [
+    [
+      91,
+      48,
+      164,
+      78
+    ]
+  ],
+  "BUSI_imagesTr_benign_430": [
+    [
+      75,
+      53,
+      146,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_benign_402": [
+    [
+      146,
+      52,
+      246,
+      88
+    ]
+  ],
+  "QAMEBI_imagesTr_58_Benign": [
+    [
+      99,
+      112,
+      162,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_benign_409": [
+    [
+      17,
+      45,
+      248,
+      166
+    ]
+  ],
+  "QAMEBI_imagesTr_36_Benign": [
+    [
+      66,
+      62,
+      183,
+      120
+    ]
+  ],
+  "UDIAT_imagesTr_000308": [
+    [
+      89,
+      47,
+      168,
+      102
+    ]
+  ],
+  "BUSI_imagesTr_benign_342": [
+    [
+      96,
+      52,
+      255,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_362": [
+    [
+      74,
+      101,
+      114,
+      121
+    ]
+  ],
+  "QAMEBI_imagesTr_101_Malignant": [
+    [
+      65,
+      56,
+      206,
+      191
+    ]
+  ],
+  "BUSI_imagesTr_benign_397": [
+    [
+      6,
+      46,
+      115,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_149": [
+    [
+      54,
+      80,
+      125,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_148": [
+    [
+      74,
+      54,
+      132,
+      100
+    ]
+  ],
+  "QAMEBI_imagesTr_122_Malignant": [
+    [
+      87,
+      57,
+      218,
+      162
+    ]
+  ],
+  "BUSI_imagesTr_benign_97": [
+    [
+      111,
+      102,
+      243,
+      188
+    ]
+  ],
+  "BUSI_imagesTr_benign_253": [
+    [
+      117,
+      62,
+      180,
+      102
+    ]
+  ],
+  "QAMEBI_imagesTr_86_Malignant": [
+    [
+      51,
+      36,
+      240,
+      199
+    ]
+  ],
+  "BUSI_imagesTr_benign_30": [
+    [
+      82,
+      45,
+      111,
+      75
+    ]
+  ],
+  "BUSI_imagesTr_benign_185": [
+    [
+      121,
+      96,
+      146,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_malignant_39": [
+    [
+      94,
+      51,
+      206,
+      145
+    ]
+  ],
+  "BUSI_imagesTr_benign_112": [
+    [
+      67,
+      51,
+      105,
+      75
+    ]
+  ],
+  "QAMEBI_imagesTr_57_Benign": [
+    [
+      59,
+      88,
+      169,
+      154
+    ]
+  ],
+  "QAMEBI_imagesTr_37_Benign": [
+    [
+      83,
+      58,
+      148,
+      99
+    ]
+  ],
+  "UDIAT_imagesTr_000297": [
+    [
+      32,
+      15,
+      191,
+      164
+    ]
+  ],
+  "QAMEBI_imagesTr_72_Benign": [
+    [
+      32,
+      91,
+      188,
+      188
+    ]
+  ],
+  "UDIAT_imagesTr_000052": [
+    [
+      95,
+      30,
+      153,
+      59
+    ]
+  ],
+  "BUSI_imagesTr_benign_95": [
+    [
+      40,
+      67,
+      70,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_benign_163": [
+    [
+      176,
+      91,
+      195,
+      106
+    ],
+    [
+      67,
+      89,
+      94,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_benign_87": [
+    [
+      69,
+      90,
+      134,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_1": [
+    [
+      131,
+      82,
+      153,
+      92
+    ]
+  ],
+  "UDIAT_imagesTr_000298": [
+    [
+      117,
+      35,
+      202,
+      89
+    ]
+  ],
+  "QAMEBI_imagesTr_24_Benign": [
+    [
+      81,
+      77,
+      152,
+      140
+    ]
+  ],
+  "BUSI_imagesTr_benign_282": [
+    [
+      78,
+      32,
+      151,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_benign_391": [
+    [
+      12,
+      85,
+      196,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_malignant_174": [
+    [
+      67,
+      31,
+      181,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_malignant_62": [
+    [
+      33,
+      76,
+      160,
+      170
+    ]
+  ],
+  "QAMEBI_imagesTr_86_Benign": [
+    [
+      6,
+      42,
+      241,
+      144
+    ]
+  ],
+  "QAMEBI_imagesTr_112_Malignant": [
+    [
+      46,
+      110,
+      226,
+      177
+    ]
+  ],
+  "UDIAT_imagesTr_000017": [
+    [
+      108,
+      40,
+      143,
+      49
+    ]
+  ],
+  "QAMEBI_imagesTr_97_Malignant": [
+    [
+      33,
+      79,
+      214,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_89": [
+    [
+      7,
+      61,
+      243,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_malignant_170": [
+    [
+      6,
+      52,
+      238,
+      163
+    ]
+  ],
+  "STU_imagesTr_42": [
+    [
+      58,
+      64,
+      127,
+      153
+    ]
+  ],
+  "UDIAT_imagesTr_000082": [
+    [
+      62,
+      71,
+      131,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_malignant_96": [
+    [
+      75,
+      31,
+      255,
+      136
+    ]
+  ],
+  "QAMEBI_imagesTr_81_Malignant": [
+    [
+      35,
+      17,
+      214,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_malignant_101": [
+    [
+      69,
+      75,
+      185,
+      154
+    ]
+  ],
+  "UDIAT_imagesTr_000140": [
+    [
+      109,
+      96,
+      138,
+      134
+    ]
+  ],
+  "UDIAT_imagesTr_000058": [
+    [
+      69,
+      49,
+      170,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_58_Malignant": [
+    [
+      100,
+      73,
+      145,
+      103
+    ]
+  ],
+  "BUSI_imagesTr_benign_274": [
+    [
+      41,
+      38,
+      186,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_352": [
+    [
+      147,
+      51,
+      175,
+      74
+    ]
+  ],
+  "BUSI_imagesTr_malignant_134": [
+    [
+      122,
+      81,
+      197,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_benign_48": [
+    [
+      66,
+      81,
+      137,
+      144
+    ]
+  ],
+  "QAMEBI_imagesTr_42_Malignant": [
+    [
+      75,
+      59,
+      194,
+      171
+    ]
+  ],
+  "BUSI_imagesTr_malignant_187": [
+    [
+      58,
+      53,
+      171,
+      121
+    ]
+  ],
+  "UDIAT_imagesTr_000033": [
+    [
+      135,
+      39,
+      176,
+      54
+    ]
+  ],
+  "UDIAT_imagesTr_000065": [
+    [
+      76,
+      42,
+      104,
+      60
+    ]
+  ],
+  "QAMEBI_imagesTr_15_Benign": [
+    [
+      39,
+      30,
+      177,
+      90
+    ]
+  ],
+  "BUSI_imagesTr_benign_188": [
+    [
+      27,
+      69,
+      255,
+      217
+    ]
+  ],
+  "BUSI_imagesTr_malignant_183": [
+    [
+      63,
+      49,
+      193,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_benign_52": [
+    [
+      150,
+      49,
+      191,
+      67
+    ]
+  ],
+  "BUSI_imagesTr_benign_123": [
+    [
+      115,
+      53,
+      202,
+      106
+    ]
+  ],
+  "QAMEBI_imagesTr_84_Malignant": [
+    [
+      70,
+      87,
+      197,
+      160
+    ]
+  ],
+  "BUSI_imagesTr_benign_329": [
+    [
+      128,
+      87,
+      158,
+      101
+    ]
+  ],
+  "BUSI_imagesTr_benign_288": [
+    [
+      64,
+      58,
+      157,
+      84
+    ]
+  ],
+  "QAMEBI_imagesTr_34_Malignant": [
+    [
+      109,
+      69,
+      171,
+      137
+    ]
+  ],
+  "BUSI_imagesTr_benign_401": [
+    [
+      74,
+      35,
+      179,
+      113
+    ]
+  ],
+  "STU_imagesTr_20": [
+    [
+      26,
+      80,
+      185,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_malignant_56": [
+    [
+      111,
+      42,
+      254,
+      136
+    ]
+  ],
+  "QAMEBI_imagesTr_55_Benign": [
+    [
+      100,
+      125,
+      176,
+      192
+    ]
+  ],
+  "BUSI_imagesTr_malignant_17": [
+    [
+      75,
+      62,
+      169,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_malignant_190": [
+    [
+      67,
+      65,
+      159,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_172": [
+    [
+      46,
+      59,
+      94,
+      95
+    ]
+  ],
+  "UDIAT_imagesTr_000299": [
+    [
+      93,
+      54,
+      150,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_malignant_129": [
+    [
+      2,
+      42,
+      195,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_benign_196": [
+    [
+      99,
+      40,
+      205,
+      66
+    ]
+  ],
+  "BUSI_imagesTr_benign_201": [
+    [
+      82,
+      92,
+      171,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_269": [
+    [
+      26,
+      33,
+      87,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_benign_81": [
+    [
+      110,
+      73,
+      149,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_267": [
+    [
+      77,
+      96,
+      137,
+      133
+    ]
+  ],
+  "UDIAT_imagesTr_000069": [
+    [
+      65,
+      80,
+      156,
+      117
+    ]
+  ],
+  "UDIAT_imagesTr_000006": [
+    [
+      108,
+      58,
+      129,
+      73
+    ]
+  ],
+  "BUSI_imagesTr_benign_377": [
+    [
+      123,
+      43,
+      172,
+      72
+    ]
+  ],
+  "UDIAT_imagesTr_000126": [
+    [
+      144,
+      91,
+      196,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_malignant_147": [
+    [
+      125,
+      64,
+      212,
+      123
+    ]
+  ],
+  "UDIAT_imagesTr_000094": [
+    [
+      90,
+      31,
+      153,
+      63
+    ]
+  ],
+  "BUSI_imagesTr_benign_277": [
+    [
+      52,
+      66,
+      136,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_malignant_105": [
+    [
+      206,
+      51,
+      255,
+      94
+    ]
+  ],
+  "QAMEBI_imagesTr_5_Malignant": [
+    [
+      80,
+      62,
+      195,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_209": [
+    [
+      111,
+      45,
+      171,
+      79
+    ]
+  ],
+  "QAMEBI_imagesTr_62_Malignant": [
+    [
+      72,
+      40,
+      187,
+      197
+    ]
+  ],
+  "BUSI_imagesTr_malignant_168": [
+    [
+      65,
+      65,
+      193,
+      188
+    ]
+  ],
+  "BUSI_imagesTr_benign_412": [
+    [
+      25,
+      51,
+      226,
+      185
+    ]
+  ],
+  "BUSI_imagesTr_benign_47": [
+    [
+      191,
+      69,
+      213,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_benign_348": [
+    [
+      116,
+      97,
+      156,
+      112
+    ]
+  ],
+  "BUSI_imagesTr_benign_395": [
+    [
+      86,
+      18,
+      205,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_malignant_41": [
+    [
+      117,
+      59,
+      240,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_53": [
+    [
+      158,
+      87,
+      199,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_malignant_153": [
+    [
+      8,
+      20,
+      218,
+      189
+    ]
+  ],
+  "BUSI_imagesTr_malignant_145": [
+    [
+      90,
+      54,
+      125,
+      86
+    ]
+  ],
+  "BUSI_imagesTr_benign_156": [
+    [
+      119,
+      90,
+      158,
+      114
+    ]
+  ],
+  "BUSI_imagesTr_benign_104": [
+    [
+      199,
+      52,
+      227,
+      69
+    ]
+  ],
+  "BUSI_imagesTr_benign_80": [
+    [
+      65,
+      63,
+      199,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_benign_203": [
+    [
+      75,
+      47,
+      210,
+      100
+    ]
+  ],
+  "QAMEBI_imagesTr_1_Benign": [
+    [
+      6,
+      54,
+      181,
+      192
+    ]
+  ],
+  "BUSI_imagesTr_benign_150": [
+    [
+      159,
+      97,
+      180,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_malignant_29": [
+    [
+      12,
+      62,
+      139,
+      190
+    ]
+  ],
+  "STU_imagesTr_32": [
+    [
+      10,
+      30,
+      179,
+      145
+    ]
+  ],
+  "BUSI_imagesTr_benign_262": [
+    [
+      27,
+      91,
+      232,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_benign_54": [
+    [
+      58,
+      73,
+      80,
+      89
+    ],
+    [
+      133,
+      63,
+      229,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_benign_303": [
+    [
+      81,
+      28,
+      154,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_benign_386": [
+    [
+      98,
+      49,
+      169,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_52_Malignant": [
+    [
+      77,
+      64,
+      186,
+      161
+    ]
+  ],
+  "QAMEBI_imagesTr_107_Malignant": [
+    [
+      50,
+      50,
+      165,
+      129
+    ]
+  ],
+  "QAMEBI_imagesTr_106_Malignant": [
+    [
+      35,
+      26,
+      205,
+      137
+    ]
+  ],
+  "BUSI_imagesTr_benign_162": [
+    [
+      34,
+      91,
+      54,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_11_Malignant": [
+    [
+      60,
+      51,
+      165,
+      144
+    ]
+  ],
+  "QAMEBI_imagesTr_89_Benign": [
+    [
+      85,
+      79,
+      152,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_malignant_114": [
+    [
+      45,
+      28,
+      196,
+      142
+    ]
+  ],
+  "UDIAT_imagesTr_000296": [
+    [
+      108,
+      72,
+      147,
+      95
+    ]
+  ],
+  "QAMEBI_imagesTr_104_Benign": [
+    [
+      73,
+      54,
+      175,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_benign_291": [
+    [
+      92,
+      66,
+      124,
+      90
+    ]
+  ],
+  "BUSI_imagesTr_benign_26": [
+    [
+      25,
+      55,
+      149,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_benign_420": [
+    [
+      73,
+      71,
+      224,
+      131
+    ]
+  ],
+  "STU_imagesTr_22": [
+    [
+      32,
+      38,
+      187,
+      165
+    ]
+  ],
+  "BUSI_imagesTr_benign_221": [
+    [
+      219,
+      117,
+      247,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_benign_205": [
+    [
+      21,
+      91,
+      225,
+      171
+    ]
+  ],
+  "BUSI_imagesTr_benign_251": [
+    [
+      131,
+      52,
+      187,
+      79
+    ]
+  ],
+  "QAMEBI_imagesTr_123_Malignant": [
+    [
+      70,
+      56,
+      178,
+      198
+    ]
+  ],
+  "STU_imagesTr_24": [
+    [
+      60,
+      32,
+      209,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_malignant_14": [
+    [
+      55,
+      32,
+      188,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_benign_184": [
+    [
+      74,
+      44,
+      216,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_malignant_98": [
+    [
+      57,
+      75,
+      114,
+      121
+    ]
+  ],
+  "UDIAT_imagesTr_000008": [
+    [
+      62,
+      34,
+      158,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_benign_228": [
+    [
+      67,
+      75,
+      246,
+      122
+    ]
+  ],
+  "QAMEBI_imagesTr_70_Malignant": [
+    [
+      26,
+      84,
+      210,
+      234
+    ]
+  ],
+  "BUSI_imagesTr_benign_304": [
+    [
+      47,
+      56,
+      193,
+      109
+    ]
+  ],
+  "QAMEBI_imagesTr_2_Malignant": [
+    [
+      85,
+      26,
+      171,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_malignant_73": [
+    [
+      38,
+      43,
+      108,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_benign_145": [
+    [
+      144,
+      121,
+      183,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_malignant_203": [
+    [
+      56,
+      55,
+      186,
+      178
+    ]
+  ],
+  "UDIAT_imagesTr_000077": [
+    [
+      109,
+      96,
+      169,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_367": [
+    [
+      35,
+      129,
+      208,
+      177
+    ]
+  ],
+  "QAMEBI_imagesTr_72_Malignant": [
+    [
+      100,
+      92,
+      148,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_benign_102": [
+    [
+      107,
+      26,
+      181,
+      76
+    ]
+  ],
+  "UDIAT_imagesTr_000123": [
+    [
+      123,
+      27,
+      157,
+      44
+    ]
+  ],
+  "QAMEBI_imagesTr_53_Malignant": [
+    [
+      79,
+      50,
+      180,
+      138
+    ]
+  ],
+  "BUSI_imagesTr_malignant_208": [
+    [
+      17,
+      44,
+      238,
+      180
+    ]
+  ],
+  "QAMEBI_imagesTr_96_Malignant": [
+    [
+      35,
+      41,
+      203,
+      213
+    ]
+  ],
+  "BUSI_imagesTr_benign_237": [
+    [
+      91,
+      34,
+      187,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_benign_238": [
+    [
+      51,
+      64,
+      145,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_malignant_196": [
+    [
+      56,
+      35,
+      141,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_malignant_92": [
+    [
+      95,
+      37,
+      172,
+      118
+    ]
+  ],
+  "QAMEBI_imagesTr_9_Malignant": [
+    [
+      61,
+      67,
+      166,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_malignant_185": [
+    [
+      52,
+      49,
+      179,
+      147
+    ]
+  ],
+  "BUSI_imagesTr_malignant_22": [
+    [
+      90,
+      63,
+      208,
+      183
+    ]
+  ],
+  "BUSI_imagesTr_malignant_87": [
+    [
+      132,
+      23,
+      244,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_6_Malignant": [
+    [
+      70,
+      67,
+      189,
+      195
+    ]
+  ],
+  "BUSI_imagesTr_malignant_20": [
+    [
+      34,
+      70,
+      185,
+      177
+    ]
+  ],
+  "BUSI_imagesTr_malignant_11": [
+    [
+      114,
+      102,
+      208,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_malignant_154": [
+    [
+      12,
+      45,
+      196,
+      144
+    ]
+  ],
+  "UDIAT_imagesTr_000075": [
+    [
+      82,
+      26,
+      195,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_418": [
+    [
+      56,
+      81,
+      130,
+      103
+    ]
+  ],
+  "UDIAT_imagesTr_000030": [
+    [
+      89,
+      31,
+      203,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_malignant_116": [
+    [
+      0,
+      51,
+      59,
+      117
+    ]
+  ],
+  "QAMEBI_imagesTr_20_Benign": [
+    [
+      50,
+      52,
+      197,
+      178
+    ]
+  ],
+  "BUSI_imagesTr_malignant_46": [
+    [
+      86,
+      53,
+      170,
+      110
+    ]
+  ],
+  "UDIAT_imagesTr_000136": [
+    [
+      102,
+      97,
+      188,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_benign_44": [
+    [
+      65,
+      85,
+      106,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_benign_13": [
+    [
+      69,
+      60,
+      202,
+      134
+    ]
+  ],
+  "QAMEBI_imagesTr_83_Benign": [
+    [
+      52,
+      41,
+      173,
+      120
+    ]
+  ],
+  "BUSI_imagesTr_malignant_26": [
+    [
+      107,
+      34,
+      168,
+      95
+    ]
+  ],
+  "QAMEBI_imagesTr_51_Benign": [
+    [
+      57,
+      67,
+      200,
+      143
+    ]
+  ],
+  "UDIAT_imagesTr_000047": [
+    [
+      104,
+      82,
+      158,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_245": [
+    [
+      118,
+      55,
+      176,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_benign_414": [
+    [
+      21,
+      34,
+      228,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_benign_78": [
+    [
+      87,
+      68,
+      115,
+      93
+    ]
+  ],
+  "BUSI_imagesTr_benign_301": [
+    [
+      218,
+      56,
+      240,
+      69
+    ]
+  ],
+  "BUSI_imagesTr_benign_406": [
+    [
+      76,
+      50,
+      201,
+      133
+    ]
+  ],
+  "STU_imagesTr_1": [
+    [
+      104,
+      20,
+      201,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_benign_68": [
+    [
+      97,
+      39,
+      222,
+      151
+    ]
+  ],
+  "BUSI_imagesTr_benign_265": [
+    [
+      169,
+      67,
+      251,
+      109
+    ]
+  ],
+  "STU_imagesTr_16": [
+    [
+      70,
+      48,
+      173,
+      135
+    ]
+  ],
+  "STU_imagesTr_6": [
+    [
+      106,
+      34,
+      155,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_benign_139": [
+    [
+      138,
+      45,
+      203,
+      86
+    ]
+  ],
+  "BUSI_imagesTr_malignant_97": [
+    [
+      83,
+      42,
+      252,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_benign_230": [
+    [
+      39,
+      46,
+      132,
+      80
+    ]
+  ],
+  "BUSI_imagesTr_benign_193": [
+    [
+      161,
+      101,
+      189,
+      122
+    ]
+  ],
+  "BUSI_imagesTr_benign_22": [
+    [
+      78,
+      106,
+      147,
+      158
+    ]
+  ],
+  "BUSI_imagesTr_benign_364": [
+    [
+      63,
+      51,
+      149,
+      91
+    ]
+  ],
+  "QAMEBI_imagesTr_49_Benign": [
+    [
+      101,
+      116,
+      150,
+      151
+    ]
+  ],
+  "QAMEBI_imagesTr_94_Benign": [
+    [
+      94,
+      116,
+      150,
+      170
+    ]
+  ],
+  "UDIAT_imagesTr_000117": [
+    [
+      144,
+      56,
+      174,
+      80
+    ]
+  ],
+  "BUSI_imagesTr_malignant_6": [
+    [
+      59,
+      89,
+      128,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_benign_158": [
+    [
+      39,
+      37,
+      180,
+      103
+    ]
+  ],
+  "UDIAT_imagesTr_000068": [
+    [
+      66,
+      40,
+      213,
+      72
+    ]
+  ],
+  "UDIAT_imagesTr_000300": [
+    [
+      110,
+      77,
+      168,
+      112
+    ]
+  ],
+  "QAMEBI_imagesTr_88_Benign": [
+    [
+      11,
+      95,
+      255,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_malignant_178": [
+    [
+      72,
+      31,
+      175,
+      115
+    ]
+  ],
+  "QAMEBI_imagesTr_109_Benign": [
+    [
+      65,
+      78,
+      199,
+      120
+    ]
+  ],
+  "STU_imagesTr_40": [
+    [
+      54,
+      6,
+      191,
+      173
+    ]
+  ],
+  "UDIAT_imagesTr_000309": [
+    [
+      122,
+      56,
+      165,
+      93
+    ]
+  ],
+  "STU_imagesTr_38": [
+    [
+      32,
+      20,
+      169,
+      127
+    ]
+  ],
+  "STU_imagesTr_25": [
+    [
+      60,
+      10,
+      131,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_malignant_44": [
+    [
+      160,
+      64,
+      212,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_benign_212": [
+    [
+      73,
+      69,
+      240,
+      104
+    ]
+  ],
+  "QAMEBI_imagesTr_111_Malignant": [
+    [
+      59,
+      47,
+      188,
+      174
+    ]
+  ],
+  "QAMEBI_imagesTr_91_Malignant": [
+    [
+      65,
+      36,
+      179,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_benign_128": [
+    [
+      82,
+      40,
+      112,
+      73
+    ]
+  ],
+  "BUSI_imagesTr_benign_319": [
+    [
+      48,
+      125,
+      119,
+      159
+    ]
+  ],
+  "BUSI_imagesTr_benign_326": [
+    [
+      42,
+      52,
+      141,
+      125
+    ]
+  ],
+  "BUSI_imagesTr_malignant_34": [
+    [
+      101,
+      51,
+      164,
+      116
+    ]
+  ],
+  "QAMEBI_imagesTr_108_Benign": [
+    [
+      83,
+      99,
+      157,
+      141
+    ]
+  ],
+  "QAMEBI_imagesTr_105_Malignant": [
+    [
+      94,
+      97,
+      163,
+      162
+    ]
+  ],
+  "BUSI_imagesTr_benign_24": [
+    [
+      125,
+      120,
+      169,
+      151
+    ]
+  ],
+  "BUSI_imagesTr_benign_223": [
+    [
+      45,
+      49,
+      111,
+      76
+    ]
+  ],
+  "BUSI_imagesTr_malignant_55": [
+    [
+      4,
+      66,
+      75,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_393": [
+    [
+      67,
+      39,
+      209,
+      178
+    ]
+  ],
+  "UDIAT_imagesTr_000135": [
+    [
+      93,
+      53,
+      152,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_benign_109": [
+    [
+      24,
+      61,
+      124,
+      135
+    ]
+  ],
+  "BUSI_imagesTr_benign_258": [
+    [
+      122,
+      47,
+      171,
+      82
+    ]
+  ],
+  "UDIAT_imagesTr_000031": [
+    [
+      112,
+      52,
+      193,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_malignant_136": [
+    [
+      96,
+      14,
+      192,
+      67
+    ]
+  ],
+  "QAMEBI_imagesTr_10_Benign": [
+    [
+      59,
+      72,
+      178,
+      111
+    ]
+  ],
+  "UDIAT_imagesTr_000043": [
+    [
+      63,
+      51,
+      208,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_malignant_63": [
+    [
+      80,
+      65,
+      214,
+      155
+    ]
+  ],
+  "UDIAT_imagesTr_000005": [
+    [
+      105,
+      55,
+      132,
+      79
+    ]
+  ],
+  "BUSI_imagesTr_benign_222": [
+    [
+      76,
+      97,
+      136,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_benign_388": [
+    [
+      109,
+      107,
+      164,
+      128
+    ]
+  ],
+  "BUSI_imagesTr_benign_51": [
+    [
+      125,
+      77,
+      158,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_370": [
+    [
+      85,
+      44,
+      220,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_benign_110": [
+    [
+      36,
+      34,
+      179,
+      99
+    ]
+  ],
+  "QAMEBI_imagesTr_12_Benign": [
+    [
+      71,
+      110,
+      176,
+      146
+    ]
+  ],
+  "QAMEBI_imagesTr_54_Malignant": [
+    [
+      72,
+      69,
+      182,
+      127
+    ]
+  ],
+  "BUSI_imagesTr_malignant_85": [
+    [
+      57,
+      89,
+      220,
+      166
+    ]
+  ],
+  "BUSI_imagesTr_malignant_107": [
+    [
+      51,
+      72,
+      205,
+      147
+    ]
+  ],
+  "BUSI_imagesTr_malignant_100": [
+    [
+      73,
+      51,
+      181,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_78_Benign": [
+    [
+      113,
+      102,
+      172,
+      159
+    ]
+  ],
+  "BUSI_imagesTr_benign_379": [
+    [
+      111,
+      71,
+      184,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_malignant_162": [
+    [
+      1,
+      12,
+      229,
+      159
+    ]
+  ],
+  "UDIAT_imagesTr_000093": [
+    [
+      60,
+      57,
+      194,
+      134
+    ]
+  ],
+  "UDIAT_imagesTr_000036": [
+    [
+      112,
+      95,
+      147,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_malignant_74": [
+    [
+      42,
+      40,
+      119,
+      86
+    ]
+  ],
+  "BUSI_imagesTr_malignant_197": [
+    [
+      63,
+      76,
+      138,
+      200
+    ]
+  ],
+  "UDIAT_imagesTr_000041": [
+    [
+      44,
+      39,
+      177,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_malignant_110": [
+    [
+      92,
+      124,
+      151,
+      163
+    ]
+  ],
+  "UDIAT_imagesTr_000026": [
+    [
+      77,
+      31,
+      176,
+      77
+    ]
+  ],
+  "BUSI_imagesTr_benign_118": [
+    [
+      88,
+      43,
+      125,
+      74
+    ]
+  ],
+  "QAMEBI_imagesTr_107_Benign": [
+    [
+      95,
+      117,
+      158,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_benign_313": [
+    [
+      89,
+      105,
+      159,
+      126
+    ]
+  ],
+  "QAMEBI_imagesTr_63_Benign": [
+    [
+      97,
+      113,
+      190,
+      190
+    ]
+  ],
+  "UDIAT_imagesTr_000303": [
+    [
+      18,
+      76,
+      61,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_15": [
+    [
+      83,
+      79,
+      106,
+      100
+    ]
+  ],
+  "QAMEBI_imagesTr_40_Benign": [
+    [
+      89,
+      80,
+      154,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_malignant_207": [
+    [
+      65,
+      32,
+      174,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_malignant_202": [
+    [
+      58,
+      24,
+      170,
+      145
+    ]
+  ],
+  "UDIAT_imagesTr_000121": [
+    [
+      41,
+      60,
+      102,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_41_Malignant": [
+    [
+      58,
+      77,
+      251,
+      158
+    ]
+  ],
+  "BUSI_imagesTr_benign_256": [
+    [
+      41,
+      87,
+      167,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_benign_142": [
+    [
+      94,
+      73,
+      120,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_malignant_194": [
+    [
+      162,
+      85,
+      248,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_benign_208": [
+    [
+      89,
+      69,
+      123,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_malignant_52": [
+    [
+      2,
+      29,
+      198,
+      118
+    ]
+  ],
+  "UDIAT_imagesTr_000018": [
+    [
+      48,
+      15,
+      193,
+      169
+    ]
+  ],
+  "QAMEBI_imagesTr_97_Benign": [
+    [
+      71,
+      50,
+      174,
+      97
+    ]
+  ],
+  "UDIAT_imagesTr_000001": [
+    [
+      141,
+      80,
+      167,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_180": [
+    [
+      142,
+      89,
+      181,
+      128
+    ]
+  ],
+  "BUSI_imagesTr_benign_428": [
+    [
+      54,
+      95,
+      144,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_benign_178": [
+    [
+      88,
+      106,
+      169,
+      160
+    ]
+  ],
+  "QAMEBI_imagesTr_93_Benign": [
+    [
+      55,
+      49,
+      203,
+      153
+    ]
+  ],
+  "QAMEBI_imagesTr_60_Benign": [
+    [
+      82,
+      91,
+      170,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_malignant_64": [
+    [
+      23,
+      80,
+      128,
+      128
+    ]
+  ],
+  "BUSI_imagesTr_malignant_77": [
+    [
+      78,
+      42,
+      178,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_benign_358": [
+    [
+      90,
+      82,
+      172,
+      122
+    ]
+  ],
+  "BUSI_imagesTr_benign_384": [
+    [
+      31,
+      74,
+      161,
+      111
+    ]
+  ],
+  "BUSI_imagesTr_benign_63": [
+    [
+      121,
+      97,
+      152,
+      120
+    ]
+  ],
+  "BUSI_imagesTr_malignant_40": [
+    [
+      75,
+      56,
+      194,
+      145
+    ]
+  ],
+  "BUSI_imagesTr_benign_399": [
+    [
+      74,
+      54,
+      205,
+      129
+    ]
+  ],
+  "UDIAT_imagesTr_000007": [
+    [
+      83,
+      40,
+      173,
+      75
+    ]
+  ],
+  "QAMEBI_imagesTr_18_Benign": [
+    [
+      75,
+      137,
+      168,
+      173
+    ]
+  ],
+  "BUSI_imagesTr_malignant_121": [
+    [
+      159,
+      58,
+      195,
+      86
+    ]
+  ],
+  "BUSI_imagesTr_benign_16": [
+    [
+      150,
+      81,
+      177,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_benign_298": [
+    [
+      15,
+      94,
+      92,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_malignant_166": [
+    [
+      2,
+      45,
+      62,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_382": [
+    [
+      18,
+      65,
+      159,
+      116
+    ]
+  ],
+  "STU_imagesTr_12": [
+    [
+      68,
+      52,
+      165,
+      117
+    ]
+  ],
+  "BUSI_imagesTr_malignant_57": [
+    [
+      114,
+      45,
+      248,
+      114
+    ]
+  ],
+  "BUSI_imagesTr_malignant_33": [
+    [
+      60,
+      43,
+      187,
+      220
+    ]
+  ],
+  "QAMEBI_imagesTr_98_Malignant": [
+    [
+      20,
+      30,
+      163,
+      115
+    ]
+  ],
+  "QAMEBI_imagesTr_39_Benign": [
+    [
+      98,
+      56,
+      152,
+      112
+    ]
+  ],
+  "UDIAT_imagesTr_000019": [
+    [
+      130,
+      39,
+      149,
+      48
+    ]
+  ],
+  "UDIAT_imagesTr_000046": [
+    [
+      97,
+      53,
+      127,
+      83
+    ]
+  ],
+  "BUSI_imagesTr_benign_290": [
+    [
+      40,
+      40,
+      182,
+      109
+    ]
+  ],
+  "QAMEBI_imagesTr_21_Malignant": [
+    [
+      52,
+      69,
+      195,
+      195
+    ]
+  ],
+  "BUSI_imagesTr_malignant_130": [
+    [
+      107,
+      83,
+      224,
+      160
+    ]
+  ],
+  "BUSI_imagesTr_benign_191": [
+    [
+      93,
+      68,
+      144,
+      86
+    ]
+  ],
+  "BUSI_imagesTr_benign_335": [
+    [
+      92,
+      36,
+      190,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_malignant_68": [
+    [
+      0,
+      66,
+      209,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_benign_333": [
+    [
+      78,
+      41,
+      173,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_387": [
+    [
+      73,
+      65,
+      172,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_159": [
+    [
+      200,
+      78,
+      225,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_35": [
+    [
+      29,
+      66,
+      63,
+      88
+    ]
+  ],
+  "UDIAT_imagesTr_000039": [
+    [
+      68,
+      72,
+      170,
+      99
+    ]
+  ],
+  "UDIAT_imagesTr_000004": [
+    [
+      97,
+      64,
+      136,
+      80
+    ]
+  ],
+  "BUSI_imagesTr_benign_322": [
+    [
+      104,
+      102,
+      136,
+      126
+    ]
+  ],
+  "BUSI_imagesTr_malignant_58": [
+    [
+      87,
+      46,
+      232,
+      147
+    ]
+  ],
+  "BUSI_imagesTr_benign_117": [
+    [
+      186,
+      58,
+      232,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_benign_74": [
+    [
+      196,
+      79,
+      225,
+      96
+    ]
+  ],
+  "BUSI_imagesTr_benign_202": [
+    [
+      217,
+      53,
+      241,
+      68
+    ]
+  ],
+  "UDIAT_imagesTr_000084": [
+    [
+      70,
+      101,
+      188,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_benign_101": [
+    [
+      199,
+      99,
+      243,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_benign_60": [
+    [
+      139,
+      51,
+      163,
+      63
+    ]
+  ],
+  "QAMEBI_imagesTr_63_Malignant": [
+    [
+      50,
+      86,
+      170,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_benign_199": [
+    [
+      4,
+      128,
+      209,
+      194
+    ]
+  ],
+  "BUSI_imagesTr_benign_107": [
+    [
+      126,
+      102,
+      169,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_benign_254": [
+    [
+      127,
+      73,
+      151,
+      87
+    ]
+  ],
+  "QAMEBI_imagesTr_50_Benign": [
+    [
+      43,
+      80,
+      207,
+      196
+    ]
+  ],
+  "BUSI_imagesTr_benign_289": [
+    [
+      74,
+      45,
+      210,
+      99
+    ]
+  ],
+  "UDIAT_imagesTr_000096": [
+    [
+      68,
+      54,
+      138,
+      99
+    ]
+  ],
+  "BUSI_imagesTr_benign_337": [
+    [
+      164,
+      41,
+      212,
+      77
+    ]
+  ],
+  "BUSI_imagesTr_benign_55": [
+    [
+      74,
+      112,
+      112,
+      142
+    ]
+  ],
+  "UDIAT_imagesTr_000014": [
+    [
+      31,
+      41,
+      173,
+      105
+    ]
+  ],
+  "UDIAT_imagesTr_000049": [
+    [
+      44,
+      52,
+      251,
+      195
+    ]
+  ],
+  "QAMEBI_imagesTr_93_Malignant": [
+    [
+      73,
+      66,
+      175,
+      103
+    ]
+  ],
+  "STU_imagesTr_7": [
+    [
+      30,
+      16,
+      205,
+      141
+    ]
+  ],
+  "STU_imagesTr_37": [
+    [
+      118,
+      28,
+      195,
+      101
+    ]
+  ],
+  "BUSI_imagesTr_benign_279": [
+    [
+      60,
+      29,
+      153,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_benign_84": [
+    [
+      108,
+      82,
+      223,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_benign_70": [
+    [
+      71,
+      84,
+      110,
+      98
+    ]
+  ],
+  "UDIAT_imagesTr_000131": [
+    [
+      168,
+      101,
+      216,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_408": [
+    [
+      50,
+      50,
+      194,
+      93
+    ]
+  ],
+  "BUSI_imagesTr_malignant_75": [
+    [
+      92,
+      8,
+      255,
+      114
+    ]
+  ],
+  "QAMEBI_imagesTr_76_Malignant": [
+    [
+      82,
+      60,
+      174,
+      171
+    ]
+  ],
+  "UDIAT_imagesTr_000021": [
+    [
+      51,
+      16,
+      133,
+      79
+    ]
+  ],
+  "BUSI_imagesTr_benign_19": [
+    [
+      157,
+      97,
+      177,
+      112
+    ]
+  ],
+  "UDIAT_imagesTr_000102": [
+    [
+      89,
+      84,
+      150,
+      126
+    ]
+  ],
+  "QAMEBI_imagesTr_68_Malignant": [
+    [
+      36,
+      59,
+      183,
+      216
+    ]
+  ],
+  "BUSI_imagesTr_benign_45": [
+    [
+      55,
+      58,
+      126,
+      120
+    ]
+  ],
+  "UDIAT_imagesTr_000022": [
+    [
+      91,
+      10,
+      212,
+      90
+    ]
+  ],
+  "BUSI_imagesTr_benign_146": [
+    [
+      90,
+      48,
+      108,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_benign_327": [
+    [
+      9,
+      43,
+      88,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_273": [
+    [
+      71,
+      48,
+      208,
+      100
+    ]
+  ],
+  "UDIAT_imagesTr_000097": [
+    [
+      132,
+      42,
+      180,
+      67
+    ]
+  ],
+  "BUSI_imagesTr_benign_67": [
+    [
+      36,
+      123,
+      185,
+      209
+    ]
+  ],
+  "BUSI_imagesTr_benign_88": [
+    [
+      187,
+      90,
+      251,
+      149
+    ]
+  ],
+  "QAMEBI_imagesTr_69_Malignant": [
+    [
+      75,
+      91,
+      198,
+      197
+    ]
+  ],
+  "BUSI_imagesTr_malignant_90": [
+    [
+      59,
+      71,
+      163,
+      147
+    ]
+  ],
+  "BUSI_imagesTr_benign_425": [
+    [
+      142,
+      64,
+      192,
+      92
+    ]
+  ],
+  "QAMEBI_imagesTr_67_Malignant": [
+    [
+      28,
+      35,
+      231,
+      209
+    ]
+  ],
+  "BUSI_imagesTr_benign_366": [
+    [
+      91,
+      56,
+      185,
+      109
+    ]
+  ],
+  "BUSI_imagesTr_malignant_138": [
+    [
+      60,
+      66,
+      196,
+      137
+    ]
+  ],
+  "STU_imagesTr_30": [
+    [
+      24,
+      26,
+      241,
+      157
+    ]
+  ],
+  "BUSI_imagesTr_benign_61": [
+    [
+      179,
+      65,
+      246,
+      101
+    ]
+  ],
+  "STU_imagesTr_17": [
+    [
+      78,
+      40,
+      217,
+      187
+    ]
+  ],
+  "QAMEBI_imagesTr_65_Malignant": [
+    [
+      53,
+      56,
+      199,
+      166
+    ]
+  ],
+  "BUSI_imagesTr_benign_34": [
+    [
+      40,
+      52,
+      136,
+      89
+    ]
+  ],
+  "BUSI_imagesTr_benign_424": [
+    [
+      101,
+      54,
+      156,
+      78
+    ],
+    [
+      70,
+      54,
+      89,
+      66
+    ]
+  ],
+  "UDIAT_imagesTr_000066": [
+    [
+      79,
+      81,
+      156,
+      121
+    ]
+  ],
+  "QAMEBI_imagesTr_95_Benign": [
+    [
+      41,
+      21,
+      190,
+      72
+    ]
+  ],
+  "QAMEBI_imagesTr_115_Malignant": [
+    [
+      76,
+      28,
+      184,
+      120
+    ]
+  ],
+  "BUSI_imagesTr_malignant_135": [
+    [
+      86,
+      90,
+      156,
+      143
+    ]
+  ],
+  "BUSI_imagesTr_benign_154": [
+    [
+      125,
+      76,
+      153,
+      96
+    ]
+  ],
+  "QAMEBI_imagesTr_19_Benign": [
+    [
+      57,
+      60,
+      203,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_benign_309": [
+    [
+      38,
+      114,
+      228,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_benign_310": [
+    [
+      71,
+      32,
+      222,
+      67
+    ]
+  ],
+  "QAMEBI_imagesTr_31_Malignant": [
+    [
+      78,
+      84,
+      202,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_120": [
+    [
+      22,
+      70,
+      39,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_malignant_7": [
+    [
+      45,
+      96,
+      123,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_benign_341": [
+    [
+      45,
+      39,
+      166,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_239": [
+    [
+      119,
+      48,
+      169,
+      79
+    ]
+  ],
+  "BUSI_imagesTr_benign_295": [
+    [
+      66,
+      104,
+      166,
+      140
+    ]
+  ],
+  "BUSI_imagesTr_malignant_83": [
+    [
+      95,
+      84,
+      179,
+      149
+    ]
+  ],
+  "QAMEBI_imagesTr_7_Benign": [
+    [
+      85,
+      34,
+      216,
+      189
+    ]
+  ],
+  "UDIAT_imagesTr_000042": [
+    [
+      135,
+      40,
+      176,
+      53
+    ]
+  ],
+  "BUSI_imagesTr_malignant_43": [
+    [
+      13,
+      10,
+      229,
+      125
+    ]
+  ],
+  "BUSI_imagesTr_benign_369": [
+    [
+      79,
+      76,
+      111,
+      98
+    ]
+  ],
+  "UDIAT_imagesTr_000100": [
+    [
+      197,
+      60,
+      228,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_malignant_205": [
+    [
+      35,
+      48,
+      229,
+      217
+    ]
+  ],
+  "BUSI_imagesTr_benign_94": [
+    [
+      189,
+      75,
+      246,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_48_Benign": [
+    [
+      84,
+      79,
+      178,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_malignant_72": [
+    [
+      61,
+      46,
+      228,
+      223
+    ]
+  ],
+  "QAMEBI_imagesTr_14_Benign": [
+    [
+      40,
+      74,
+      236,
+      166
+    ]
+  ],
+  "UDIAT_imagesTr_000113": [
+    [
+      126,
+      61,
+      168,
+      77
+    ]
+  ],
+  "BUSI_imagesTr_benign_147": [
+    [
+      43,
+      70,
+      74,
+      100
+    ]
+  ],
+  "QAMEBI_imagesTr_103_Benign": [
+    [
+      66,
+      54,
+      191,
+      135
+    ]
+  ],
+  "QAMEBI_imagesTr_71_Malignant": [
+    [
+      107,
+      76,
+      141,
+      150
+    ]
+  ],
+  "QAMEBI_imagesTr_5_Benign": [
+    [
+      46,
+      85,
+      215,
+      155
+    ]
+  ],
+  "UDIAT_imagesTr_000070": [
+    [
+      128,
+      61,
+      168,
+      92
+    ]
+  ],
+  "QAMEBI_imagesTr_61_Benign": [
+    [
+      89,
+      107,
+      152,
+      148
+    ]
+  ],
+  "BUSI_imagesTr_benign_233": [
+    [
+      68,
+      74,
+      181,
+      175
+    ]
+  ],
+  "QAMEBI_imagesTr_73_Malignant": [
+    [
+      13,
+      45,
+      219,
+      248
+    ]
+  ],
+  "BUSI_imagesTr_benign_421": [
+    [
+      0,
+      49,
+      163,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_169": [
+    [
+      39,
+      120,
+      64,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_benign_280": [
+    [
+      93,
+      89,
+      174,
+      135
+    ]
+  ],
+  "BUSI_imagesTr_benign_260": [
+    [
+      163,
+      60,
+      243,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_373": [
+    [
+      58,
+      79,
+      124,
+      121
+    ]
+  ],
+  "BUSI_imagesTr_benign_127": [
+    [
+      84,
+      50,
+      117,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_benign_340": [
+    [
+      57,
+      73,
+      234,
+      143
+    ]
+  ],
+  "UDIAT_imagesTr_000060": [
+    [
+      64,
+      25,
+      172,
+      63
+    ]
+  ],
+  "BUSI_imagesTr_benign_429": [
+    [
+      141,
+      40,
+      190,
+      57
+    ]
+  ],
+  "UDIAT_imagesTr_000129": [
+    [
+      67,
+      31,
+      200,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_benign_431": [
+    [
+      147,
+      41,
+      200,
+      60
+    ]
+  ],
+  "BUSI_imagesTr_benign_73": [
+    [
+      92,
+      38,
+      231,
+      150
+    ]
+  ],
+  "UDIAT_imagesTr_000028": [
+    [
+      63,
+      41,
+      189,
+      107
+    ]
+  ],
+  "QAMEBI_imagesTr_68_Benign": [
+    [
+      82,
+      90,
+      173,
+      151
+    ]
+  ],
+  "BUSI_imagesTr_benign_226": [
+    [
+      68,
+      111,
+      140,
+      147
+    ]
+  ],
+  "UDIAT_imagesTr_000143": [
+    [
+      102,
+      70,
+      158,
+      119
+    ]
+  ],
+  "UDIAT_imagesTr_000062": [
+    [
+      64,
+      47,
+      142,
+      83
+    ]
+  ],
+  "BUSI_imagesTr_benign_278": [
+    [
+      70,
+      109,
+      141,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_25": [
+    [
+      34,
+      40,
+      198,
+      215
+    ]
+  ],
+  "BUSI_imagesTr_benign_410": [
+    [
+      0,
+      51,
+      138,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_malignant_35": [
+    [
+      1,
+      57,
+      111,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_175": [
+    [
+      26,
+      45,
+      184,
+      159
+    ]
+  ],
+  "BUSI_imagesTr_benign_243": [
+    [
+      86,
+      121,
+      245,
+      167
+    ]
+  ],
+  "BUSI_imagesTr_benign_356": [
+    [
+      30,
+      29,
+      182,
+      92
+    ]
+  ],
+  "BUSI_imagesTr_benign_365": [
+    [
+      57,
+      89,
+      115,
+      120
+    ]
+  ],
+  "BUSI_imagesTr_malignant_88": [
+    [
+      74,
+      62,
+      165,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_174": [
+    [
+      50,
+      52,
+      155,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_malignant_18": [
+    [
+      19,
+      48,
+      116,
+      106
+    ]
+  ],
+  "UDIAT_imagesTr_000051": [
+    [
+      37,
+      29,
+      149,
+      75
+    ]
+  ],
+  "BUSI_imagesTr_benign_372": [
+    [
+      51,
+      55,
+      150,
+      114
+    ]
+  ],
+  "UDIAT_imagesTr_000038": [
+    [
+      76,
+      78,
+      111,
+      98
+    ]
+  ],
+  "QAMEBI_imagesTr_41_Benign": [
+    [
+      59,
+      103,
+      160,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_206": [
+    [
+      7,
+      80,
+      169,
+      200
+    ]
+  ],
+  "UDIAT_imagesTr_000076": [
+    [
+      57,
+      79,
+      143,
+      123
+    ]
+  ],
+  "BUSI_imagesTr_benign_315": [
+    [
+      149,
+      49,
+      190,
+      71
+    ],
+    [
+      33,
+      33,
+      95,
+      54
+    ]
+  ],
+  "QAMEBI_imagesTr_80_Malignant": [
+    [
+      123,
+      117,
+      202,
+      165
+    ]
+  ],
+  "QAMEBI_imagesTr_79_Malignant": [
+    [
+      26,
+      128,
+      205,
+      189
+    ]
+  ],
+  "UDIAT_imagesTr_000029": [
+    [
+      86,
+      66,
+      175,
+      143
+    ]
+  ],
+  "QAMEBI_imagesTr_59_Malignant": [
+    [
+      93,
+      112,
+      160,
+      144
+    ]
+  ],
+  "BUSI_imagesTr_benign_126": [
+    [
+      81,
+      83,
+      114,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_malignant_108": [
+    [
+      74,
+      102,
+      236,
+      170
+    ]
+  ],
+  "UDIAT_imagesTr_000116": [
+    [
+      166,
+      51,
+      198,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_benign_380": [
+    [
+      98,
+      82,
+      144,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_272": [
+    [
+      119,
+      74,
+      253,
+      107
+    ]
+  ],
+  "BUSI_imagesTr_benign_371": [
+    [
+      141,
+      69,
+      235,
+      195
+    ]
+  ],
+  "BUSI_imagesTr_benign_305": [
+    [
+      116,
+      55,
+      175,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_benign_219": [
+    [
+      181,
+      74,
+      241,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_benign_65": [
+    [
+      138,
+      44,
+      203,
+      88
+    ]
+  ],
+  "QAMEBI_imagesTr_37_Malignant": [
+    [
+      104,
+      84,
+      165,
+      130
+    ]
+  ],
+  "STU_imagesTr_35": [
+    [
+      150,
+      24,
+      193,
+      77
+    ]
+  ],
+  "STU_imagesTr_10": [
+    [
+      80,
+      28,
+      209,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_benign_292": [
+    [
+      14,
+      81,
+      99,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_benign_177": [
+    [
+      31,
+      67,
+      66,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_benign_39": [
+    [
+      61,
+      103,
+      106,
+      136
+    ]
+  ],
+  "UDIAT_imagesTr_000133": [
+    [
+      97,
+      93,
+      177,
+      138
+    ]
+  ],
+  "BUSI_imagesTr_malignant_38": [
+    [
+      98,
+      95,
+      146,
+      132
+    ]
+  ],
+  "BUSI_imagesTr_malignant_54": [
+    [
+      49,
+      58,
+      137,
+      110
+    ]
+  ],
+  "BUSI_imagesTr_benign_368": [
+    [
+      46,
+      60,
+      92,
+      89
+    ]
+  ],
+  "UDIAT_imagesTr_000305": [
+    [
+      6,
+      37,
+      137,
+      134
+    ]
+  ],
+  "BUSI_imagesTr_benign_411": [
+    [
+      88,
+      14,
+      208,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_malignant_67": [
+    [
+      95,
+      77,
+      148,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_benign_331": [
+    [
+      188,
+      85,
+      230,
+      110
+    ]
+  ],
+  "STU_imagesTr_13": [
+    [
+      24,
+      54,
+      151,
+      143
+    ]
+  ],
+  "STU_imagesTr_39": [
+    [
+      130,
+      52,
+      219,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_56": [
+    [
+      42,
+      53,
+      137,
+      102
+    ]
+  ],
+  "UDIAT_imagesTr_000120": [
+    [
+      107,
+      89,
+      169,
+      125
+    ]
+  ],
+  "BUSI_imagesTr_benign_332": [
+    [
+      82,
+      78,
+      109,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_malignant_28": [
+    [
+      168,
+      65,
+      231,
+      109
+    ]
+  ],
+  "UDIAT_imagesTr_000067": [
+    [
+      85,
+      11,
+      128,
+      37
+    ]
+  ],
+  "UDIAT_imagesTr_000063": [
+    [
+      43,
+      62,
+      213,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_320": [
+    [
+      149,
+      86,
+      206,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_375": [
+    [
+      63,
+      65,
+      158,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_benign_165": [
+    [
+      199,
+      80,
+      227,
+      94
+    ]
+  ],
+  "BUSI_imagesTr_benign_317": [
+    [
+      1,
+      29,
+      147,
+      86
+    ]
+  ],
+  "UDIAT_imagesTr_000064": [
+    [
+      93,
+      84,
+      147,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_malignant_193": [
+    [
+      89,
+      67,
+      144,
+      109
+    ]
+  ],
+  "STU_imagesTr_33": [
+    [
+      36,
+      72,
+      215,
+      183
+    ]
+  ],
+  "QAMEBI_imagesTr_38_Malignant": [
+    [
+      111,
+      94,
+      158,
+      142
+    ]
+  ],
+  "UDIAT_imagesTr_000074": [
+    [
+      54,
+      31,
+      166,
+      88
+    ]
+  ],
+  "BUSI_imagesTr_malignant_164": [
+    [
+      9,
+      24,
+      217,
+      218
+    ]
+  ],
+  "BUSI_imagesTr_malignant_111": [
+    [
+      34,
+      61,
+      202,
+      168
+    ]
+  ],
+  "QAMEBI_imagesTr_10_Malignant": [
+    [
+      42,
+      39,
+      225,
+      163
+    ]
+  ],
+  "BUSI_imagesTr_benign_252": [
+    [
+      38,
+      43,
+      132,
+      78
+    ]
+  ],
+  "UDIAT_imagesTr_000086": [
+    [
+      79,
+      90,
+      156,
+      141
+    ]
+  ],
+  "UDIAT_imagesTr_000134": [
+    [
+      118,
+      55,
+      167,
+      74
+    ]
+  ],
+  "BUSI_imagesTr_malignant_21": [
+    [
+      3,
+      52,
+      110,
+      170
+    ]
+  ],
+  "UDIAT_imagesTr_000098": [
+    [
+      148,
+      67,
+      187,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_benign_93": [
+    [
+      120,
+      81,
+      150,
+      105
+    ],
+    [
+      19,
+      42,
+      80,
+      75
+    ]
+  ],
+  "QAMEBI_imagesTr_51_Malignant": [
+    [
+      61,
+      33,
+      218,
+      189
+    ]
+  ],
+  "QAMEBI_imagesTr_67_Benign": [
+    [
+      26,
+      36,
+      218,
+      136
+    ]
+  ],
+  "BUSI_imagesTr_benign_183": [
+    [
+      90,
+      93,
+      112,
+      112
+    ]
+  ],
+  "BUSI_imagesTr_benign_302": [
+    [
+      32,
+      102,
+      72,
+      128
+    ]
+  ],
+  "BUSI_imagesTr_malignant_157": [
+    [
+      14,
+      46,
+      58,
+      81
+    ]
+  ],
+  "BUSI_imagesTr_malignant_76": [
+    [
+      22,
+      51,
+      170,
+      145
+    ]
+  ],
+  "STU_imagesTr_36": [
+    [
+      78,
+      26,
+      201,
+      143
+    ]
+  ],
+  "BUSI_imagesTr_benign_181": [
+    [
+      97,
+      91,
+      176,
+      147
+    ]
+  ],
+  "QAMEBI_imagesTr_1_Malignant": [
+    [
+      99,
+      48,
+      147,
+      118
+    ]
+  ],
+  "UDIAT_imagesTr_000139": [
+    [
+      174,
+      68,
+      188,
+      84
+    ]
+  ],
+  "BUSI_imagesTr_malignant_3": [
+    [
+      56,
+      81,
+      136,
+      156
+    ]
+  ],
+  "QAMEBI_imagesTr_78_Malignant": [
+    [
+      104,
+      103,
+      165,
+      129
+    ]
+  ],
+  "BUSI_imagesTr_benign_160": [
+    [
+      56,
+      68,
+      84,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_benign_58": [
+    [
+      68,
+      52,
+      127,
+      87
+    ]
+  ],
+  "UDIAT_imagesTr_000040": [
+    [
+      52,
+      60,
+      97,
+      95
+    ]
+  ],
+  "QAMEBI_imagesTr_104_Malignant": [
+    [
+      15,
+      30,
+      233,
+      224
+    ]
+  ],
+  "BUSI_imagesTr_benign_314": [
+    [
+      2,
+      39,
+      123,
+      91
+    ]
+  ],
+  "QAMEBI_imagesTr_116_Malignant": [
+    [
+      40,
+      31,
+      215,
+      248
+    ]
+  ],
+  "BUSI_imagesTr_benign_7": [
+    [
+      178,
+      56,
+      201,
+      74
+    ]
+  ],
+  "UDIAT_imagesTr_000124": [
+    [
+      109,
+      84,
+      132,
+      105
+    ]
+  ],
+  "BUSI_imagesTr_benign_85": [
+    [
+      14,
+      33,
+      117,
+      99
+    ]
+  ],
+  "QAMEBI_imagesTr_55_Malignant": [
+    [
+      12,
+      27,
+      195,
+      214
+    ]
+  ],
+  "BUSI_imagesTr_malignant_122": [
+    [
+      47,
+      59,
+      207,
+      153
+    ]
+  ],
+  "BUSI_imagesTr_malignant_172": [
+    [
+      81,
+      68,
+      159,
+      131
+    ]
+  ],
+  "BUSI_imagesTr_benign_92": [
+    [
+      175,
+      75,
+      210,
+      99
+    ],
+    [
+      90,
+      52,
+      156,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_malignant_117": [
+    [
+      6,
+      52,
+      114,
+      119
+    ]
+  ],
+  "BUSI_imagesTr_benign_249": [
+    [
+      77,
+      32,
+      153,
+      80
+    ]
+  ],
+  "QAMEBI_imagesTr_114_Malignant": [
+    [
+      57,
+      63,
+      221,
+      178
+    ]
+  ],
+  "BUSI_imagesTr_benign_122": [
+    [
+      50,
+      82,
+      99,
+      124
+    ]
+  ],
+  "UDIAT_imagesTr_000024": [
+    [
+      80,
+      65,
+      118,
+      91
+    ]
+  ],
+  "BUSI_imagesTr_malignant_128": [
+    [
+      14,
+      50,
+      205,
+      177
+    ]
+  ],
+  "QAMEBI_imagesTr_47_Benign": [
+    [
+      63,
+      76,
+      184,
+      160
+    ]
+  ],
+  "UDIAT_imagesTr_000020": [
+    [
+      96,
+      39,
+      143,
+      65
+    ]
+  ],
+  "BUSI_imagesTr_benign_363": [
+    [
+      102,
+      103,
+      161,
+      124
+    ]
+  ],
+  "QAMEBI_imagesTr_109_Malignant": [
+    [
+      0,
+      9,
+      255,
+      198
+    ]
+  ],
+  "BUSI_imagesTr_benign_133": [
+    [
+      126,
+      78,
+      159,
+      98
+    ]
+  ],
+  "BUSI_imagesTr_benign_130": [
+    [
+      19,
+      48,
+      103,
+      95
+    ]
+  ],
+  "UDIAT_imagesTr_000085": [
+    [
+      57,
+      107,
+      201,
+      154
+    ]
+  ],
+  "QAMEBI_imagesTr_75_Benign": [
+    [
+      36,
+      58,
+      218,
+      159
+    ]
+  ],
+  "QAMEBI_imagesTr_106_Benign": [
+    [
+      56,
+      72,
+      183,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_benign_108": [
+    [
+      182,
+      64,
+      245,
+      99
+    ]
+  ],
+  "QAMEBI_imagesTr_74_Malignant": [
+    [
+      19,
+      56,
+      244,
+      192
+    ]
+  ],
+  "QAMEBI_imagesTr_77_Benign": [
+    [
+      63,
+      74,
+      200,
+      124
+    ]
+  ],
+  "QAMEBI_imagesTr_82_Malignant": [
+    [
+      55,
+      120,
+      155,
+      219
+    ]
+  ],
+  "QAMEBI_imagesTr_88_Malignant": [
+    [
+      93,
+      100,
+      159,
+      188
+    ]
+  ],
+  "BUSI_imagesTr_malignant_60": [
+    [
+      20,
+      84,
+      185,
+      169
+    ]
+  ],
+  "BUSI_imagesTr_malignant_91": [
+    [
+      66,
+      35,
+      206,
+      146
+    ]
+  ],
+  "BUSI_imagesTr_benign_77": [
+    [
+      148,
+      59,
+      194,
+      104
+    ]
+  ],
+  "QAMEBI_imagesTr_45_Benign": [
+    [
+      58,
+      65,
+      190,
+      159
+    ]
+  ],
+  "BUSI_imagesTr_benign_59": [
+    [
+      146,
+      48,
+      222,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_malignant_45": [
+    [
+      33,
+      112,
+      153,
+      215
+    ]
+  ],
+  "BUSI_imagesTr_benign_241": [
+    [
+      59,
+      31,
+      149,
+      70
+    ]
+  ],
+  "BUSI_imagesTr_benign_299": [
+    [
+      22,
+      68,
+      118,
+      117
+    ]
+  ],
+  "UDIAT_imagesTr_000013": [
+    [
+      62,
+      85,
+      118,
+      105
+    ]
+  ],
+  "UDIAT_imagesTr_000127": [
+    [
+      139,
+      72,
+      177,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_malignant_9": [
+    [
+      55,
+      92,
+      121,
+      162
+    ]
+  ],
+  "QAMEBI_imagesTr_6_Benign": [
+    [
+      88,
+      70,
+      163,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_13_Benign": [
+    [
+      51,
+      36,
+      185,
+      116
+    ]
+  ],
+  "QAMEBI_imagesTr_102_Benign": [
+    [
+      85,
+      107,
+      155,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_benign_29": [
+    [
+      45,
+      81,
+      67,
+      95
+    ]
+  ],
+  "BUSI_imagesTr_benign_17": [
+    [
+      144,
+      69,
+      191,
+      95
+    ]
+  ],
+  "STU_imagesTr_11": [
+    [
+      142,
+      52,
+      201,
+      93
+    ]
+  ],
+  "BUSI_imagesTr_malignant_131": [
+    [
+      181,
+      98,
+      244,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_malignant_81": [
+    [
+      34,
+      99,
+      109,
+      159
+    ]
+  ],
+  "QAMEBI_imagesTr_12_Malignant": [
+    [
+      64,
+      108,
+      154,
+      180
+    ]
+  ],
+  "QAMEBI_imagesTr_121_Malignant": [
+    [
+      39,
+      26,
+      203,
+      161
+    ]
+  ],
+  "QAMEBI_imagesTr_102_Malignant": [
+    [
+      43,
+      58,
+      196,
+      182
+    ]
+  ],
+  "BUSI_imagesTr_malignant_59": [
+    [
+      15,
+      80,
+      193,
+      182
+    ]
+  ],
+  "BUSI_imagesTr_malignant_180": [
+    [
+      142,
+      105,
+      253,
+      173
+    ]
+  ],
+  "BUSI_imagesTr_benign_168": [
+    [
+      82,
+      90,
+      157,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_benign_161": [
+    [
+      179,
+      60,
+      209,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_benign_244": [
+    [
+      129,
+      50,
+      185,
+      79
+    ]
+  ],
+  "BUSI_imagesTr_benign_79": [
+    [
+      77,
+      24,
+      149,
+      73
+    ]
+  ],
+  "QAMEBI_imagesTr_64_Malignant": [
+    [
+      88,
+      114,
+      175,
+      222
+    ]
+  ],
+  "UDIAT_imagesTr_000083": [
+    [
+      85,
+      24,
+      146,
+      58
+    ]
+  ],
+  "BUSI_imagesTr_malignant_19": [
+    [
+      31,
+      65,
+      182,
+      180
+    ]
+  ],
+  "STU_imagesTr_4": [
+    [
+      54,
+      26,
+      215,
+      165
+    ]
+  ],
+  "BUSI_imagesTr_malignant_169": [
+    [
+      193,
+      111,
+      216,
+      127
+    ]
+  ],
+  "QAMEBI_imagesTr_38_Benign": [
+    [
+      102,
+      108,
+      174,
+      148
+    ]
+  ],
+  "UDIAT_imagesTr_000056": [
+    [
+      102,
+      52,
+      174,
+      100
+    ]
+  ],
+  "BUSI_imagesTr_benign_400": [
+    [
+      36,
+      52,
+      229,
+      175
+    ]
+  ],
+  "BUSI_imagesTr_benign_321": [
+    [
+      142,
+      77,
+      158,
+      88
+    ]
+  ],
+  "QAMEBI_imagesTr_17_Malignant": [
+    [
+      27,
+      44,
+      198,
+      162
+    ]
+  ],
+  "BUSI_imagesTr_benign_164": [
+    [
+      0,
+      30,
+      173,
+      97
+    ]
+  ],
+  "BUSI_imagesTr_benign_27": [
+    [
+      126,
+      67,
+      157,
+      92
+    ]
+  ],
+  "QAMEBI_imagesTr_27_Malignant": [
+    [
+      57,
+      55,
+      189,
+      179
+    ]
+  ],
+  "BUSI_imagesTr_benign_217": [
+    [
+      91,
+      52,
+      221,
+      87
+    ]
+  ],
+  "STU_imagesTr_5": [
+    [
+      66,
+      56,
+      133,
+      107
+    ]
+  ],
+  "BUSI_imagesTr_benign_403": [
+    [
+      36,
+      48,
+      173,
+      124
+    ]
+  ],
+  "BUSI_imagesTr_benign_225": [
+    [
+      9,
+      80,
+      97,
+      114
+    ]
+  ],
+  "BUSI_imagesTr_malignant_146": [
+    [
+      56,
+      56,
+      189,
+      151
+    ]
+  ],
+  "BUSI_imagesTr_benign_186": [
+    [
+      103,
+      90,
+      178,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_benign_347": [
+    [
+      71,
+      40,
+      120,
+      61
+    ]
+  ],
+  "BUSI_imagesTr_benign_14": [
+    [
+      187,
+      85,
+      227,
+      104
+    ]
+  ],
+  "QAMEBI_imagesTr_65_Benign": [
+    [
+      79,
+      67,
+      160,
+      101
+    ]
+  ],
+  "QAMEBI_imagesTr_28_Malignant": [
+    [
+      47,
+      56,
+      204,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_benign_124": [
+    [
+      86,
+      86,
+      146,
+      108
+    ]
+  ],
+  "BUSI_imagesTr_malignant_127": [
+    [
+      13,
+      48,
+      192,
+      172
+    ]
+  ],
+  "BUSI_imagesTr_benign_345": [
+    [
+      90,
+      92,
+      122,
+      111
+    ]
+  ],
+  "QAMEBI_imagesTr_90_Benign": [
+    [
+      64,
+      89,
+      179,
+      154
+    ]
+  ],
+  "BUSI_imagesTr_benign_240": [
+    [
+      49,
+      62,
+      162,
+      131
+    ]
+  ],
+  "BUSI_imagesTr_benign_69": [
+    [
+      105,
+      120,
+      141,
+      136
+    ]
+  ],
+  "UDIAT_imagesTr_000144": [
+    [
+      89,
+      74,
+      158,
+      115
+    ]
+  ],
+  "UDIAT_imagesTr_000092": [
+    [
+      67,
+      26,
+      98,
+      51
+    ]
+  ],
+  "BUSI_imagesTr_benign_312": [
+    [
+      1,
+      45,
+      146,
+      110
+    ]
+  ],
+  "UDIAT_imagesTr_000141": [
+    [
+      106,
+      62,
+      158,
+      112
+    ]
+  ],
+  "BUSI_imagesTr_benign_10": [
+    [
+      9,
+      43,
+      86,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_261": [
+    [
+      13,
+      35,
+      135,
+      104
+    ]
+  ],
+  "QAMEBI_imagesTr_83_Malignant": [
+    [
+      88,
+      52,
+      146,
+      116
+    ]
+  ],
+  "BUSI_imagesTr_benign_38": [
+    [
+      134,
+      47,
+      180,
+      80
+    ]
+  ],
+  "BUSI_imagesTr_malignant_188": [
+    [
+      64,
+      70,
+      168,
+      165
+    ]
+  ],
+  "QAMEBI_imagesTr_42_Benign": [
+    [
+      106,
+      136,
+      159,
+      173
+    ]
+  ],
+  "UDIAT_imagesTr_000111": [
+    [
+      109,
+      48,
+      146,
+      75
+    ]
+  ],
+  "BUSI_imagesTr_benign_57": [
+    [
+      120,
+      50,
+      158,
+      74
+    ]
+  ],
+  "BUSI_imagesTr_benign_360": [
+    [
+      147,
+      37,
+      200,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_malignant_165": [
+    [
+      35,
+      45,
+      244,
+      183
+    ]
+  ],
+  "QAMEBI_imagesTr_13_Malignant": [
+    [
+      46,
+      57,
+      187,
+      188
+    ]
+  ],
+  "BUSI_imagesTr_malignant_8": [
+    [
+      49,
+      93,
+      127,
+      161
+    ]
+  ],
+  "UDIAT_imagesTr_000114": [
+    [
+      93,
+      43,
+      107,
+      57
+    ]
+  ],
+  "BUSI_imagesTr_malignant_69": [
+    [
+      92,
+      73,
+      200,
+      128
+    ]
+  ],
+  "QAMEBI_imagesTr_100_Benign": [
+    [
+      77,
+      39,
+      183,
+      115
+    ]
+  ],
+  "BUSI_imagesTr_malignant_82": [
+    [
+      28,
+      68,
+      164,
+      139
+    ]
+  ],
+  "BUSI_imagesTr_malignant_15": [
+    [
+      25,
+      58,
+      215,
+      168
+    ]
+  ],
+  "BUSI_imagesTr_benign_235": [
+    [
+      125,
+      110,
+      237,
+      162
+    ]
+  ],
+  "STU_imagesTr_8": [
+    [
+      78,
+      2,
+      185,
+      113
+    ]
+  ],
+  "BUSI_imagesTr_benign_349": [
+    [
+      45,
+      26,
+      98,
+      47
+    ]
+  ],
+  "BUSI_imagesTr_malignant_71": [
+    [
+      36,
+      47,
+      191,
+      172
+    ]
+  ],
+  "UDIAT_imagesTr_000071": [
+    [
+      98,
+      19,
+      157,
+      47
+    ]
+  ],
+  "BUSI_imagesTr_benign_416": [
+    [
+      40,
+      54,
+      109,
+      82
+    ]
+  ],
+  "BUSI_imagesTr_malignant_126": [
+    [
+      60,
+      61,
+      168,
+      118
+    ]
+  ],
+  "BUSI_imagesTr_benign_389": [
+    [
+      116,
+      82,
+      169,
+      105
+    ]
+  ],
+  "QAMEBI_imagesTr_49_Malignant": [
+    [
+      67,
+      62,
+      193,
+      143
+    ]
+  ],
+  "BUSI_imagesTr_malignant_199": [
+    [
+      79,
+      50,
+      173,
+      120
+    ]
+  ],
+  "QAMEBI_imagesTr_118_Malignant": [
+    [
+      24,
+      44,
+      182,
+      153
+    ]
+  ],
+  "UDIAT_imagesTr_000027": [
+    [
+      96,
+      74,
+      164,
+      156
+    ]
+  ],
+  "BUSI_imagesTr_benign_361": [
+    [
+      56,
+      88,
+      180,
+      134
+    ]
+  ],
+  "QAMEBI_imagesTr_53_Benign": [
+    [
+      87,
+      116,
+      159,
+      155
+    ]
+  ],
+  "BUSI_imagesTr_benign_378": [
+    [
+      95,
+      39,
+      163,
+      70
+    ]
+  ],
+  "UDIAT_imagesTr_000053": [
+    [
+      122,
+      56,
+      165,
+      93
+    ]
+  ],
+  "STU_imagesTr_34": [
+    [
+      86,
+      30,
+      193,
+      115
+    ]
+  ],
+  "QAMEBI_imagesTr_27_Benign": [
+    [
+      90,
+      126,
+      166,
+      162
+    ]
+  ],
+  "QAMEBI_imagesTr_16_Benign": [
+    [
+      96,
+      96,
+      162,
+      133
+    ]
+  ],
+  "BUSI_imagesTr_malignant_191": [
+    [
+      36,
+      66,
+      79,
+      130
+    ]
+  ],
+  "BUSI_imagesTr_benign_338": [
+    [
+      118,
+      62,
+      156,
+      76
+    ]
+  ],
+  "UDIAT_imagesTr_000115": [
+    [
+      81,
+      56,
+      110,
+      80
+    ]
+  ],
+  "QAMEBI_imagesTr_117_Malignant": [
+    [
+      41,
+      28,
+      174,
+      155
+    ]
+  ],
+  "QAMEBI_imagesTr_35_Malignant": [
+    [
+      92,
+      70,
+      201,
+      186
+    ]
+  ],
+  "QAMEBI_imagesTr_3_Malignant": [
+    [
+      92,
+      29,
+      175,
+      106
+    ]
+  ],
+  "BUSI_imagesTr_benign_392": [
+    [
+      24,
+      77,
+      172,
+      166
+    ]
+  ],
+  "UDIAT_imagesTr_000079": [
+    [
+      93,
+      53,
+      127,
+      73
+    ]
+  ],
+  "BUSI_imagesTr_benign_211": [
+    [
+      126,
+      63,
+      175,
+      89
+    ]
+  ],
+  "STU_imagesTr_29": [
+    [
+      74,
+      30,
+      229,
+      171
+    ]
+  ],
+  "BUSI_imagesTr_benign_151": [
+    [
+      154,
+      81,
+      182,
+      102
+    ]
+  ],
+  "BUSI_imagesTr_benign_231": [
+    [
+      64,
+      104,
+      166,
+      139
+    ]
+  ],
+  "UDIAT_imagesTr_000054": [
+    [
+      78,
+      42,
+      127,
+      87
+    ]
+  ],
+  "BUSI_imagesTr_malignant_12": [
+    [
+      98,
+      126,
+      152,
+      163
+    ]
+  ],
+  "BUSI_imagesTr_malignant_150": [
+    [
+      26,
+      72,
+      234,
+      206
+    ]
+  ],
+  "UDIAT_imagesTr_000105": [
+    [
+      119,
+      69,
+      140,
+      85
+    ]
+  ],
+  "BUSI_imagesTr_benign_90": [
+    [
+      82,
+      85,
+      102,
+      104
+    ]
+  ],
+  "BUSI_imagesTr_malignant_120": [
+    [
+      92,
+      63,
+      239,
+      149
+    ]
+  ],
+  "BUSI_imagesTr_benign_376": [
+    [
+      69,
+      46,
+      222,
+      149
+    ]
+  ],
+  "QAMEBI_imagesTr_71_Benign": [
+    [
+      82,
+      109,
+      179,
+      145
+    ]
+  ],
+  "BUSI_imagesTr_malignant_65": [
+    [
+      62,
+      98,
+      120,
+      142
+    ]
+  ],
+  "BUSI_imagesTr_benign_125": [
+    [
+      74,
+      85,
+      104,
+      110
+    ]
+  ],
+  "STU_imagesTr_21": [
+    [
+      46,
+      50,
+      137,
+      131
+    ]
+  ],
+  "QAMEBI_imagesTr_19_Malignant": [
+    [
+      94,
+      57,
+      169,
+      166
+    ]
+  ],
+  "BUSI_imagesTr_benign_296": [
+    [
+      59,
+      57,
+      211,
+      104
+    ]
+  ]
+}

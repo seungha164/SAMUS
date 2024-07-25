@@ -1,6 +1,6 @@
 from ast import arg
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 import argparse
 from pickle import FALSE, TRUE
 from statistics import mode
@@ -106,13 +106,6 @@ def evaluate(test_loader, model, criterion, opt, args):
         losses_result_dict['bbox'] += loss_dict['loss_bbox'].item()
         losses_result_dict['giou'] += loss_dict['loss_giou'].item()
         losses_result_dict['total'] += losses.item()
-        # reduce losses over all GPUs for logging purposes
-        # loss_dict_reduced = reduce_dict(loss_dict)
-        # loss_dict_reduced_scaled = {k: v * weight_dict[k]
-        #                             for k, v in loss_dict_reduced.items() if k in weight_dict}
-        # loss_dict_reduced_unscaled = {f'{k}_unscaled': v
-        #                               for k, v in loss_dict_reduced.items()}
-        # ------------------------------------------------------- result 추출 -----------------------------------------------------
         o1, o2, _, o4 = prompts['pts'].shape
         orig_target_sizes = torch.zeros([o1, o2, o4]).to(targets[0]['orig_size'].device)
         for _o1 in range(o1):
@@ -122,30 +115,10 @@ def evaluate(test_loader, model, criterion, opt, args):
 
         # rpreds, rtargets = post_process(boxes_for_metrics, orig_target_sizes)
         result = post_process(boxes_for_metrics, orig_target_sizes)
-        pred_boxes  = [{'boxes': result['pboxes'], 'labels': result['plabels'], 'scores': result['pscores']}]
-        gt_boxes    = [{'boxes': result['tboxes'], 'labels': result['tcls']}]
+        pred_boxes  = [{'boxes': result['pboxes'].to(dtype=torch.int64), 'labels': result['plabels'], 'scores': result['pscores']}]
+        gt_boxes    = [{'boxes': result['tboxes'].to(dtype=torch.int64), 'labels': result['tcls']}]
         
         metric.update(pred_boxes, gt_boxes)
-        # if mAP['map'].item() != -1:
-        #     mAP_dicts['map'].append(mAP['map'].item())
-        # if mAP['map_50'].item() != -1:
-        #     mAP_dicts['map_50'].append(mAP['map_50'].item())
-        # if mAP['map_75'].item() != -1:
-        #     mAP_dicts['map_75'].append(mAP['map_75'].item())
-        # if mAP['map_small'].item() != -1:
-        #     mAP_dicts['map_small'].append(mAP['map_small'].item())
-        # if mAP['map_medium'].item() != -1:
-        #     mAP_dicts['map_medium'].append(mAP['map_medium'].item())
-        # if mAP['map_large'].item() != -1:
-        #     mAP_dicts['map_large'].append(mAP['map_large'].item())
-        # pred_boxes[0]['boxes'] = torch.concat([pred_boxes[0]['boxes'], result['pboxes']], dim=0)
-        # pred_boxes[0]['scores'] = torch.concat([pred_boxes[0]['scores'], result['plabels']], dim=0)
-        # pred_boxes[0]['labels'] = torch.concat([pred_boxes[0]['labels'], result['pscores']], dim=0)
-        # gt_boxes[0]['boxes'] = torch.concat([gt_boxes[0]['boxes'], result['tboxes']], dim=0)
-        # gt_boxes[0]['labels'] = torch.concat([gt_boxes[0]['labels'], result['tcls']], dim=0)
-        # vis(imgs, rpreds, rtargets, orig_target_sizes, f'{idx}.png')
-        # gt_boxes = torch.concat([gt_boxes, rtargets], dim=0)
-        # pred_boxes = torch.concat([pred_boxes, rpreds], dim=0)
     mAP = metric.compute()
     print(' ---- inference finish ---- ')
     return {
@@ -160,14 +133,7 @@ def evaluate(test_loader, model, criterion, opt, args):
         'map_medium'    : mAP['map_medium'],
         'map_large'     : mAP['map_large'],
     }
-    # mAP_dicts['map']        = sum(mAP_dicts['map']) / len(mAP_dicts['map'])
-    # mAP_dicts['map_50']     = sum(mAP_dicts['map_50']) / len(mAP_dicts['map_50'])
-    # mAP_dicts['map_75']     = sum(mAP_dicts['map_75']) / len(mAP_dicts['map_75'])
-    # mAP_dicts['map_small']  = sum(mAP_dicts['map_small']) / len(mAP_dicts['map_small'])
-    # mAP_dicts['map_medium'] = sum(mAP_dicts['map_medium']) / len(mAP_dicts['map_medium'])
-    # mAP_dicts['map_large']  = sum(mAP_dicts['map_large']) / len(mAP_dicts['map_large'])
-    # pprint(mAP_dicts)
-    # return mAP_dicts
+
 
 def main():
 
@@ -176,7 +142,7 @@ def main():
     parser.add_argument('--modelname', default='LearableBlock', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS')
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS')
-    parser.add_argument('--task', default='BreastCancer_US_Learnable', help='task or dataset name')
+    parser.add_argument('--task', default='BreastCancer_US_Learnable256', help='task or dataset name')
     parser.add_argument('--vit_name', type=str, default='vit_b', help='select the vit model for the image encoder of sam')
     parser.add_argument('--sam_ckpt', type=str, default='checkpoints/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
     parser.add_argument('--batch_size', type=int, default=8, help='batch_size per gpu') # SAMed is 12 bs with 2n_gpu and lr is 0.005
@@ -185,19 +151,21 @@ def main():
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') 
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
     parser.add_argument('-keep_log', type=bool, default=True, help='keep the loss&lr&dice during training or not')
-
+    parser.add_argument('--cluster_num', type=int, default=3)
+    parser.add_argument('--num_transformerlayer', type=int, default=6)
     args = parser.parse_args()
-    args.sam_ckpt = 'checkpoints/SAMUS_06270611_54_0.8674892189951133.pth'
+    args.sam_ckpt = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07171906_240_tensor(0.1458).pth'
     opt = get_config(args.task) 
-
+    
     device = torch.device(opt.device)
+    logtimestr = time.strftime('%m%d%H%M')  # initialize the tensorboard for record the training process
     if args.keep_log:
-        logtimestr = time.strftime('%m%d%H%M')  # initialize the tensorboard for record the training process
+        
         boardpath = opt.tensorboard_path + args.modelname + opt.save_path_code + logtimestr
         if not os.path.isdir(boardpath):
             os.makedirs(boardpath)
         TensorWriter = SummaryWriter(boardpath)
-
+    opt.save_path = f"{opt.save_path[:-1]}_C{args.cluster_num}/{logtimestr}/"
     #  =============================================================== add the seed to make sure the results are reproducible ==============================================================
 
     seed_value = 1234  # the number of seed
@@ -219,8 +187,8 @@ def main():
                                 p_contr=0.5, p_gama=0.5, p_distor=0.0, color_jitter_params=None, long_mask=True)  # image reprocessing
     tf_val = JointTransform2D(img_size=args.encoder_input_size, low_img_size=args.low_image_size, ori_size=opt.img_size, crop=opt.crop, p_flip=0, color_jitter_params=None, long_mask=True)
     
-    train_dataset = ImageToImage2DLB(opt.data_path, opt.train_split, tf_train, img_size=args.encoder_input_size)
-    val_dataset = ImageToImage2DLB(opt.data_path, opt.val_split, tf_val, img_size=args.encoder_input_size)  # return image, mask, and filename
+    train_dataset = ImageToImage2DLB(opt.data_path, opt.train_split, tf_train, img_size=args.encoder_input_size, cluster_num=args.cluster_num)
+    val_dataset = ImageToImage2DLB(opt.data_path, opt.val_split, tf_val, img_size=args.encoder_input_size, cluster_num=args.cluster_num)  # return image, mask, and filename
     
     trainloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=8, pin_memory=True, collate_fn=collate_fn)
     valloader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=8, pin_memory=True, collate_fn=collate_fn)
@@ -253,7 +221,7 @@ def main():
     deep_supervision = False #cfg.MODEL.DETR.DEEP_SUPERVISION
     no_object_weight = 0.1
     # building criterion
-    matcher = HungarianMatcher(cost_class=1, cost_bbox=l1_weight, cost_giou=giou_weight)
+    matcher = HungarianMatcher(cost_class=5.0, cost_bbox=l1_weight, cost_giou=giou_weight)
     weight_dict = {"loss_ce": 1, "loss_bbox": l1_weight, "loss_giou": giou_weight}
     if deep_supervision:
         aux_weight_dict = {}
@@ -266,9 +234,7 @@ def main():
     )
     criterion.empty_weight = criterion.empty_weight.to(device)
     
-    
     # criterion = get_criterion(modelname=args.modelname, opt=opt)
-
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print("Total_params: {}".format(pytorch_total_params))
 
@@ -328,6 +294,8 @@ def main():
             print('epoch [{}/{}], val loss:{:.4f}'.format(epoch, opt.epochs, val_results['loss_total']))
             print('epoch [{}/{}], val loss-ce:{:.4f}, loss-bbox:{:.4f}, loss-giou:{:.4f}'.format(
                 epoch, opt.epochs, val_results['loss_ce'], val_results['loss_bbox'], val_results['loss_giou']))
+            print('epoch [{}/{}], val mAP:{:.4f}, val mAP50:{:.4f}, val mAP75:{:.4f}'.format(
+                epoch, opt.epochs, val_results['map'], val_results['map_50'], val_results['map_75']))
             if args.keep_log:
                 TensorWriter.add_scalar('val_mAP', val_results['map'], epoch)
                 TensorWriter.add_scalar('val_mAP50', val_results['map_50'], epoch)
@@ -348,7 +316,7 @@ def main():
             #     save_path = opt.save_path + args.modelname + opt.save_path_code + '%s' % timestr + '_' + str(epoch) + '_' + str(round(val_losses.item(), 7))
             #     torch.save(model.state_dict(), save_path + ".pth", _use_new_zipfile_serialization=False)
             if val_results['map_50'] > best_mAP50:
-                best_mAP50 = val_results['map']
+                best_mAP50 = val_results['map_50']
                 timestr = time.strftime('%m%d%H%M')
                 if not os.path.isdir(opt.save_path):
                     os.makedirs(opt.save_path)

@@ -164,6 +164,7 @@ class Config_BreastCancer_US:
     visual = False
     modelname = "SAM"
 
+
 class BreastCancer_US_Learnable:
     # This dataset is for breast cancer segmentation
     data_path = "./dataset"
@@ -196,6 +197,39 @@ class BreastCancer_US_Learnable:
     mode = "train"
     visual = False
     modelname = "LearableBlock"
+    
+class BreastCancer_US_Learnable256:
+    # This dataset is for breast cancer segmentation
+    data_path = "./dataset"
+    data_subpath = "./dataset/BreastCancer_US_256/"   
+    save_path = "./checkpoints/BreastCancer_US_256_Learnable/"
+    result_path = "./result/BreastCancer_US_256_Learnable/"
+    tensorboard_path = "./tensorboard/BreastCancer_US_256_Learnable/"
+    load_path = save_path + "/xxx.pth"
+    save_path_code = "_"
+
+    workers = 1                         # number of data loading workers (default: 8)
+    epochs = 400                        # number of total epochs to run (default: 400)
+    batch_size = 8                     # batch size (default: 4)
+    learning_rate = 1e-4                # iniial learning rate (default: 0.001)
+    momentum = 0.9                      # momntum
+    classes = 2                         # thenumber of classes (background + foreground)
+    img_size = 256                      # theinput size of model
+    train_split = "train-BreastCancer_US_256"   # the file name of training set
+    val_split = "val-BreastCancer_US_256"       # the file name of testing set
+    test_split = "test-BreastCancer_US_256"     # the file name of testing set
+    crop = None                         # the cropped image size
+    eval_freq = 1                       # the frequency of evaluate the model
+    save_freq = 2000                    # the frequency of saving the model
+    device = "cuda"                     # training device, cpu or cuda
+    cuda = "on"                         # switch on/off cuda option (default: off)
+    gray = "yes"                        # the type of input image
+    img_channel = 1                     # the channel of input image
+    eval_mode = "learnable"                 # the mode when evaluate the model, slice level or patient level
+    pre_trained = False
+    mode = "train"
+    visual = False
+    modelname = "LearableBlock"
 # ==================================================================================================
 def get_config(task="US30K"):
     if task == "US30K":
@@ -210,5 +244,7 @@ def get_config(task="US30K"):
         return Config_BreastCancer_US()
     elif task == "BreastCancer_US_Learnable":
         return BreastCancer_US_Learnable()
+    elif task == "BreastCancer_US_Learnable256":
+        return BreastCancer_US_Learnable256()
     else:
         assert("We do not have the related dataset, please choose another task.")

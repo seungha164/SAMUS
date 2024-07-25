@@ -87,24 +87,35 @@ from torchmetrics.detection import MeanAveragePrecision
 import cv2
 GT_COLOR = (255, 255, 255)
 MATCHING_COLOR_LIST = [(255,0,0), (0,0,255)]   # blue, red
-def vis(imgs, prompts, selected_prompts, preds, boxess, orig_sizes, names, VIS_SAVE_ROOT):
+MATCHING_COLOR_LIST_pre = [(237,149,100), (71,99,255)]   # blue, red
+UNMATCHING_COLORS = [(143,188,143),(152,251,152),(144,238,144),(34,139,34),(50,205,50),(0,100,0)]
+def vis(imgs, prompts, selected_prompts, before_matching_boxes, preds, boxess, orig_sizes, names, VIS_SAVE_ROOT):
     os.makedirs(VIS_SAVE_ROOT, exist_ok=True)
     for i in range(imgs.shape[0]):
         img, pred, gt, orig_size, name, p_coords = imgs[i][0], preds[i]['boxes'], boxess[i]['boxes'], orig_sizes[i], names[i], prompts['pts'][i]
+        all_boxes = before_matching_boxes[i]
         # 1 img 
-        image = cv2.resize(np.array(img.cpu())*255, np.array(orig_size.cpu()).astype(np.uint16).tolist())
+        image = cv2.resize(np.array(img.cpu()) * 255, np.array(orig_size.cpu()).astype(np.uint16).tolist())
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         # 2 prompts(candiates)
-        for p_coord in p_coords:
-            cv2.circle(image, np.array(p_coord[0].cpu() / 256 * orig_size[0].item()).astype(np.uint16).tolist(), 7,(0,255,0), -1, cv2.LINE_AA)
+        for _i, p_coord in enumerate(p_coords):
+            cv2.circle(image, np.array(p_coord[0].cpu()).astype(np.uint16).tolist(), 7, UNMATCHING_COLORS[_i], -1, cv2.LINE_AA)
+        # all boxes
+        for bN in range(all_boxes.shape[0]):
+            minx, miny, maxx, maxy = np.array(box_ops.box_cxcywh_to_xyxy(all_boxes[bN]).cpu() * orig_size[0].item()).astype(np.uint16)
+            cv2.rectangle(image, [minx, miny],  [maxx, maxy], UNMATCHING_COLORS[bN], 2)
+            
         # 3 bbox
         for bN in range(gt.shape[0]):
-            cv2.circle(image, np.array(selected_prompts[bN][0].cpu() / 256 * orig_size[0].item()).astype(np.uint16).tolist(), 7, MATCHING_COLOR_LIST[bN], -1, cv2.LINE_AA)
-            cv2.rectangle(image, [int(gt[bN][0].item()), int(gt[bN][1].item())],  [int(gt[bN][2].item()), int(gt[bN][3].item())], GT_COLOR, 2)
-            cv2.rectangle(image, [int(pred[bN][0].item()), int(pred[bN][1].item())],  [int(pred[bN][2].item()), int(pred[bN][3].item())], MATCHING_COLOR_LIST[bN], 2)
+            minx, miny, maxx, maxy = np.array(gt[bN].cpu())
+            pminx, pminy, pmaxx, pmaxy = np.array(pred[bN].cpu())
+            cv2.rectangle(image, [int(minx), int(miny)],  [int(maxx), int(maxy)], GT_COLOR, 2)
+            cv2.rectangle(image, [int(pminx), int(pminy)],  [int(pmaxx), int(pmaxy)], MATCHING_COLOR_LIST[bN], 2)
+            cv2.circle(image, np.array(selected_prompts[bN][0].cpu()).astype(np.uint16).tolist(), 7, MATCHING_COLOR_LIST_pre[bN], -1, cv2.LINE_AA)  # candiate
+            # cv2.circle(image, [int((pminx + pmaxx)/2), int((pminy + pmaxy)/2)], 7, MATCHING_COLOR_LIST[bN], -1, cv2.LINE_AA)
         cv2.imwrite(f'{VIS_SAVE_ROOT}/{name}.png', image)
         # print(i)
-
+import matplotlib.pyplot as plt
 @torch.no_grad()
 def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
     model.eval()
@@ -129,12 +140,6 @@ def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
         loss_dict, boxes_for_metrics = criterion(preds, targets)
         weight_dict = criterion.weight_dict
         losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
-        # # reduce losses over all GPUs for logging purposes
-        # loss_dict_reduced = reduce_dict(loss_dict)
-        # loss_dict_reduced_scaled = {k: v * weight_dict[k]
-        #                             for k, v in loss_dict_reduced.items() if k in weight_dict}
-        # loss_dict_reduced_unscaled = {f'{k}_unscaled': v
-        #                               for k, v in loss_dict_reduced.items()}
         # ------------------------------------------------------- result 추출 -----------------------------------------------------
         o1, o2, _, o4 = prompts['pts'].shape
         orig_target_sizes = torch.zeros([o1, o2, o4]).to(targets[0]['orig_size'].device)
@@ -145,25 +150,14 @@ def evaluate(test_loader, model, criterion, opt, args, VIS_SAVE_ROOT):
 
         result = post_process(boxes_for_metrics, orig_target_sizes)
         
-        pred_boxes  = [{'boxes': result['pboxes'], 'labels': result['plabels'], 'scores': result['pscores']}]
-        gt_boxes    = [{'boxes': result['tboxes'], 'labels': result['tcls']}]
+        pred_boxes  = [{'boxes': result['pboxes'].to(dtype=torch.int64), 'labels': result['plabels'], 'scores': result['pscores']}]
+        gt_boxes    = [{'boxes': result['tboxes'].to(dtype=torch.int64), 'labels': result['tcls']}]
         
         metric.update(pred_boxes, gt_boxes)
-        # if mAP['map'].item() != -1:
-        #     mAP_dicts['map'].append(mAP['map'].item())
-        # if mAP['map_50'].item() != -1:
-        #     mAP_dicts['map_50'].append(mAP['map_50'].item())
-        # if mAP['map_75'].item() != -1:
-        #     mAP_dicts['map_75'].append(mAP['map_75'].item())
-        # if mAP['map_small'].item() != -1:
-        #     mAP_dicts['map_small'].append(mAP['map_small'].item())
-        # if mAP['map_medium'].item() != -1:
-        #     mAP_dicts['map_medium'].append(mAP['map_medium'].item())
-        # if mAP['map_large'].item() != -1:
-        #     mAP_dicts['map_large'].append(mAP['map_large'].item())
+    
         target_images_id = [t['image_id'] for t in targets]
         selected_prompts = prompts['pts'][boxes_for_metrics['idx']]
-        vis(imgs, prompts, selected_prompts, pred_boxes, gt_boxes, orig_target_sizes, target_images_id, VIS_SAVE_ROOT)
+        vis(imgs, prompts, selected_prompts, preds['pred_boxes'], pred_boxes, gt_boxes, orig_target_sizes, target_images_id, VIS_SAVE_ROOT)
     mAP = metric.compute()
     print(' ---- inference finish ---- ')
     pprint(f"[result]\n{mAP}")
@@ -176,7 +170,7 @@ def main():
     parser.add_argument('--modelname', default='LearableBlock', type=str, help='type of model, e.g., SAM, SAMFull, SAMHead, MSA, SAMed, SAMUS...')
     parser.add_argument('-encoder_input_size', type=int, default=256, help='the image size of the encoder input, 1024 in SAM and MSA, 512 in SAMed, 256 in SAMUS') 
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS') 
-    parser.add_argument('--task', default='BreastCancer_US_Learnable', help='task or dataset name')
+    parser.add_argument('--task', default='BreastCancer_US_Learnable256', help='task or dataset name')
     parser.add_argument('--vit_name', type=str, default='vit_b', help='select the vit model for the image encoder of sam')
     parser.add_argument('--sam_ckpt', type=str, default='checkpoints/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
     parser.add_argument('--batch_size', type=int, default=1, help='batch_size per gpu') # 8 # SAMed is 12 bs with 2n_gpu and lr is 0.005
@@ -184,7 +178,9 @@ def main():
     parser.add_argument('--base_lr', type=float, default=0.0001, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
     parser.add_argument('--warmup', type=bool, default=False, help='If activated, warp up the learning from a lower lr to the base_lr') # True
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
-    parser.add_argument('-keep_log', type=bool, default=False, help='keep the loss&lr&dice during training or not')
+    parser.add_argument('--cluster_num', type=int, default=2)
+    parser.add_argument('--num_transformerlayer', type=int, default=6)
+    
     args = parser.parse_args()
     opt = get_config(args.task)  # please configure your hyper-parameter
     print("task", args.task, "checkpoints:", opt.load_path)
@@ -211,20 +207,20 @@ def main():
     
     # (0) model
     # register the sam model
-    args.sam_ckpt = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07171906_240_tensor(0.1458).pth'
+    args.sam_ckpt = './checkpoints/BreastCancer_US_256_Learnable_C2/07240743/LearableBlock_07241537_342_0.6457503.pth'
     VIS_SAVE_ROOT = f'./results/{args.sam_ckpt.split("/")[-1].replace(".pth", "")}/'
     model = get_model(args.modelname, args=args, opt=opt)
     model.to(device)
-    opt.load_path = './checkpoints/BreastCancer_US_Learnable/LearableBlock_07171906_240_tensor(0.1458).pth'
-    checkpoint = torch.load(opt.load_path)
-    #------when the load model is saved under multiple GPU
-    new_state_dict = {}
-    for k,v in checkpoint.items():
-        if k[:7] == 'module.':
-            new_state_dict[k[7:]] = v
-        else:
-            new_state_dict[k] = v
-    model.load_state_dict(new_state_dict)
+    # opt.load_path = './checkpoints/BreastCancer_US_Learnable_C6/07221203/LearableBlock_07221223_36_0.2578001.pth'
+    # checkpoint = torch.load(opt.load_path)
+    # #------when the load model is saved under multiple GPU
+    # new_state_dict = {}
+    # for k,v in checkpoint.items():
+    #     if k[:7] == 'module.':
+    #         new_state_dict[k[7:]] = v
+    #     else:
+    #         new_state_dict[k] = v
+    # model.load_state_dict(new_state_dict)
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print("Total_params: {}".format(pytorch_total_params))
     # (1) Loss
@@ -241,8 +237,8 @@ def main():
     #  =========================================================================== model and data preparation ============================================================================
     # (2) Data Loading
     tf_test         = JointTransform2D(img_size=args.encoder_input_size, low_img_size=args.low_image_size, ori_size=opt.img_size, crop=opt.crop, p_flip=0, color_jitter_params=None, long_mask=True)
-    test_dataset    = ImageToImage2DLB(opt.data_path, opt.test_split, tf_test, img_size=args.encoder_input_size)  # return image, mask, and filename
-    test_loader      = DataLoader(test_dataset, batch_size=1, shuffle=False,  num_workers=8, pin_memory=True, collate_fn=collate_fn)
+    test_dataset    = ImageToImage2DLB(opt.data_path, opt.test_split, tf_test, img_size=args.encoder_input_size, cluster_num=args.cluster_num)  # return image, mask, and filename
+    test_loader     = DataLoader(test_dataset, batch_size=1, shuffle=False,  num_workers=8, pin_memory=True, collate_fn=collate_fn)
 
     #  ========================================================================= begin to evaluate the model ============================================================================
     results = evaluate(

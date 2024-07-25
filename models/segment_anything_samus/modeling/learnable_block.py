@@ -130,6 +130,7 @@ class TransformerDecoder(nn.Module):
     def __init__(self, decoder_layer, num_layers, norm=None, return_intermediate=False):
         super().__init__()
         self.layers = _get_clones(decoder_layer, num_layers)
+        print('>>>>>>>>>> ', num_layers)
         self.num_layers = num_layers
         self.norm = norm
         self.return_intermediate = return_intermediate
@@ -216,30 +217,105 @@ class LearableBlock(nn.Module):
         #** 1. pass image encoder
         imge = self.image_encoder(imgs)                 # [b, c, h, w]
         imge = rearrange(imge, 'bs c h w -> bs (h w) c')
-        bs = imge.shape[0]
+        
         #** 2. pass prompt encoder - each candiate_point
+        bs = imge.shape[0]
         se = torch.empty((bs, 0, 256), device=imge.device)#, torch.empty((bs, 0, 256), device=imge.device)
-        for i in range(pts[0].shape[1]):
-            pti = (pts[0][:, i, :, :], pts[1][:, i, :])
-            sei, dei = self.prompt_encoder(
-                points = pti,
-                boxes = None,
-                masks = None
-            )       # [b, 2, 256], [b, 256, 32, 32]
-            # se.append(sei)
-            se = torch.cat([se, sei[:, :1, :]], dim=1)
+        pti = (rearrange(pts[0], 'b N k w -> (b N) k w'), rearrange(pts[1], 'b N k -> (b N) k'))
+        sei, dei = self.prompt_encoder(
+            points = pti,
+            boxes = None,
+            masks = None
+        ) # [b, 2, 256], [b, 256, 32, 32]
+        se = rearrange(sei[:,:1,:],'(b N) c d -> b N (c d)', b=bs)  # pad 제거
+        # for i in range(pts[0].shape[1]):
+        #     pti = (pts[0][:, i, :, :], pts[1][:, i, :])
+        #     sei, dei = self.prompt_encoder(
+        #         points = pti,
+        #         boxes = None,
+        #         masks = None
+        #     )       # [b, 2, 256], [b, 256, 32, 32]
+        #     # se.append(sei)
+        #     se = torch.cat([se, sei[:, :1, :]], dim=1)
 
         #** 3. pass Transformer block
-        query_embed = self.query_embed.weight.unsqueeze(1).repeat(1, bs, 1)     # [32*32(N), 256(c)] => [32*32(N), 8(bs), 256(c)]
+        # DETR 스타일
+        # query_embed = self.query_embed.weight.unsqueeze(1).repeat(1, bs, 1)     # [32*32(N), 256(c)] => [32*32(N), 8(bs), 256(c)]
+        # SAM의 Mask Deocder 스타일
+        query_embed = self.prompt_encoder.get_dense_pe()
+        query_embed = rearrange(query_embed, 'bs c h w -> bs (h w) c')
         hs = self.decoder(se, imge, memory_key_padding_mask=None,
-                          pos=None, query_pos=query_embed)
+                          pos=query_embed, query_pos=None)  # [b, c, 256]
         
         #** 4. final FFN -> [N, 4]
         outputs_class = self.class_embed(hs)
         outputs_coord = self.bbox_embed(hs).sigmoid()
         out = {'pred_logits': outputs_class, 'pred_boxes': outputs_coord}
         return out
+
+class LearableBlockMD(nn.Module):
+    def __init__(
+        self,
+        image_encoder: ImageEncoderViT,
+        prompt_encoder: PromptEncoder,
+        box_decoder: MaskDecoder,
+        pixel_mean: List[float] = [123.675, 116.28, 103.53],
+        pixel_std: List[float] = [58.395, 57.12, 57.375],
+    ) -> None:
+        super().__init__()
+        self.image_encoder = image_encoder
+        self.prompt_encoder = prompt_encoder
+        #! decoder (by. SAMUS official code)
+        self.box_decoder = box_decoder
+        self.bbox_embed = MLP(256, 256, 4, 3)     # hidden_dim, hidden_dim
+        self.class_embed = nn.Linear(256, 1 + 1)
+
+        self.register_buffer("pixel_mean", torch.Tensor(pixel_mean).view(-1, 1, 1), False)
+        self.register_buffer("pixel_std", torch.Tensor(pixel_std).view(-1, 1, 1), False)
+
+        #! Encoder & Prompt Encoder freeze
+        for param in self.image_encoder.parameters():
+            param.requires_grad = False
+        for param in self.prompt_encoder.parameters():
+            param.requires_grad = False
     
+    @property
+    def device(self) -> Any:
+        return self.pixel_mean.device
+    
+    def forward(
+        self, 
+        imgs: torch.Tensor,
+        pts: Tuple[torch.Tensor, torch.Tensor],  # coords : [b n 2], labels : [b n]
+    ) -> torch.Tensor:
+        #** 1. pass image encoder
+        imge = self.image_encoder(imgs)                     # [b c h w]
+        bs = imge.shape[0]
+        #** 2. pass prompt encoder - each candiate_point
+        # se = torch.empty((bs, 0, 256), device=imge.device)#, torch.empty((bs, 0, 256), device=imge.device)
+        pt_coords, pt_labels = pts[0].flatten(1,2), pts[1].flatten(1, 2)
+        sparse_embeddings, dense_embeddings = self.prompt_encoder(
+            points = (pt_coords, pt_labels),
+            boxes = None,
+            masks = None
+        )   # [b n_c+pad dim], [b dim h w]
+        # sparse_embeddings = sparse_embeddings[:,:1,:]
+        # sparse_embeddings = rearrange(sparse_embeddings, "(bs N) c d -> bs N c d", bs=bs)
+        #** Decoder
+        low_res_masks, iou_predictions = self.box_decoder(
+            image_embeddings = imge,                        # [b c h w]
+            image_pe = self.prompt_encoder.get_dense_pe(),  # [b 1 h 2]
+            sparse_prompt_embeddings = sparse_embeddings,
+            dense_prompt_embeddings = dense_embeddings,
+            # multimask_output = False,   
+        )
+        
+        #** 4. final FFN -> [N, 4]
+        outputs_class = self.class_embed(low_res_masks)
+        outputs_coord = self.bbox_embed(low_res_masks).sigmoid()
+        out = {'pred_logits': outputs_class, 'pred_boxes': outputs_coord, 'iou_predictions': iou_predictions}
+        return out
+
 def _get_clones(module, N):
     return nn.ModuleList([copy.deepcopy(module) for i in range(N)])
 

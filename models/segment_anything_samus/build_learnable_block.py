@@ -2,8 +2,8 @@ import torch
 
 from functools import partial
 
-from .modeling import LearableBlock
-from .modeling import ImageEncoderViT, PromptEncoder
+from .modeling import LearableBlock, LearableBlockZoom, LearableBlockOffset, LearableBlockMD
+from .modeling import ImageEncoderViT, PromptEncoder, BoxDecoder, TwoWayTransformer, LearableBlock_Filtering
 from torch.nn import functional as F
 
 def build_learnableblock_vit_b(args, checkpoint=None):
@@ -14,12 +14,254 @@ def build_learnableblock_vit_b(args, checkpoint=None):
         encoder_num_heads=12,
         encoder_global_attn_indexes=[2, 5, 8, 11],
         checkpoint=checkpoint,
+        num_transformerlayer = args.num_transformerlayer
     )
-    
+
+def build_learnableblock_filtering_vit_b(args, checkpoint=None):
+    return _build_learnableblock_filtering(
+        args,
+        encoder_embed_dim=768,
+        encoder_depth=12,
+        encoder_num_heads=12,
+        encoder_global_attn_indexes=[2, 5, 8, 11],
+        checkpoint=checkpoint,
+        num_transformerlayer = args.num_transformerlayer
+    )
+def build_learnableblockZoom_vit_b(args, checkpoint=None):
+    return _build_learnable_block_Zoom(
+        args,
+        encoder_embed_dim=768,
+        encoder_depth=12,
+        encoder_num_heads=12,
+        encoder_global_attn_indexes=[2, 5, 8, 11],
+        checkpoint=checkpoint,
+        num_transformerlayer = args.num_transformerlayer
+    )
+def build_learnableblockOffset_vit_b(args, checkpoint=None):
+    return _build_learnable_block_offset(
+        args,
+        encoder_embed_dim=768,
+        encoder_depth=12,
+        encoder_num_heads=12,
+        encoder_global_attn_indexes=[2, 5, 8, 11],
+        checkpoint=checkpoint,
+        num_transformerlayer = args.num_transformerlayer
+    )
+def build_learnableblockMD_vit_b(args, checkpoint=None):
+    return _build_learnableblockMD_vit_b(
+        args,
+        encoder_embed_dim=768,
+        encoder_depth=12,
+        encoder_num_heads=12,
+        encoder_global_attn_indexes=[2, 5, 8, 11],
+        checkpoint=checkpoint,
+        num_transformerlayer = args.num_transformerlayer
+    )
 
 learnableblock_model_registry = {
     "vit_b": build_learnableblock_vit_b,
+    "vit_b_filtering": build_learnableblock_filtering_vit_b
 }
+
+learnableblockZoom_model_registry = {
+    "vit_b": build_learnableblockZoom_vit_b,
+}
+
+learnableblockOffset_model_registry = {
+    "vit_b": build_learnableblockOffset_vit_b,
+}
+learnableblockMD_model_registry = {
+    "vit_b": build_learnableblockMD_vit_b,
+}
+
+def _build_learnableblockMD_vit_b(
+    args,
+    encoder_embed_dim,
+    encoder_depth,
+    encoder_num_heads,
+    encoder_global_attn_indexes,
+    checkpoint=None,
+    num_transformerlayer=1
+):
+    prompt_embed_dim = 256
+    image_size = args.encoder_input_size
+    patch_size = image_size//32
+    image_embedding_size = image_size // patch_size
+    learnableblock = LearableBlockMD(
+        image_encoder=ImageEncoderViT(
+            depth=encoder_depth,
+            embed_dim=encoder_embed_dim,
+            img_size=image_size,
+            mlp_ratio=4,
+            norm_layer=partial(torch.nn.LayerNorm, eps=1e-6),
+            num_heads=encoder_num_heads,
+            patch_size= patch_size,
+            qkv_bias=True,
+            use_rel_pos=True,
+            global_attn_indexes=encoder_global_attn_indexes,
+            window_size=14,
+            out_chans=prompt_embed_dim,
+        ),
+        prompt_encoder=PromptEncoder(
+            embed_dim=prompt_embed_dim,
+            image_embedding_size=(image_embedding_size, image_embedding_size),
+            input_image_size=(image_size, image_size),
+            mask_in_chans=16,
+        ),
+        box_decoder= BoxDecoder(
+            transformer=TwoWayTransformer(
+                depth=2,
+                embedding_dim=prompt_embed_dim,
+                mlp_dim=2048,
+                num_heads=8,
+            ),
+            transformer_dim=prompt_embed_dim,
+            iou_head_depth=3,
+            iou_head_hidden_dim=256,
+            num_cluster = args.cluster_num
+        )
+        # num_decoder_layers = num_transformerlayer
+    )
+    learnableblock.eval()
+    if checkpoint is not None:
+        with open(checkpoint, "rb") as f:
+            state_dict = torch.load(f)
+        try:
+            learnableblock.load_state_dict(state_dict)
+        except:
+            new_state_dict = load_from2(learnableblock, state_dict, image_size, patch_size)
+            learnableblock.load_state_dict(new_state_dict)
+    return learnableblock
+
+def _build_learnable_block_offset(
+    args,
+    encoder_embed_dim,
+    encoder_depth,
+    encoder_num_heads,
+    encoder_global_attn_indexes,
+    checkpoint=None,
+    num_transformerlayer=1
+):
+    prompt_embed_dim = 256
+    image_size = args.encoder_input_size
+    patch_size = image_size//32
+    image_embedding_size = image_size // patch_size
+    learnableblock = LearableBlockOffset(
+        image_encoder=ImageEncoderViT(
+            depth=encoder_depth,
+            embed_dim=encoder_embed_dim,
+            img_size=image_size,
+            mlp_ratio=4,
+            norm_layer=partial(torch.nn.LayerNorm, eps=1e-6),
+            num_heads=encoder_num_heads,
+            patch_size= patch_size,
+            qkv_bias=True,
+            use_rel_pos=True,
+            global_attn_indexes=encoder_global_attn_indexes,
+            window_size=14,
+            out_chans=prompt_embed_dim,
+        ),
+        
+        num_decoder_layers = num_transformerlayer
+    )
+    learnableblock.eval()
+    if checkpoint is not None:
+        with open(checkpoint, "rb") as f:
+            state_dict = torch.load(f)
+        try:
+            learnableblock.load_state_dict(state_dict)
+        except:
+            new_state_dict = load_from2(learnableblock, state_dict, image_size, patch_size)
+            learnableblock.load_state_dict(new_state_dict)
+    return learnableblock
+
+def _build_learnable_block_Zoom(
+    args,
+    encoder_embed_dim,
+    encoder_depth,
+    encoder_num_heads,
+    encoder_global_attn_indexes,
+    checkpoint=None,
+    num_transformerlayer=1
+):
+    prompt_embed_dim = 256
+    image_size = args.encoder_input_size
+    patch_size = image_size//32
+    image_embedding_size = image_size // patch_size
+    learnableblock = LearableBlockZoom(
+        image_encoder=ImageEncoderViT(
+            depth=encoder_depth,
+            embed_dim=encoder_embed_dim,
+            img_size=image_size,
+            mlp_ratio=4,
+            norm_layer=partial(torch.nn.LayerNorm, eps=1e-6),
+            num_heads=encoder_num_heads,
+            patch_size= patch_size,
+            qkv_bias=True,
+            use_rel_pos=True,
+            global_attn_indexes=encoder_global_attn_indexes,
+            window_size=14,
+            out_chans=prompt_embed_dim,
+        ),
+        num_decoder_layers = num_transformerlayer
+    )
+    learnableblock.eval()
+    if checkpoint is not None:
+        with open(checkpoint, "rb") as f:
+            state_dict = torch.load(f)
+        try:
+            learnableblock.load_state_dict(state_dict)
+        except:
+            new_state_dict = load_from2(learnableblock, state_dict, image_size, patch_size)
+            learnableblock.load_state_dict(new_state_dict)
+    return learnableblock
+
+def _build_learnableblock_filtering(
+    args,
+    encoder_embed_dim,
+    encoder_depth,
+    encoder_num_heads,
+    encoder_global_attn_indexes,
+    checkpoint=None,
+    num_transformerlayer=1
+):
+    prompt_embed_dim = 256
+    image_size = args.encoder_input_size
+    patch_size = image_size//32
+    image_embedding_size = image_size // patch_size
+    learnableblock = LearableBlock_Filtering(
+        image_encoder=ImageEncoderViT(
+            depth=encoder_depth,
+            embed_dim=encoder_embed_dim,
+            img_size=image_size,
+            mlp_ratio=4,
+            norm_layer=partial(torch.nn.LayerNorm, eps=1e-6),
+            num_heads=encoder_num_heads,
+            patch_size= patch_size,
+            qkv_bias=True,
+            use_rel_pos=True,
+            global_attn_indexes=encoder_global_attn_indexes,
+            window_size=14,
+            out_chans=prompt_embed_dim,
+        ),
+        prompt_encoder=PromptEncoder(
+            embed_dim=prompt_embed_dim,
+            image_embedding_size=(image_embedding_size, image_embedding_size),
+            input_image_size=(image_size, image_size),
+            mask_in_chans=16,
+        ),
+        num_decoder_layers = num_transformerlayer
+    )
+    learnableblock.eval()
+    if checkpoint is not None:
+        with open(checkpoint, "rb") as f:
+            state_dict = torch.load(f)
+        try:
+            learnableblock.load_state_dict(state_dict)
+        except:
+            new_state_dict = load_from2(learnableblock, state_dict, image_size, patch_size)
+            learnableblock.load_state_dict(new_state_dict)
+    return learnableblock
 
 def _build_learnable_block(
     args,
@@ -28,6 +270,7 @@ def _build_learnable_block(
     encoder_num_heads,
     encoder_global_attn_indexes,
     checkpoint=None,
+    num_transformerlayer=1
 ):
     prompt_embed_dim = 256
     image_size = args.encoder_input_size
@@ -54,6 +297,7 @@ def _build_learnable_block(
             input_image_size=(image_size, image_size),
             mask_in_chans=16,
         ),
+        num_decoder_layers = num_transformerlayer
     )
     learnableblock.eval()
     if checkpoint is not None:

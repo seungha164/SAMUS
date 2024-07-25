@@ -77,7 +77,7 @@ class SetCriterion(nn.Module):
 
         idx = self._get_src_permutation_idx(indices)
         target_classes_o = torch.cat([t["labels"][J] for t, (_, J) in zip(targets, indices)])
-        target_classes = torch.full(src_logits.shape[:2], self.num_classes,
+        target_classes = torch.full(src_logits.shape[:2], 1,
                                     dtype=torch.int64, device=src_logits.device)
         target_classes[idx] = target_classes_o  # [bs, N]
 
@@ -138,8 +138,6 @@ class SetCriterion(nn.Module):
         assert 'pred_boxes' in outputs
         idx = self._get_src_permutation_idx(indices)        # [[몇행, 몇열], ]
         src_boxes = outputs['pred_boxes'][idx]
-        for t, (_, target_idx) in zip(targets, indices):
-            print(t['boxes'][target_idx])
         target_boxes = torch.cat([t['boxes'][i] for t, (_, i) in zip(targets, indices)], dim=0)
 
         loss_bbox = F.l1_loss(src_boxes, target_boxes, reduction='none')
